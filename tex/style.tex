@@ -1,0 +1,278 @@
+\documentclass[a4paper,12pt]{scrreprt}
+\usepackage{subfiles}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc} 
+\usepackage{amssymb,amsmath,mathrsfs,trfsigns,esint,cancel}
+\usepackage{mathtools}
+\usepackage[numbers]{natbib}
+%\usepackage{physics}
+%\usepackage[exponent-product=\cdot,per-mode = symbol,locale = DE]{siunitx} 
+\usepackage{siunitx}
+%\sisetup{range-phrase = { \translate{bis} }}
+\usepackage{subfig}
+\usepackage[dvipsnames]{xcolor}
+%\usepackage{caption}
+\usepackage{multirow}
+\usepackage{psfrag}
+%\usepackage{auto-pst-pdf}
+\usepackage{graphicx}[demo]
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+\usetikzlibrary{decorations.pathreplacing}
+%\usetikzlibrary{circuits.ee.IEC}
+\usepackage{pgfplots}
+\usepackage{pgfmath}
+\usepackage[straightvoltages,european]{circuitikz}
+\usepackage[parfill]{parskip} 	% no indendation, though proper paragraph spacing
+\usepackage{lscape}
+\usepackage{rotating}
+
+\usepackage{bodegraph}
+\usetikzlibrary{intersections}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,240mm},
+ left=20mm,
+ top=20mm,
+ }
+
+
+
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{calc}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{arydshln}
+\usepackage{tabu}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{lscape}
+\usepackage{listings}
+
+
+
+
+
+\definecolor{bargrey}{rgb}{0.6,0.6,0.6}								% Color for left listings bar
+
+\usepackage{todonotes}
+%\usepackage{subcaption}
+\usepackage{float}
+\usepackage{multicol}
+
+\usepackage{esdiff}
+
+
+\def\title{Praktikum \\ Angewandte Elektrotechnik}
+\def\semester{WS 2018/2019}
+
+
+\footskip=65pt 
+
+\pagestyle{fancy}
+\renewcommand{\chaptername}{}
+\renewcommand{\chaptermark}[1]{\uppercase{\markboth{#1}{}}}
+
+\fancypagestyle{}{
+	
+	 
+    \fancyhf{}
+	\renewcommand{\headrulewidth}{0pt}
+	\fontfamily{cmss}\selectfont\fontsize{11}{13}\selectfont
+
+	\fancyfoot[L]{\parbox[b]{4.7cm}{\begin{flushleft}\leftmark\end{flushleft}}}
+
+	\fancyfoot[R]{\parbox[b]{5cm}{\title \\ \semester}  %\parbox[b]{1.53cm}{\includegraphics[scale=0.1]{arr}}}
+    \fancyhead{}
+    \renewcommand{\footrulewidth}{2pt}
+    %\chead{\leftmark}
+    \cfoot{\thepage}
+
+}
+
+\pagestyle{}
+
+%neue Cases-Umgebung, ohne Klammer
+\newenvironment{nocases}{%
+	\left.\renewcommand*\lbrace.%
+	\begin{cases}}%
+	{\end{cases}\right.}
+
+%\renewcommand{\footrulewidth}{0.4pt}
+
+\allowdisplaybreaks
+
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\ast$}
+\renewcommand{\arraystretch}{1.3}
+
+\newcommand\mydots{\ifmmode\ldots\else\makebox[1em][c]{.\hfil.\hfil.}\thinspace\fi}
+
+
+\newcommand{\proto}[1]{\textcolor{blue}{#1}}
+
+% Listing environments with a grey bar in the left side.
+\lstnewenvironment{barlisting}[1][]{\lstset{frame=l,framerule=3px,rulecolor=\color{bargrey},framesep=4px,xleftmargin=8mm,#1}}{}
+\newcommand{\lstbarinput}[2][]{\lstinputlisting[frame=l,framerule=3px,rulecolor=\color{bargrey},framesep=4px,xleftmargin=8mm,#1]{#2}}
+
+% For Inkscape LaTeX export
+\newcommand{\itxtsz}{\footnotesize}		% Use {\itxtsz blabla} in inkscape drawings to ensure a common font size.
+\newcommand{\compa}[1]{\textit{#1}}										% Company names
+\newcommand{\refi}[1]{\mbox{Abb. \ref{#1}}}						% Image references
+\newcommand{\reft}[1]{\mbox{Tabelle \ref{#1}}}				% Table references
+\newcommand{\refe}[1]{\mbox{(\ref{#1})}}							% Formula references
+\newcommand{\kword}[1]{\textbf{#1}}		% Keyword				% Keyword
+\newcommand{\eword}[1]{\textit{#1}}		% Emphasis			% Emphasized word
+\newcommand{\siglvl}[2]{\code{#1}\,=\,#2}							% Signal level
+\newcommand{\code}[1]{\texttt{#1}}										% Code in continuous text
+
+\newcommand{\dop}{\mathrm{d}}													% Differential operator (upright)
+
+\newcommand{\umu}{\upmu}	% Unit mu (upright)					% Upright mu
+\newcommand{\vq}[1]{\mathbf{#1}}											% Vector quantity
+
+
+\newdimen\slantmathcorr
+\def\oversl#1{%assuming that mathslant=0.25
+	\setbox0=\hbox{$#1$}
+	\slantmathcorr=\wd0
+	\hskip 0.2\slantmathcorr \overline{\hbox to 0.8\wd0{%
+			\vphantom{\hbox{$#1$}}}}
+	\hskip-\wd0\hbox{$#1$}
+}
+\def\undersl#1{%assuming that mathslant=0.25
+	\setbox0=\hbox{$#1$}
+	\slantmathcorr=\wd0
+	\underline{\hbox to 0.8\wd0{%
+			\vphantom{\hbox{$#1$}}}}
+	\hskip-0.8\wd0\hbox{$#1$}
+}
+
+
+
+
+\makeatletter
+\def\munderbar#1{\underline{\sbox\tw@{$#1$}\dp\tw@\z@\box\tw@}}
+\makeatother
+
+
+
+\setcounter{chapter}{0}
+\setcounter{secnumdepth}{3}
+\makeatletter
+\let\ps@plain\ps@fancy
+%\makeatother
+
+
+
+\tikzset{
+	pics/inverter/.style args = {#1/#2}{
+		code = {
+			\node (-in) at (0,-1.5){};
+			\node(-ground) at (2,-3.5){};
+			\node(-out) at (6,-2);
+			\draw (-in) to[R=${#1}$,-*] (right=2cm of -in)--(3,-1.5);
+			\draw (4,-2) node[op amp,yscale=1](opa){};
+			\draw (2,-1.5) -- (2,-0.5)to[R=${#2}$](5.5,-0.5)to[short,-*](5.5,-2);
+			\draw (5,-2) to[short] (6,-2);
+			\draw (3,-2.5) -- (2,-2.5) -- (2,-3.5);
+		}
+	}
+}
+
+\AtBeginDocument{%
+	\addtocontents{toc}{\protect\thispagestyle{empty}}%
+	\addtocontents{lof}{\protect\thispagestyle{empty}}%
+}
+\AfterTOCHead{\thispagestyle{empty}}
+
+\newcommand\invertierer[5]{
+	\draw (0,0) node[anchor=north]{${#1}$} to[R=${#3}$,o-*] (2.5,0)--(3,0);
+	\draw (4,-0.5) node[op amp,yscale=1,xscale=#5](opa){};
+	\draw (2.5,0) -- (2.5,1)to[R=${#4}$](5.5,1)to[short,-*](5.5,-0.5);
+	\draw (5,-0.5) to[short,-o] (6.5,-0.5)node[anchor=south]{${#2}$};
+	\draw (3,-1) -- (2.5,-1) -- (2.5,-2)node[rground]{};
+}
+
+\newcommand\invertiererk[5]{
+	\draw (0,0) node[anchor=north]{${#1}$} to[R=${#3}$,o-*] (2.5,0)--(3,0);
+	\draw (4,-0.5) node[op amp,yscale=1,xscale=#5](opa){};
+	\draw (2.5,0) -- (2.5,1)to[R=${#4}$](5.5,1)to[short,-*](5.5,-0.5);
+	\draw (5,-0.5) to[short,-o] (6.5,-0.5)node[anchor=south]{${#2}$};
+	\draw (3,-1) -- (2.5,-1) -- (2.5,-1.5)node[rground]{};
+}
+
+\newcommand\addierer[7]{
+	\draw (0,1) node[anchor=north]{${#1}$} to[R=${#4}$,o-*] (2.5,1);
+	\draw (0,0) node[anchor=north]{${#2}$} to[R,l_=${#5}$,o-*] (2.5,0)--(3,0);	
+	\draw (4,-0.5) node[op amp,yscale=1,xscale=#7](opa){};
+	\draw (2.5,0) -- (2.5,1)to[R=${#6}$](5.5,1)to[short,-*](5.5,-0.5);
+	\draw (5,-0.5) to[short,-o] (6.5,-0.5)node[anchor=south]{${#3}$};
+	\draw (3,-1) -- (2.5,-1) -- (2.5,-2)node[rground]{};
+}
+
+\newcommand\subtrahierer[8]{
+	\draw (0,0) node[anchor=north]{${#1}$} to[R=${#4}$,o-*] (2.5,0)--(3,0);
+	\draw (0,-1) node[anchor=north]{${#2}$} to[R,l_=${#5}$,o-*] (2.5,-1);
+	\draw (4,-0.5) node[op amp,yscale=1,xscale=#8](opa){};
+	\draw (2.5,0) -- (2.5,1)to[R=${#6}$](5.5,1)to[short,-*](5.5,-0.5);
+	\draw (5,-0.5) to[short,-o] (6.5,-0.5)node[anchor=south]{${#3}$};
+	\draw (3,-1) -- (2.5,-1) to[R=${#7}$] (2.5,-3.5)node[rground]{};
+}
+
+\newcommand\integrierer[5]{
+	\draw (0,0) node[anchor=north]{${#1}$} to[R=${#3}$,o-*] (2.5,0)--(3,0);
+	\draw (4,-0.5) node[op amp,yscale=1,xscale=#5](opa){};
+	\draw (2.5,0) -- (2.5,1)to[C=${#4}$](5.5,1)to[short,-*](5.5,-0.5);
+	\draw (5,-0.5) to[short,-o] (6.5,-0.5)node[anchor=south]{${#2}$};
+	\draw (3,-1) -- (2.5,-1) -- (2.5,-2)node[rground]{};
+}
+
+\newcommand\differenzierer[5]{
+	\draw (0,0) node[anchor=north]{${#1}$} to[C=${#3}$,o-*] (2.5,0)--(3,0);
+	\draw (4,-0.5) node[op amp,yscale=1,xscale=#5](opa){};
+	\draw (2.5,0) -- (2.5,1)to[R=${#4}$](5.5,1)to[short,-*](5.5,-0.5);
+	\draw (5,-0.5) to[short,-o] (6.5,-0.5)node[anchor=south]{${#2}$};
+	\draw (3,-1) -- (2.5,-1) -- (2.5,-2)node[rground]{};
+}
+ 
+\newcounter{bsp}
+
+\newcommand{\bsp}[1]{\stepcounter{bsp}\addsec{Beispiel \arabic{chapter}.\arabic{bsp}: #1}}
+
+\makeatletter
+\newcommand*\addsubsec{\secdef\@addsubsec\@saddsubsec}
+\newcommand*{\@addsubsec}{}
+\def\@addsubsec[#1]#2{\subsection*{#2}%\addcontentsline{toc}{subsection}{#1}
+  \if@twoside\ifx\@mkboth\markboth\markright{#1}\fi\fi
+}
+\newcommand*{\@saddsubsec}[1]{\subsection*{#1}\@mkboth{}{}}
+\makeatother
+ 
+\newcommand{\laplacian}{\Delta}
+\newcommand{\vnabla}{\ensuremath{\vec{\nabla}}}
+\newcommand{\Div}{\operatorname{div}}
+\newcommand{\Grad}{\operatorname{grad}}
+\newcommand{\Rot}{\operatorname{rot}}
+\newcommand{\addfile}[1]{\subfile{inhalt/{#1}}}
+
+ 
+\usepackage[hidelinks]{hyperref}
+ 
+\begin{document}
+
+
+Style-Dokument; Nicht löschen!
+
+
+\end{document}

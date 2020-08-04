@@ -1,0 +1,350 @@
+\chapter{Ausarbeitung der Aufgaben}
+\section{Charakterisierung des Operationsverstärkers}
+\subsection{Offsetspannung}
+\subsubsection{Fragestellung: Was versteht man unter Offsetspannung und wie kommt sie zustande?}
+
+Unter der Offsetspannung versteht man jene Spannung, die zwischen den beiden Eingängen des OPVs angelegt werden muss um eine Ausgangsspannung von \SI{0}{\volt} zu erhalten. Bzw. muss je nach verwendeter Definition $-U_{OS}$ zwischen den Eingängen angelegt werden.\\
+
+Diese Spannung kommt durch Unsymmetrien zwischen den Transistoren der Eingangsdifferenzverstärkerstufe zustande.
+
+\subsubsection{Bestimmen Sie mittels einer geeigneten Eingangsbeschaltung die Offsetspannung des Operationsverstärkers. Welches Ergebnis erwarten Sie?}
+
+Erwartetes Ergebnis: Da es in der Simulation keine Schwierigkeit sein sollte ideale Transistoren zu modelieren, ist eine sehr geringe bis verschwindende Offsetspannung zu erwarten.
+
+\textbf{Simulation:}
+Zur Simulation wurde eine DC-Sweep-Simulation durchgeführt. Konkret wurde die Quelle $V_{IN}$ variiert und die stationäre Ausgangsspannung des OPVs betrachtet. Die Eingangsdifferenzspannung bei der Ausgang genau \SI{1.65}{\volt} beträgt wird als Offsetspannung definiert.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Schaltung_1.png}
+    \caption{verwendete Schaltung und Simulationsparameter}
+    \label{fig:my_label}
+\end{figure}
+
+\textbf{Simulationsergebnis:} Es wurde eine Offsetspannung von \SI{4.68}{\micro \volt} beobachtet.
+
+\subsubsection{Wie kann die Offsetspannung in einer Simulation berücksichtigt werden?}
+Die Offsetspannung könnte einfach durch eine zusätzliche Spannungsquelle, die genau die Offsetspannung liefert, an einem der beiden Eingänge des Operationsverstärkers modelliert werden.
+
+\subsection{Bode-Plot}
+\subsubsection{Simulieren Sie mit einer geeigneten Analyseart und Beschaltung den Amplituden- und Phasengang des Operationsverstärkers.}
+
+Für diese Fragestellung eignet sich die AC-Sweep-Simulation. Hierfür wird die $V_{IN}$ zu einer Wechselspannungsquelle mit Spannungsamplitude \SI{1}{\volt} konfiguriert. In der AC-Simulation wird um den Arbeitspunkt linearisiert, eventuelle Austeuergrenzen und Sättigung spielen bei dieser Simulation keine Rolle. Simuliert wurde ein Frequenzbereich von \SI{1}{Hz} bis \SI{10}{\mega \hertz}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Schaltung_2.png}
+    \caption{verwendete Schaltung und Simulationsparameter}
+    \label{fig:my_label}
+\end{figure}
+
+\textbf{Simulationsergebnis:} Das resultierende Bode-Diagram:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/BodePlot.pdf}
+    \caption{Frequenzgang}
+    \label{fig:my_label}
+\end{figure}
+
+\subsubsection{Welche Verstärkung $A_0$ besitzt der Verstärker?}
+
+Der Operationsverstärker besitzt eine Open-Loop-Verstärkung $A_0 = \frac{U_{OUT}}{U_{INP}-U_{INN}}$ von \num{3.74e4} beziehungsweise \SI{91.4}{dB}.
+
+\subsubsection{Beeinflusst die Offsetspannung den Frequenzgang?}
+
+Nein, die Offsetspannung hat keinen Einfluss auf den Frequenzgang, da die Schaltung für die Berechnung des Frequenzganges um den Arbeitspunkt linearisiert wird, es wird quasi mit dem Kleinsignalersatzschaltbild gerechnet.
+
+\subsubsection{Welches GBW besitzt der OPV?}
+
+Der Amplitudengang durchschreitet die \SI{0}{dB}-Linie bei einer Frequenz von \SI{1.13}{\mega \hertz}, dies entspricht auch dem Gain-Bandwith-Product.
+
+\subsubsection{Wie kann die Verstärkung $A_0$ des OPV verändert werden?}
+
+Die Open-Loop-Verstärkung $A_0$ ist eine Eigenschaft des OPVs und kann nicht durch externe Beschaltung verändert werden. Diese Verstärkung wird im wesentlichen durch die Spannungs-Verstärkungs-Stufe des OPVs bestimmt.
+
+\subsection{Slew-Rate}
+
+\subsubsection{Bestimmen Sie die Slew-Rate des OPV mit geeigneter Beschaltung.}
+
+Zur Bestimmung der Slew-Rate wird der OPV als Impedanzwandler oder Spannungsfolger verschaltet, der Ausgang wird also auf den invertierenden Eingang rückgeführt. Als Eingangssignal wird eine Folge von Rechteckimpulsen aufgeschalten. Die Slew-Rate ist dann die Geschwindigkeit in der das Ausgangssignal diesem Impuls folgt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Schaltung_3.png}
+    \caption{Bufferschaltung zur Bestimmung der Slew-Rate}
+    \label{fig:my_label}
+\end{figure}
+
+\textbf{Simulationsergebnis:} Es ergab sich folgender zeitlicher Verlauf der Ausgangsspannung und folgende Werte für die Slew-rate:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+         steigende Flanke & fallende Flanke  \\ \hline
+         \SI{741}{\kilo \volt \per \second} & \SI{-5.11}{\mega \volt \per \second} \\ \hline
+    \end{tabular}
+    \caption{Caption}
+    \label{tab:my_label}
+\end{table}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Slewrate_default.pdf}
+    \caption{Zeitlicher Verlauf der Spannungen}
+\end{figure}
+
+\subsubsection{Warum unterscheidet sich die Slew-Rate für die fallende und steigende Flanke}
+
+Die Ursache für den Unterschied zwischen der Slew-Rate bei steigender und fallender Flanke ist vermutlich in der Ausgangsstufe des OPVs zu suchen. Bei steigender Flanke muss die Kapazität erst geladen werden, dies erfordert kurzzeitig hohe Ströme und hohe Leistungen. $\rightarrow$ Bei der steigenden Flanke ist man durch den maximalen Ausgangsstrom des OPV limitiert, bei der fallenden Flanke hingegen ist der maximale Sink-Current entscheidend, der typischerweise um einiges größer ist.
+
+\subsubsection{Hat die Last einen Einfluss auf die Slew-Rate?}
+
+Die Last hat einen sehr großen Einfluss auf die Slew-Rate. Ein größerer Kondensator würde z.B. mehr Ladung brauchen um auf die selbe Spannung geladen zu werden, um dies in der gleichen Zeit zu schaffen also mehr Leistung.\\
+
+\textbf{Simulation mit der Last $C_1 = \SI{1}{\nano \farad}, R_3 = \SI{10}{\mega \ohm}$:}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+         steigende Flanke & fallende Flanke  \\ \hline
+         \SI{33.3}{\kilo \volt \per \second} & \SI{-961}{\kilo \volt \per \second} \\ \hline
+    \end{tabular}
+    \caption{Caption}
+    \label{tab:my_label}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Slewrate_1n.pdf}
+    \caption{Zeitlicher Verlauf der Spannungen mit veränderter Last}
+\end{figure}
+
+Bei kleinerer Last lässt sich hingegen eine schnellere Slew-Rate beobachten. Auffällig ist auch, dass sich die Geschwindigkeiten für steigende und fallende Flanken annähern:
+
+\textbf{Simulation mit der Last $C_1 = \SI{1}{\pico \farad}, R_3 = \SI{20}{\mega \ohm}$:}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+         steigende Flanke & fallende Flanke  \\ \hline
+         \SI{5.55}{\mega \volt \per \second} & \SI{-5.47}{\mega \volt \per \second} \\ \hline
+    \end{tabular}
+    \caption{Caption}
+    \label{tab:my_label}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Slewrate_1p.pdf}
+    \caption{Zeitlicher Verlauf der Spannungen mit veränderter Last}
+\end{figure}
+
+\section{Invertierender Verstärker}
+Nun ist ein invertierender Verstärker zu untersuchen.
+\subsection{Design}
+\subsubsection{Bauen Sie einen invertierenden Verstärker mit Verstärkung $|A_1|=1$ und $|A_2|=10$ auf.}
+
+\textbf{Verstärker mit Verstärkung -1:}
+
+Für eine Verstärkung von 1 müssen die beiden Widerstände $R_1$ und $R_2$ gleich groß gewählt werden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Schaltung_4.png}
+    \caption{invertierender Verstärker mit }
+    \label{fig:my_label}
+\end{figure}
+
+\textbf{Verstärker mit Verstärkung -10:}
+
+Für eine Verstärkung von -10 muss gelten $R_2 = 10 R_1$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Schaltung_5.png}
+    \caption{invertierender Verstärker mit }
+    \label{fig:my_label}
+\end{figure}
+
+\subsubsection{Wie groß müssen die Widerstände gewählt werden und warum?}
+\textbf{Verstärker mit Verstärkung 1:}\\
+Wie bereits erwähnt müssen die beiden Widerstände $R_2$ und $R_1$ gleich groß gewählt werden, zusätzlich sollten die Widerstände im Bereich von einigen Kiloohm liegen. Die fließenden Ströme sollten weder zu groß sein, noch zu klein (Robustheit gegen Störeinflüsse, Vernachlässigbarkeit der Biasströme). Sie wurden zu \SI{10}{\kilo \ohm} gewählt.
+
+\textbf{Verstärker mit Verstärkung 10:}\\
+Wie bereits erwähnt muss für die beiden Widerstönde folgendes gelten $R_2= 10 R_1$, zusätzlich sollten die Widerstände im Bereich von einigen Kiloohm liegen. Die fließenden Ströme sollten weder zu groß sein, noch zu klein (Robustheit gegen Störeinflüsse, Vernachlässigbarkeit der Biasströme). $R_1$ wurde bei \SI{10}{\kilo \ohm} belassen und $R_2$ entsprechend um den Faktor 10 vergrößert.
+
+\subsubsection{Verifizieren sie die Verstärkung mittels Simulation!}
+
+Zur Verifizierung wurde jeweils der stationäre Arbeitspunkt durch Simulation bestimmt:\\
+\textbf{Verstärker mit Verstärkung 1:}\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{Bilder/1_1_operatingpoint.png}
+    \caption{Arbeitspunkt des Verstärker mit Verstärkung 1}
+    \label{fig:my_label}
+\end{figure}
+
+Die Differenzeingangsspannung beträgt in diesem Arbeitspunkt genau \SI{1}{\volt} ($V_{inp}-V_{inn}$), die Ausgangsspannung $V_{Out}$ liegt mit \SI{653}{\milli \volt} ziemlich genau um dieses Volt versetzt unter der Common-Mode Spannung von \SI{1.65}{\volt}. Der Verstärker weist also die gewünschte Verstärkung von -1 auf.
+
+\textbf{Verstärker mit Verstärkung 10:}\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{Bilder/10_operatingpoint.png}
+    \caption{Arbeitspunkt des Verstärker mit Verstärkung 1}
+    \label{fig:my_label}
+\end{figure}
+
+Die Differenzeingangsspannung beträgt in diesem Arbeitspunkt genau \SI{100}{\milli \volt} ($V_{inp}-V_{inn}$), die Ausgangsspannung $V_{Out}$ liegt mit \SI{653}{\milli \volt} ziemlich genau um diese Spannung mal der Verstärkung unter der Common-Mode Spannung von \SI{1.65}{\volt}. Der Verstärker weist also die gewünschte Verstärkung von -10 auf.
+
+
+\subsection{Linearität}
+\subsubsection{Kann der invertierende Verstärker dem gesamten Eingangsspannungsbereich folgen, oder gibt es Aussteuergrenzen?}
+
+\textbf{Annahme: Die Eingangsspannung kann nur zwischen \SI{0}{\volt} und $V_{CC}$ liegen.}
+Zur Betrachtung dieser Fragestellung wurde eine DC-Sweep Simulation gewählt, die Amplitude der Spannungsquelle $V_{IN}$ wurde zwischen \SI{-1.65}{\volt} auf \SI{1.65}{\volt} variiert.
+
+\textbf{Verstärker mit Verstärkung -1:}\\
+
+Der Ausgang kann dem Eingangssignal nicht über den ganzen Bereich folgen, da der Ausgang des OPVs nicht genügend Strom liefern kann. In der nachfolgenden Grafik sieht man deutlich, dass der Strom linear ansteigt, bis er bei einer Eingangsspannung von etwa \SI{-0.4}{\volt} in Sättigung gerät.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Linearity_1.pdf}
+    \caption{Ausgangsspannung (und Feedbackstrom) in Abhängigkeit der Eingangsspannung}
+    \label{fig:my_label}
+\end{figure}
+
+\textbf{Verstärker mit Verstärkung -10:}\\
+
+Beim Verstärker mit Verstärkung -10 tritt dieses Problem nicht auf. Der Ausgang kann dem Eingang im relevanten Bereich folgen und steuert voll aus. Interessanterweise weicht die Ausgangsspannung bei kleinen Eingangsspannungen leicht von der Aussteuergrenze ab.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Linearity_10.pdf}
+    \caption{Ausgangsspannung (und Feedbackstrom) in Abhängigkeit der Eingangsspannung}
+    \label{fig:my_label}
+\end{figure}
+
+\subsection{Einfluss der Gleichtaktspannung}
+
+Um den Einfluss der Gleichtaktspannung zu untersuchen wurde diese variiert und für die verschiedenen Fälle jeweils eine transiente Analyse durchgeführt. Man erkennt, dass die Gleichtaktspannung lediglich einen Offset an der Ausgangsspannung bewirkt. Dies kann das Signal ungewünscht in die Aussteuergrenzen treiben. Daher ist es bei assymetrischer Versorgung sinnvoll $V_{CM}$ genau zwischen die Aussteuergrenzen zu legen.
+
+Diese Simulation wurde am Verstärker mit $V = -10$ mit einer sinusförmigen Eingangsspannung mit einer Amplitude von \SI{150}{\milli \volt} durchgeführt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Schaltung_6.png}
+    \caption{verwendete Schaltung und Simulationsparameter}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/VCM_sweep.pdf}
+    \caption{Ausgangsspannung bei verschiedenen Gleichtaktspannungsniveaus}
+    \label{fig:my_label}
+\end{figure}
+
+\subsection{Einfluss der Last}
+
+Um den Einfluss der Last zu beurteilen, wird eine ähnliche Simulation durchgeführt: Der Wert des Lastwiderstands wird variiert, während die anderen Parameter konstant gehalten werden. Man erkennt, dass der OPV keine beliebig große Lasten treiben kann. Ist die Last zu groß (kleiner Widerstandswert) reicht der Ausgangsstrom nicht aus um dem vorgebenen Signal zu folgen. Erst ab \SI{1}{\mega \ohm} gelingt das.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Schaltung_7.png}
+    \caption{verwendete Schaltung und Simulationsparameter}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/R_sweep.pdf}
+    \caption{Ausgangsspannung bei verschiedenen Gleichtaktspannungsniveaus}
+    \label{fig:my_label}
+\end{figure}
+
+\subsection{Slew-Rate}
+
+Um die Auswirkungen der Größenordnung der Feedbackwiderstände beurteilen zu können werden die Widerstände variiert und die Slewrate für verschiedene Werte ermittelt. Das Widerstandsverhältnis und somit die Verstärkung wird konstant gehalten.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|c|}
+    \hline
+         $R_1$ & steigende Flanke & fallende Flanke  \\ \hline
+         $\SI{1}{\kilo \ohm} & $\SI{645}{\kilo \volt \per \second} & \SI{-679}{\kilo \volt \per \second} \\ \hline
+         $\SI{10}{\kilo \ohm} & $\SI{672}{\kilo \volt \per \second} & \SI{-2.01}{\mega \volt \per \second} \\ \hline
+         $\SI{100}{\kilo \ohm}$ & - & - \\ \hline
+         $\SI{1}{\mega \ohm}$ & - & -  \\ \hline
+    \end{tabular}
+    \caption{Ergebnis der Messreihe}
+    \label{tab:my_label}
+\end{table}
+
+Es lässt sich sagen, dass größere Widerstandswerte den OPV-Ausgang weniger stark belasten und zu schnelleren Slew-Rates führen. Bei zu hohen Widerstandswerten ($R_1 \geq \SI{100}{\kilo \ohm}$) funktioniert die Schaltung jedoch nicht mehr. 
+
+\subsection{Verstärkungs-Frequenz-Verlauf}
+
+Nun soll durch transiente Simulation ein Verstärkungs-Frequenz-Verlauf aufgenommen werden. Es wurde ein Eingangssignal mit einer Amplitude von \SI{150}{\milli \volt} angelegt und das Verhältnis von Ausgangsspannungsamplitude zu Eingangsspannungsamplitude gemessen, während die Frequenz variiert wurde.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|c|}
+    \hline
+         $f$ & $U_e$ & $U_a$  \\ \hline
+         \SI{1}{\kilo \hertz} & \SI{150}{\milli \volt} & \SI{2.96}{\volt} \\ \hline
+         \SI{10}{\kilo \hertz} & \SI{150}{\milli \volt} & \SI{2.96}{\volt} \\ \hline
+         \SI{100}{\kilo \hertz} & \SI{150}{\milli \volt} & \SI{2.87}{\volt} \\ \hline
+         \SI{1}{\mega \hertz} & \SI{150}{\milli \volt} & \SI{309}{\milli \volt}  \\ \hline
+         \SI{10}{\mega \hertz} & \SI{150}{\milli \volt} & \SI{5.5}{\milli\volt}  \\ \hline
+    \end{tabular}
+    \caption{Ergebnis der Messreihe}
+    \label{tab:my_label}
+\end{table}
+
+\subsection{Vergleich mit Bode-Plot}
+
+Hier sind die Messwerte im Vergleich mit dem kontinuierlichen Bodeplot dargestellt:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/BodePlot_closed.pdf}
+    \caption{Vergleich der Messpunkte}
+    \label{fig:my_label}
+\end{figure}
+
+Man erkennt, dass (bis auf geringe Abweichungen, eventuell nur Ablesefehler) die beiden Methoden die gleichen Ergebnisse liefern.
+
+\section{Bandgap}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Bandgap.png}
+    \caption{verwendete Schaltung und Simulationsparameter}
+\end{figure}
+
+Um den Einfluss des Widerstandes $R_3$ zu erkennnen und die Schaltung zu optimieren, wurde dessen Wert variiert und das Temperaturverhalten beobachtet. \SI{8200}{\ohm} scheinen einen gute Wahl zu sein.
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Bamdgap_sweep.pdf}
+    \caption{Vergleich des Temperaturverhaltens bei verschiedenen Werten für $R_3$}
+    \label{fig:my_label}
+\end{figure}
+
+Nachdem $R_3$ auf den Wert \SI{8200}{\ohm} fixiert wurde, wurde eine ähnliche Simulation für den Parameter $N_{val}$ durchgeführt:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Bilder/Bandgap_sweep2.pdf}
+    \caption{Vergleich des Temperaturverhaltens bei verschiedenen Werten für $N_{val}$}
+\end{figure}
+
+Hier scheint 7 der optimale Wert zu sein.
+
+\section{Anhang:}
+
+Die Simulationen wurden mit LTSpice XVII durchgeführt. Die Diagramme wurden durch Datenexport von LTSpice mit Matplotlib erstellt.
