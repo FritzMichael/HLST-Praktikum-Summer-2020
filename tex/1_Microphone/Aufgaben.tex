@@ -1,30 +1,100 @@
 \chapter{Mikrofonverstärker}
-\section{Berechnung und Dimensionierun}
-\subsection{Offsetspannung}
-\subsubsection{Fragestellung: Was versteht man unter Offsetspannung und wie kommt sie zustande?}
 
-Unter der Offsetspannung versteht man jene Spannung, die zwischen den beiden Eingängen des OPVs angelegt werden muss um eine Ausgangsspannung von \SI{0}{\volt} zu erhalten. Bzw. muss je nach verwendeter Definition $-U_{OS}$ zwischen den Eingängen angelegt werden.\\
-
-Diese Spannung kommt durch Unsymmetrien zwischen den Transistoren der Eingangsdifferenzverstärkerstufe zustande.
-
-\subsubsection{Bestimmen Sie mittels einer geeigneten Eingangsbeschaltung die Offsetspannung des Operationsverstärkers. Welches Ergebnis erwarten Sie?}
-
-Erwartetes Ergebnis: Da es in der Simulation keine Schwierigkeit sein sollte ideale Transistoren zu modelieren, ist eine sehr geringe bis verschwindende Offsetspannung zu erwarten.
-
-\textbf{Simulation:}
-Zur Simulation wurde eine DC-Sweep-Simulation durchgeführt. Konkret wurde die Quelle $V_{IN}$ variiert und die stationäre Ausgangsspannung des OPVs betrachtet. Die Eingangsdifferenzspannung bei der Ausgang genau \SI{1.65}{\volt} beträgt wird als Offsetspannung definiert.
 \begin{figure}[H]
     \centering
-    \includegraphics[width = \textwidth]{Bilder/Schaltung_1.png}
-    \caption{verwendete Schaltung und Simulationsparameter}
-    \label{fig:my_label}
+    \includegraphics[width = \textwidth]{tex/1_Microphone/pictures/Schaltung.png}
+    \caption{verwendete Schaltung}
 \end{figure}
 
-\textbf{Simulationsergebnis:} Es wurde eine Offsetspannung von \SI{4.68}{\micro \volt} beobachtet.
+\section{Berechnung und Dimensionierun}
+\subsection{Berechnung der Widerstände}
+\subsubsection{Gegebene Randbedingungen}
 
-\subsubsection{Wie kann die Offsetspannung in einer Simulation berücksichtigt werden?}
-Die Offsetspannung könnte einfach durch eine zusätzliche Spannungsquelle, die genau die Offsetspannung liefert, an einem der beiden Eingänge des Operationsverstärkers modelliert werden.
+\begin{itemize}
+    \item Spannung an $R_E$: \SI{2}{\volt}
+    \item Innenwiderstand der Signalquelle: \SI{4.7}{\kilo \ohm}
+    \item Basisquerstrom $I_q$: \SI{0.1}{\milli \ampere} \ldots \SI{1}{\milli \ampere}
+    \item Spannung am Emitter des zweiten Transistors: \SI{5}{\volt}
+\end{itemize}
 
+\subsubsection{Berechnung von $R_1$ und $R_2$}
+
+Der Basisquerstrom wird durch die Widerstände $R_1$ und $R_2$ bestimmt (Der Basisstrom wird als vernachlässigbar klein gegenüber dem Querstrom angenommen).
+
+\begin{equation*}
+    I_q = \SI{0.5}{\milli \ampere} = \frac{U_0}{R_1 + R_2} \rightarrow R_1 + R_2 = \frac{U_0}{I_q} = \SI{18}{\kilo \ohm}
+\end{equation*}
+
+Weiters ist bekannt, dass an der Basis des BC550 etwa \SI{2.7}{\volt} anliegen (Emitterspannung + PN-Übergang). 
+
+\begin{equation*}
+    U_{B,0} = \SI{2.7}{\volt} = U_0 \frac{R_2}{R_1+R_2} \rightarrow \frac{R_2}{R_1+R_2} = \frac{U_{B,0}}{U_0} = \frac{2.7}{9} = 0.3
+    \rightarrow R_1 = 2.3 \ R_2
+\end{equation*}
+
+In einer ersten Abschätzung ergeben sich somit folgende Werte für $R_1$ und $R_2$:
+
+\begin{equation*}
+    R_1 = \SI{12.545}{\kilo \ohm} \quad R_2 = \SI{5.454}{\kilo \ohm}
+\end{equation*}
+
+Gerundet auf die nähestenden Werte der E24-Reihe ergeben sich Widerstandswerte von:
+
+\begin{equation*}
+    R_1 = \SI{13}{\kilo \ohm} \quad R_2 = \SI{5.6}{\kilo \ohm}
+\end{equation*}
+
+Dies führt zu folgenden Schaltungsparametern:
+
+\begin{equation*}
+    I_q = \SI{484}{\milli \ampere} \quad U_{B,0} = \SI{2.710}{\volt}
+\end{equation*}
+
+In dieser Berechnung wurden einige Vereinfachungen durchgeführt, wie zutreffend dieses Ergebnis ist, muss durch die Simulation geprüft werden.
+
+\subsubsection{Abschätzung des idealen Kollektorstroms}
+
+Der optimale Kollektorstrom für einen möglichst rauscharmen Verstärker wird mit Gleichung 2.1 aus dem Praktikumsskript bestimmt:
+
+\begin{equation*}
+    R_0 = \sqrt{\frac{2 \ \beta \  r_{BB}}{I_{C0}}U_T + \frac{\beta}{ {I_{C0}}^2 }U_{T}^2}
+\end{equation*}
+
+umgeformt auf den gesuchten Strom ergibt sich:
+
+\begin{align*}
+    0 &= R_0^2 I_{C0}^2 - 2 \ \beta  r_{BB}  U_T  I_{C0} - \beta U_{T}^2 \\
+    I_{C0} &= \frac{2 \ \beta  r_{BB}  U_T \pm \sqrt{\left( 2 \ \beta  r_{BB}  U_T\right)^2 + 4  R_{0}^2 \beta U_{T}^2 }}{2 R_{0}^2} \\
+    I_{C0} &= U_T \frac{ \ \beta  r_{BB} \pm \sqrt{ \beta^2  r_{BB}^2 +  R_{0}^2 \beta }}{ R_{0}^2} \\
+    I_{C0} &= \SI{25}{\milli \volt} \frac{600 \cdot \SI{150}{\ohm} \pm \sqrt{(600 \cdot \SI{150}{\ohm})^2 + (\SI{2136}{\ohm})^2 \cdot 600}}{(\SI{2136}{\ohm})^2} = \SI{1.064}{\milli \ampere}, \SI{-77.28}{\micro \ampere}
+\end{align*}
+
+Das negative Ergebnis für $I_{C0}$ wird als nicht-physikalisch interpretiert und verworfen, weitergerechnet wird mit $I_{C0} = \SI{1}{\milli \ampere}$
+
+Verwendeete Werte:
+
+\begin{itemize}
+    \item Kleinsignalverstärkung des BC550C \emph{typ.: }$\beta = 600$
+    \item Basisbahnwiderstand \emph{Base Spreading Resistance}: $r_{BB} \approx \SI{150}{\ohm}$ \\
+    Anm.: $r_{BB}$ ist eine funktion von $I_{C0}$, dieser Wert gilt für ca. \SI{3}{\milli\ampere}, bei großer Abweichung muss iterativ eingesetzt werden.
+    \item Temperaturspannung: $U_T = \frac{k_b T}{e} = \SI{25}{\milli \volt}$ \\
+    Anm.: Dieser Wert gilt bei Raumtemperatur, je nach Temperatur bzw. Verlustleistung des Transistors ist dieser Wert zu hinterfragen.
+    \item Generatorwiderstand $R_0 = \left( G_1 + G_2 + G_G\right)^{-1} = \SI{2136}{\ohm}$
+\end{itemize}
+
+\subsubsection{Berechnung von $R_E$ und $R_C$}
+
+Durch $R_E$ und $R_C$ fließen im wesentlichen der eben berechnete Kollektorstrom (der Basisstrom wird vernachlässigt).
+
+\begin{equation*}
+    U_{R_{E}} = \SI{2}{\volt} = I_{C0} R_E \rightarrow R_E = \SI{2}{\kilo \ohm}
+\end{equation*}
+
+Der Kollektor des ersten Transistors ist an der Basis des zweiten Transistors angeschlossen. Dessen Emitter soll auf einem Potential von etwa \SI{5}{\volt} liegen. Damit liegt die Basis dieses zweiten Transistors auf \SI{5.7}{\volt}.
+
+\begin{equation*}
+    \SI{9}{\volt} - \SI{5.7}{\volt} = I_{C0} R_C \rightarrow R_C = \SI{3.3}{\kilo \ohm}
+\end{equation*}
 \subsection{Bode-Plot}
 \subsubsection{Simulieren Sie mit einer geeigneten Analyseart und Beschaltung den Amplituden- und Phasengang des Operationsverstärkers.}
 
