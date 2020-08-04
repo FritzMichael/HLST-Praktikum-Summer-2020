@@ -1,14 +1,19 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
-
-\title{HLST Praktikum}
-\author{Michael Fritzenwallner}
-\date{August 2020}
-
+\documentclass[tex/style.tex]{subfiles}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listingsutf8}
 \begin{document}
 
-\maketitle
+\subfile{tex/cover_mechatronik}
+\pagestyle{empty}
+%\tableofcontents
+\clearpage
+\pagestyle{fancy}
 
-\section{Introduction}
+% Hier können die entsprechende Inhalte hinzugefügt werden. Tipp: Erzeugen Sie für jedes Kapitel ein neuex Texfile. Dies kann auch später bei größeren Arbeiten der Übersicht dienen.
+% TODO: Bitte ändern Sie die Informationen in der Datei: cover_mechatronik.tex 
 
+\setcounter{tocdepth}{3}
+\tableofcontents
+\subfile{tex/1_Microphone/Aufgaben.tex}
 \end{document}
