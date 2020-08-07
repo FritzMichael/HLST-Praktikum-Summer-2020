@@ -2,6 +2,14 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{listingsutf8}
+
+\usepackage{epstopdf}	% Verwandelt eps nach pdf, damit eps direkt mit pdflatex eingebunden werden können
+\usepackage{pdfpages}
+\usepackage{bm}
+\usepackage{svg}
+
+
+
 \begin{document}
 
 \subfile{tex/cover_mechatronik}
@@ -16,4 +24,5 @@
 \setcounter{tocdepth}{3}
 \tableofcontents
 \subfile{tex/1_Microphone/Aufgaben.tex}
+\subfile{tex/2_LC-Oszillator/Aufgaben.tex}
 \end{document}
