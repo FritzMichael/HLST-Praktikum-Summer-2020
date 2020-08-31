@@ -1,0 +1,23 @@
+This is LuaHBTeX, Version 1.12.0 (TeX Live 2020/W32TeX)  (format=lualatex 2020.8.7)  8 AUG 2020 15:11
+ restricted system commands enabled.
+ file:line:error style messages enabled.
+**"c:\Users\Michael\Google Drive\Studium\SS20\HLST-Praktikum-Summer-2020\tex\style.tex"
+
+! Emergency stop.
+<to be read again> 
+\global 
+<*> "c:\Users\Michael\Google Drive\Studium\SS
+                                          20\HLST-Praktikum-Summer-2020\tex\...
+*** (job aborted, file error in nonstop mode)
+
+
+
+Here is how much of LuaTeX's memory you used:
+ 6 strings out of 481315
+ 100000,319454 words of node,token memory allocated 274 words of node memory still in use:
+   1 hlist, 39 glue_spec, 2 if_stack nodes
+   avail lists: 2:10,3:1,4:1,5:3
+ 17310 multiletter control sequences out of 65536+600000
+ 24 fonts using 2830079 bytes
+ 2i,0n,3p,0b,6s stack positions out of 5000i,500n,10000p,200000b,100000s
+!  ==> Fatal error occurred, no output PDF file produced!
