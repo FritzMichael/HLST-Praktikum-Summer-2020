@@ -89,10 +89,158 @@ Der variable Emitterwiderstand $R_E$ kommt in Gleichung \ref{glng_01} nicht vor,
     \omega = \sqrt{\frac{C_{BE} + C_3}{\left( \left( C_{BC} + C_3 + C\right)C_{BE} + C_3 C_{BC} + CC_3 \right) L}}
 \end{equation}
 
-Setzt man nun die Lösung \ref{glng_02} in Glng. \ref{glng_03} ein, lässt sich ein Ausdruck für den variablen Widerstand $R_E$ in Abhängigkeit der Steilheit $S$ des Transistors im jeweiligen Arbeitspunkt finden:
+Setzt man nun die Lösung \ref{glng_02} in Gleichung \ref{glng_03} ein, lässt sich ein Ausdruck für den variablen Widerstand $R_E$ in Abhängigkeit der Steilheit $S$ des Transistors im jeweiligen Arbeitspunkt finden:
 
 \begin{equation}
     R_E = \frac{B \cdot C_3}{S \cdot \left( B C_{BE} - C_3\right)}
 \end{equation}
 
+In Tab. \ref{tab_Kap2_01:Bauteilwerte} werden die aus dem in Abb. \ref{fig_Kap2_01:Oszillator} gezeigten Schematic verwendeten Bauteilwerte und Werte der Versorgungsspannung aufgelistet. Für die parasitären Kapazitäten $C_{BE}$ und $C_{BC}$ wurden für die Berechnung die approximierten Werte aus dem Skriptum verwendet.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|} \hline
+Benennung & Größe \\ \hline
+$U_B$ & \SI{9}{\volt} \\ \hline
+$C$ & \SI{9}{\volt} \\ \hline
+$C_1$ & \SI{1}{\nano\farad} \\ \hline
+$C_2$ & \SI{1}{\nano\farad} \\ \hline
+$C_3$ & \SI{10}{\pico\farad} \\ \hline
+$C_{BC}$ & \SI{5}{\pico\farad} \\ \hline
+$C_{BE}$ & \SI{10}{\pico\farad} \\ \hline
+$L$ & \SI{162}{\nano\henry} \\ \hline
+$R_1$ & \SI{10}{\kilo\ohm} \\ \hline
+$R_2$ & \SI{2.7}{\kilo\ohm} \\ \hline
+$R_E$ & \SI{1}{\kilo\ohm} \\ \hline
+
+\end{tabular}
+\caption{Bauteilwerte für Berechnung und Simulation}
+\label{tab_Kap2_01:Bauteilwerte} 
+\end{table}
+
+Diese Werte in Gleichung \ref{glng_02} eingesetzt, ergeben die Resonanzkreisfrequenz bzw. Frequenz von:
+
+\begin{equation}
+    \omega = \SI{555.5}{\mega \radian \per \second}
+\end{equation}
+
+\begin{equation}
+    f = \frac{\omega}{2 \cdot \pi} = \frac{\SI{555.5}{\mega \radian \per \second}}{2 \cdot \pi} = \SI{88.42}{\mega \hertz}
+\end{equation}
+
+
 \section{Simulation}
+Das Schematic laut Abbildung \ref{fig_Kap2_05:LTSpiceSchematic} wurde in LTSpice nachgebildet.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{\figpath/LC_Oszillator_LTSpice.jpg}
+    \caption{Oszillatorschaltung}
+    \label{fig_Kap2_05:LTSpiceSchematic}
+\end{figure}
+
+Abbildung \ref{fig_Kap2_06:Einschw} zeigt den Einschwingvorgang der Oszillatorschaltung von 0 bis $\SI{2}{\micro\second}$. 
+
+\begin{figure}[H]
+	\centering \small
+	\input{\figpath/U_out_LC_oszi.tikz}
+	\caption{$U_{out}$ am Oszillatorausgang}
+	\label{fig_Kap2_06:Einschw}
+\end{figure}
+
+Als nächstes wird der Einschwingvorgang weggeschnitten, d.h. die Ausgangsspannung im Zeitbereich von $\SI{1}{\micro\second}$ bis $\SI{2}{\micro\second}$ betrachtet und davon die FFT gebildet.
+
+\begin{figure}[H]
+	\centering \small
+	\includegraphics{\figpath/U_rms_fft_short}
+	\caption{FFT der Ausgangsspannung ohne Einschwingvorgang}
+	\label{fig_Kap2_07:FFT_ohne}
+\end{figure}
+
+Mithilfe der Vergrößerung um den Resonanzbereich kann nun die Bandbreite und der Gütefaktor des Oszillators bestimmt werden. Der Zusammenhang des Gütefaktors $Q$, der Resonanzfrequenz $f_0$ und der 3dB-Bandbreite $B$ lautet folgendermaßen:
+
+\begin{equation}
+    Q = \frac{f_0}{B}
+\end{equation}
+
+Der in Abb. gezeigte Ausschnitt der FFT aus LTSpice soll nun dazu dienen, die gewünschten Größen abzulesen.
+
+\begin{equation*}
+    f_0 = \SI{95}{\mega\hertz}
+\end{equation*}
+
+\begin{equation*}
+    B = f_2 - f_1 = \SI{95.36}{\mega\hertz} - \SI{94.66}{\mega\hertz} = \SI{0.7}{\mega\hertz}
+\end{equation*}
+
+\begin{equation*}
+    Q = \frac{f_0}{B} = \frac{95}{0.7} = 135.7
+\end{equation*}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{\figpath/Oszi_fft_zoom_4.jpg}
+    \caption{Vergrößerung der FFT um die Resonanzfrequenz}
+    \label{fig_Kap2_05:LTSpiceSchematic}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{\figpath/Oszi_fft_zoom_1.jpg}
+    \caption{Vergrößerung der FFT um die Resonanzfrequenz}
+    \label{fig_Kap2_05:LTSpiceSchematic}
+\end{figure}
+
+Im nächsten Schritt wurde die Simulationszeit von $\SI{2}{\micro\second}$ auf $\SI{10}{\micro\second}$ erhöht, der Einschwingvorgang wurde wiederum nach $\SI{1}{\micro\second}$ weggeschnitten und vom eingeschwungenen Zustand die FFT berechnet. Von außen betrachtet ähneln sich die Fouriertransformierten beider Simulationsvarianten stark, vergrößert man jedoch die Ansicht um die Resonanzfrequenz erkennt man Unterschiede. Die Resonanzfrequenz hat sich etwas nach oben verschoben. Die 3dB-Bandbreite um die Resonanzfrequenz ist schmaler ausgeprägt, was in einem höheren Gütefaktor resultiert.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{\figpath/Oszi_fft_zoom_2.jpg}
+    \caption{Vergrößerung der FFT um die Resonanzfrequenz}
+    \label{fig_Kap2_05:LTSpiceSchematic}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{\figpath/Oszi_fft_zoom_3.jpg}
+    \caption{Vergrößerung der FFT um die Resonanzfrequenz}
+    \label{fig_Kap2_05:LTSpiceSchematic}
+\end{figure}
+
+\begin{equation*}
+    f_0 = \SI{95.8}{\mega\hertz}
+\end{equation*}
+
+\begin{equation*}
+    B = f_2 - f_1 =  = \SI{95.95}{\mega\hertz} - \SI{95.7}{\mega\hertz} = \SI{0.25}{\mega\hertz}
+\end{equation*}
+
+\begin{equation}
+    Q = \frac{f_0}{B} = \frac{95.8}{0.25} = 383.2
+\end{equation}
+
+Als nächstes wird die Abhängigkeit der Resonanzfrequenz vom Arbeitspunkt des Transistors untersucht. Hierzu wurde der Widerstand $R_1$ variiert und über Simulation die Resonanzfrequen ermittelt. Die Werte wurden in Tab. eingetragen sowie als Diagramm in Abb. \ref{fig_Kap2_09:AP} dargestellt.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|} \hline
+$R_1$ in k$\Omega$ & $U_L$ in V & $f_0$ im MHz \\ \hline
+27 & 0.596 & 96.5 \\ \hline
+15 & 0.628 & 96 \\ \hline
+10 & 0.642 & 95.5 \\ \hline
+2.7 & 0.674 & 92 \\ \hline
+1 & 0.687 & 87.10 \\ \hline
+\end{tabular}
+\caption{Variation des AP und Resonanzfrequenz}
+\label{tab_Kap2_02:AP} 
+\end{table}
+
+\begin{figure}[H]
+	\centering \small
+	\input{\figpath/f_U_L.tikz}
+	\caption{$f_0$ in Abhängigkeit des AP}
+	\label{fig_Kap2_09:AP}
+\end{figure}
+
+
+

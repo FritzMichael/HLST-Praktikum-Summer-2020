@@ -6,7 +6,7 @@
     \caption{verwendete Schaltung}
 \end{figure}
 
-\section{Berechnung und Dimensionierun}
+\section{Berechnung und Dimensionierung}
 \subsection{Berechnung der Widerstände}
 \subsubsection{Gegebene Randbedingungen}
 
@@ -98,7 +98,7 @@ Der Kollektor des ersten Transistors ist an der Basis des zweiten Transistors an
 
 \subsection{Abschätzung von Ein- und Ausgangswiderstand}
 
-Zur Abschätzung der Betriebsparameter wie Eingangswiderstand $r_i$ und Ausgangswiderstand $r_a$ muss das Kleinsignalersatzschaltbild (KSESB) ausgewertet werden.
+Zur Abschätzung der Betriebsparameter wie Eingangswiderstand $r_e$ und Ausgangswiderstand $r_a$ muss das Kleinsignalersatzschaltbild (KSESB) ausgewertet werden.
 
 \begin{figure}[H]
     \centering
@@ -107,123 +107,444 @@ Zur Abschätzung der Betriebsparameter wie Eingangswiderstand $r_i$ und Ausgangs
     \label{fig:my_label}
 \end{figure}
 
-\subsection{Bode-Plot}
-\subsubsection{Simulieren Sie mit einer geeigneten Analyseart und Beschaltung den Amplituden- und Phasengang des Operationsverstärkers.}
+\subsubsection{Eingangswiderstand}
 
-Für diese Fragestellung eignet sich die AC-Sweep-Simulation. Hierfür wird die $V_{IN}$ zu einer Wechselspannungsquelle mit Spannungsamplitude \SI{1}{\volt} konfiguriert. In der AC-Simulation wird um den Arbeitspunkt linearisiert, eventuelle Austeuergrenzen und Sättigung spielen bei dieser Simulation keine Rolle. Simuliert wurde ein Frequenzbereich von \SI{1}{Hz} bis \SI{10}{\mega \hertz}.
+\begin{equation*}
+    r_e = \left.\frac{u_e}{i_e}\right|_{R_L}
+\end{equation*}
+
+Aus den Anmerkungen zur Auslegung der Koppelkondensatoren ist zu entnehmen dass es ausreichend ist die Grenzfälle $\omega \rightarrow 0$ und $\omega \rightarrow \infty$ bzw. den worst case zu betrachten.
+
+Im DC-Fall ($\omega \rightarrow 0$), sperrt der Kondensator $C_1$ und der Eingangswiderstand ist im eingeschwungenen Zustand sehr hoch. In der Praxis jedoch nicht unendlich (Leckströme und andere parasitäre Effekte). Zur Abschätzung des worst-case $r_{e,\text{min}}$ wird also der hochfrequente Fall ($\omega \rightarrow \infty$) betrachtet.
+
+Analog wie im Übungsskriptum werden die Koppelkondensatoren $C_1$ und $C_2$ durch einen Kurzschluss ersetzt und der Emitterkondensator $C_E$ durch einen Leerlauf. Weiters wird der Earlywiderstand vernachlässigt, in der späteren Simulation wird sich zeigen ob dies gerechtfertigt ist.
+
+Es ergibt sich folgende Gleichung:
+
+\begin{equation*}
+    U_e = \underbrace{\left( i_e - \frac{U_e}{R_1 || R_2}\right)}_{i_B} \left( r_{BE} + R_E \left( B + 1\right) \right)
+\end{equation*}
+
+\begin{equation*}
+    U_e = i_e \left( r_{BE} + R_E \left( B + 1\right) \right) - U_e \frac{r_{BE} + R_E \left( B + 1\right)}{R_1 || R_2}
+\end{equation*}
+
+\begin{equation*}
+    U_e \left( 1 + \frac{r_{BE} + R_E \left( B + 1\right)}{R_1 || R_2}) \right)= i_e \left( r_{BE} + R_E \left( B + 1\right) \right)
+\end{equation*}
+
+\begin{equation*}
+    r_e = \frac{u_e}{i_e} = \frac{r_{BE} + R_E \left( B + 1\right)}{ 1 + \frac{r_{BE} + R_E \left( B + 1\right)}{R_1 || R_2} }= \SI{3901.42}{\ohm} \approx R_1 || R_2
+\end{equation*}
+
+\begin{equation*}
+    C_E = \frac{S}{2 \pi f_G} = \frac{\SI{1}{\milli \ampere}}{2 \pi \ \SI{57.735}{\hertz} \ \SI{25}{\milli \volt}} = \SI{110.3}{\micro \farad}
+\end{equation*}
+
+\begin{equation*}
+   r_{BE} = \frac{B}{S} = \frac{600}{\frac{\SI{1}{\milli \volt\ampere}}{\SI{25}{\milli\volt}}} = \SI{15}{\kilo \ohm} 
+\end{equation*}
+
+\subsubsection{Ausgangswiderstand}
+
+\begin{equation*}
+    r_a = \left. - \frac{u_a}{i_a}\right|_{R_G, U_G = 0}
+\end{equation*}
+
+Zur Berechnung des Ausgangswiderstandes muss ein leicht verändertes KSESB verändert werden:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width = \textwidth]{Bilder/Schaltung_2.png}
-    \caption{verwendete Schaltung und Simulationsparameter}
+    \includegraphics[width = \textwidth]{tex/1_Microphone/pictures/KSESB_ra.pdf}
+    \caption{Kleinsignalersatzschaltbild der Schaltung zur Berechnung des Ausgangswiderstandes}
     \label{fig:my_label}
 \end{figure}
 
-\textbf{Simulationsergebnis:} Das resultierende Bode-Diagram:
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = \textwidth]{Bilder/BodePlot.pdf}
-    \caption{Frequenzgang}
-    \label{fig:my_label}
-\end{figure}
-
-\subsubsection{Welche Verstärkung $A_0$ besitzt der Verstärker?}
-
-Der Operationsverstärker besitzt eine Open-Loop-Verstärkung $A_0 = \frac{U_{OUT}}{U_{INP}-U_{INN}}$ von \num{3.74e4} beziehungsweise \SI{91.4}{dB}.
-
-\subsubsection{Beeinflusst die Offsetspannung den Frequenzgang?}
-
-Nein, die Offsetspannung hat keinen Einfluss auf den Frequenzgang, da die Schaltung für die Berechnung des Frequenzganges um den Arbeitspunkt linearisiert wird, es wird quasi mit dem Kleinsignalersatzschaltbild gerechnet.
-
-\subsubsection{Welches GBW besitzt der OPV?}
-
-Der Amplitudengang durchschreitet die \SI{0}{dB}-Linie bei einer Frequenz von \SI{1.13}{\mega \hertz}, dies entspricht auch dem Gain-Bandwith-Product.
-
-\subsubsection{Wie kann die Verstärkung $A_0$ des OPV verändert werden?}
-
-Die Open-Loop-Verstärkung $A_0$ ist eine Eigenschaft des OPVs und kann nicht durch externe Beschaltung verändert werden. Diese Verstärkung wird im wesentlichen durch die Spannungs-Verstärkungs-Stufe des OPVs bestimmt.
-
-\subsection{Slew-Rate}
-
-\subsubsection{Bestimmen Sie die Slew-Rate des OPV mit geeigneter Beschaltung.}
-
-Zur Bestimmung der Slew-Rate wird der OPV als Impedanzwandler oder Spannungsfolger verschaltet, der Ausgang wird also auf den invertierenden Eingang rückgeführt. Als Eingangssignal wird eine Folge von Rechteckimpulsen aufgeschalten. Die Slew-Rate ist dann die Geschwindigkeit in der das Ausgangssignal diesem Impuls folgt.
+Der Ausgangswiderstand wird maßgeblich durch die Stellung des Potentiometers $P_1$ beeinflusst. Um dies zu verdeutlichen wird das Potentiometer in 2 Widerstände ($P_{1,1}$ und $P_{1,2}$) aufgeteilt:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width = \textwidth]{Bilder/Schaltung_3.png}
-    \caption{Bufferschaltung zur Bestimmung der Slew-Rate}
+    \includegraphics[width = 0.5\textwidth]{tex/1_Microphone/pictures/ra_spannungsteiler.pdf}
+    \caption{Ausgangsspannungsteiler im Detail}
     \label{fig:my_label}
 \end{figure}
 
-\textbf{Simulationsergebnis:} Es ergab sich folgender zeitlicher Verlauf der Ausgangsspannung und folgende Werte für die Slew-rate:
+In einer ungünstigen Potistellung wird der Widerstand $P_{1,2}$ zu \SI{0}{\ohm} und der Ausgangswiderstand ebenfalls zu \SI{0}{\ohm}. Dies ist der minimale Ausgangswiderstand $R_{a,\text{min}}$. Dieser Fall ist jedoch nicht von besonderen Interesse, da hier der Lastwiderstand defacto mit beiden Polen an Masse liegt und kein Teil der Schaltung mehr ist.
+
+Überlegungen zur Schaltungsvereinfachung:
+
+Da es sich hier nur um eine grobe Abschätzung handelt, die später mittels Simulation verifiziert wird, werden die (ohnehin noch nicht dimensionierten) Kondensatoren und Early-Widerstände nicht berücksichtigt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{tex/1_Microphone/pictures/KSESB_simplified.pdf}
+    \caption{Kleinsignalersatzschaltbild der Schaltung zur Berechnung des Ausgangswiderstandes}
+    \label{fig:my_label}
+\end{figure}
+
+Aus Masche 1 ergibt sich, dass der Basisstrom des ersten Transistors verschwindet:
+
+\begin{equation*}
+    M1: \quad i_b \left( R_1 || R_2 || R_G + r_{BE} + (B + 1) R_E\right) = 0 \rightarrow i_b = 0
+\end{equation*}
+
+Der Strom $i_a$ fließt also nur durch die Widerstände $P_1$, $r_{BE}$ (des zweiten Transistors) und $R_C$:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.55\textwidth]{tex/1_Microphone/pictures/KSESB_ra_detail.pdf}
+    \caption{Kleinsignalersatzschaltbild der Schaltung zur Berechnung des Ausgangswiderstandes}
+    \label{fig:my_label}
+\end{figure}
+
+
+\begin{align*}
+    M_1:& \quad i_b(R_C + r_{BE} + (B+1) P_{1,1}) + P_{1,2} i_1= 0 \\
+    M_2:& \quad U_a = P_{1,2} i_1 \\
+    M_3:& \quad P_{1,1} (i_b (B+1)) = U_a\\
+    K_2:& \quad i_b (B+1) - i_1 = i_a
+\end{align*}
+
+Nach einigen Umformungen folgt:
+
+\begin{align*}
+    M_1:& \quad i_b(R_C + r_{BE} + (B+1) P_{1,1}) + U_a= 0 \\
+    & \quad i_b = \frac{-U_a}{R_C + r_{BE} + (B+1) P_{1,1}}\\
+    M_2:& \quad i_1 = \frac{U_a }{ P_{1,2}} \\
+    M_3:& \quad P_{1,1} (i_b (B+1)) = U_a\\
+    K_2:& \quad i_b (B+1) - \frac{U_a }{ P_{1,2}} = i_a \\
+        & \quad - \frac{U_a}{R_C + r_{BE} + (B+1) P_{1,1}}(B+1) - \frac{U_a }{ P_{1,2}} = i_a \\
+        & \quad - U_a \left( \frac{B+1}{R_C + r_{BE} + (B+1) P_{1,1}} + \frac{1}{P_{1,2}} \right) = i_a \\
+        r_a &= -\frac{U_a}{i_a} = \frac{1}{\left( \frac{B+1}{R_C + r_{BE} + (B+1) P_{1,1}} + \frac{1}{P_{1,2}} \right)} = P_{1,2} || \left( P_{1,1} + \underbrace{\frac{R_C + r_{BE}}{B+1}}_{\approx \SI{22}{\ohm}}\right)
+\end{align*}
+
+Im wesentlichen ist der Ausgangswiderstand nur von der Potentiometerstellung abhängig, da der andere Teil durch die Stromverstärkung $B$ stark abgedämpft wird und kaum Auswirkung hat.
+
+Ein typischer Wert von B für den zweiten Transistor lautet 330. Die Größe des $r_{BE}$ hängt von der verwendeten Last ab. Wenn die Schaltung ohne Last betrieben wird, ergibt sich ein Emitterstrom von etwa \SI{2.2}{\milli \ampere}, dies entspricht auch etwa dem Kollektorstrom und mit diesem Wert wird $r_{BE}$ berechnet:
+
+\begin{equation*}
+    r_{BE} = \frac{B}{S} = \frac{330}{\frac{I_{C0}}{U_T}} = \frac{330 U_T}{\SI{2.2}{\milli \ampere}} = \SI{3.75}{\kilo \ohm}
+\end{equation*}
+
+\subsubsection{Ausgangswiderstand als Funktion der Potistellung}
+
+Mit dem gefundenen Ausdruck für $r_a$, lässt sich dieser als Funktion der Potentiometerstellung $\frac{P_{1,1}}{P_{1,1}+P_{1,2}}$ darstellen:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.55\textwidth]{tex/1_Microphone/pictures/simple_plot.pdf}
+    \caption{Ausgangswiderstand als Funktion der Potistellung}
+    \label{fig:my_label}
+\end{figure}
+
+Der maximale Ausgangswiderstand von \SI{555}{\ohm} wird bei einer mittleren Potentiometerstellung erreicht. Wenn der Widerstand $P_{1,1}$ auf \SI{0}{\ohm} gestellt wird, wird $r_a$ zu \SI{21}{\ohm} (Der durch die Stromverstärkung abgedämpfte Term wird dominant).
+
+\subsection{Dimensionierung der Kapazitäten}
+
+Die Berechnung der Kapazitäten wurden aus dem beigelegten Dokument \glqq Anmerkung zur Auslegung der Koppelkondensatoren beim Mikrofonverstärker\grqq{} übernommen:
+
+\begin{equation*}
+    C_1 = \frac{1}{2 \pi f_G \left( R_G + r_{E,\text{min}} \right)} = \frac{1}{2 \pi \SI{57.735}{\hertz} \left(\SI{4.7}{\kilo \ohm} +  \SI{3901}{\ohm}\right)} = \SI{320}{\nano \farad} \rightarrow \SI{300}{\nano \farad}
+\end{equation*}
+
+Bei der dimensionierung von $C_2$ ist der minimale Ausgangswiderstand der Schaltung relevant, da sich die Zeitkonstante $\tau = RC$ mit sinkenden Widerstand absenkt, niedrigere Zeitkonstante gleich niedrigere Grenzfrequenz. Bei diesem Hochpass besteht die Gefahr, dass die Grenzfrequenz zu hoch liegt, also muss man mit dem minimalen Widerstand dimensionieren.
+
+\begin{equation*}
+    C_2 = \frac{1}{2 \pi f_G \left( r_{a,\text{min}} + r_{L,\text{min}} \right)} = \frac{1}{2 \pi \SI{57.735}{\hertz} \left(\SI{21}{\ohm} +  \SI{1}{\kilo \ohm}\right)} = \SI{2.7}{\micro \farad} \rightarrow \SI{2.7}{\micro \farad}
+\end{equation*}
+
+\begin{equation*}
+    C_E = \frac{S}{2 \pi f_G} = \SI{110.3}{\micro \farad} \rightarrow \SI{110}{\micro \farad}
+\end{equation*}
+
+\subsection{Bestimmung der maximalen Spannungsverstärkung}
+
+Im Allgemeinen wird die Spannungsverstärkung eine Funktion der Frequenz $f$, der Potentiometerstellung und dem Lastwiderstand (es wird nicht explizit von der Leerlaufverstärkung gesprochen) sein.
+Zur Vereinfachung wird angenommen, dass die Schaltung in einem Bereich betrieben wird, in dem die Kapazitäten $C_1$ und $C_2$ durch Kurzschlüsse ersetzt werden können.
+
+Weiters soll die Berechnung einmal mit dem Kondensator $C_E$ und einmal ohne durchgeführt werden.
+
+Zur Berechnung der Gesamtspannungsverstärkung wird versucht diesen zweistufigen Verstärker als Kaskadierung zweier unabhängiger Verstärker zu betrachten: 
+
+\subsubsection{Berechnung ohne $C_E$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.55\textwidth]{tex/1_Microphone/pictures/KKSESB_ohne_CE.pdf}
+    \caption{Kleinsignalersatzschaltbild der ersten Stufe ohne $C_E$}
+    \label{fig:my_label}
+\end{figure}
+
+Gesucht ist folgender Ausdruck: $\frac{U_{E,2}}{U_E}$
+
+\begin{align*}
+    M_1:& \quad U_E = i_b \left( r_{BE} + R_E \left( B + 1\right) \right) \\
+    M_2:& \quad R_E i_b (B+1) + R_C i_b B = 0 \\
+    {} & \quad U_{BE} = i_b r_{BE} = U_E \frac{r_{BE}}{r_{BE}+R_E(B+1)}\\
+    {} & \quad r_{BE} \approx \frac{B}{S}\\
+    {} & \quad U_{E,2} = - S U_{BE} R_C = - U_E R_C \frac{B}{\frac{B}{S}+S R_E(B+1)}\\
+    & \quad \frac{U_{E,2}}{U_E} = - R_C \frac{B}{\frac{B}{S}+S R_E(B+1)} = -31.39
+\end{align*}
+
+\subsubsection{Berechnung mit $C_E$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.55\textwidth]{tex/1_Microphone/pictures/KKSESB_mit_CE.pdf}
+    \caption{Kleinsignalersatzschaltbild der ersten Stufe mit $C_E$}
+    \label{fig:my_label}
+\end{figure}
+
+Die Kapazität $C_E$ schließt den Widerstand $R_E$ im Kleinsignalbetrieb kurz.
+
+Gesucht ist folgender Ausdruck: $\frac{U_{E,2}}{U_E}$
+
+\begin{align*}
+    M_1:& \quad U_E = U_{BE} \\
+    & \quad U_{E,2} = - S U_{BE} R_C = - U_E S R_C \\
+    {} & \quad  \frac{U_{E,2}}{U_E} = - S R_C = -132 \\
+\end{align*}
+
+\subsubsection{Berechnung der zweiten Verstärkerstufe}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.55\textwidth]{tex/1_Microphone/pictures/KSESB_second_stage.pdf}
+    \caption{Kleinsignalersatzschaltbild der zweiten Stufe}
+    \label{fig:my_label}
+\end{figure}
+
+Bei der zweiten Stufe (Kollektorschaltung) wird eine Verstärkung von 1 erwartet.
+
+\begin{align*}
+    M_1:& \quad U_E = i_b \left( r_{BE} + (B+1) (P_{1,1} + P{1,2} || R_L) \right) \\
+    & \quad i_b = U_E \frac{1}{\left( r_{BE} + (B+1) (P_{1,1} + P{1,2} || R_L) \right)} \\
+    \\
+    & \quad U_a =  U_E \frac{(B+1) (P_{1,1} + P{1,2} || R_L)}{r_{BE} + (B+1) (P_{1,1} + P{1,2} || R_L)} \\
+    & \quad \frac{U_a}{U_E} = \frac{(B+1) (P_{1,1} + P{1,2} || R_L)}{ r_{BE} + (B+1) (P_{1,1} + P{1,2} || R_L)} \leq 1\\
+\end{align*}
+
+Für vernünftige Lastwiderstände und Potentiometerstellungen (als unvernünftig gilt hier ein Kurzschluss des Emitters gegenüber Masse) geht diese Verstärkung gegen 1.
+
+\emph{Erkentniss zu den Verstärkungen:} Hohe Frequenzen werden höher verstärkt als niedrige Frequenzen. Die tatsächliche Verstärkung liegt zwischen $\approx 30$ und $\approx 130$.
+
+\subsection{Auswirkungen der Temperatur auf die Arbeitspunktströme}
+
+Zur Bestimmung des Werts $\frac{\Delta U_{BE}}{\Delta T}$ wird eine Simulation, wie in Abschnitt 2.3.3 des Praktikumsskripts erläutert, durchgeführt.
+Es wird ein Kollektorruhestrom von \SI{1.064}{\milli \ampere} eingestellt und ein Widerstand gewählt, so dass sich $U_{CE}$ zu \SI{3.56}{\volt} ergibt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{tex/1_Microphone/pictures/Aufbau, Tempsimulation.png}
+    \caption{Simulationsaufbau}
+    \label{fig:my_label}
+\end{figure}
+
+Dies wird erreicht bei einem Widerstand von \SI{638}{\kilo \ohm}
+
+Die Simulation ergab folgenden (annähernd linearen) Zusammenhang zwischen $U_{BE}$ und der Temperatur:
 
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|}
     \hline
-         steigende Flanke & fallende Flanke  \\ \hline
-         \SI{741}{\kilo \volt \per \second} & \SI{-5.11}{\mega \volt \per \second} \\ \hline
+         Temperatur & $U_{BE}$  \\ \hline \hline
+         \SI{-20}{\celsius}& \SI{743.42}{\milli \volt} \\ \hline
+         \SI{-10}{\celsius}& \SI{726.46}{\milli \volt} \\ \hline
+         \SI{0}{\celsius}& \SI{709.41}{\milli \volt} \\ \hline
+         \SI{10}{\celsius}& \SI{692.26}{\milli \volt} \\ \hline
+         \SI{20}{\celsius}& \SI{675.02}{\milli \volt} \\ \hline
+         \SI{30}{\celsius}& \SI{657.69}{\milli \volt} \\ \hline
+         \SI{40}{\celsius}& \SI{640.27}{\milli \volt} \\ \hline
+         \SI{50}{\celsius}& \SI{622.78}{\milli \volt} \\ \hline
+         \SI{60}{\celsius}& \SI{605.20}{\milli \volt} \\ \hline
+         \SI{70}{\celsius}& \SI{587.54}{\milli \volt} \\ \hline
+         \SI{80}{\celsius}& \SI{569.81}{\milli \volt} \\ \hline
     \end{tabular}
-    \caption{Caption}
+    \caption{Zusammenhang Temperatur und $U_{BE}$}
     \label{tab:my_label}
 \end{table}
+
+gemittelt über den gesamten Bereich ergibt sich also folgender Temperaturkoeffizient für diesen Typ von Transistor und Arbeitspunkt:
+
+\begin{equation*}
+    \frac{\Delta U_{BE}}{\Delta T} = \frac{-\SI{743.42}{\milli \volt} + \SI{569.81}{\milli \volt}}{\SI{100}{\kelvin}} = \SI{-1.7361}{\milli \volt \per \kelvin}
+\end{equation*}
+
+Der, durch die Simulation gewonnene Wert, weicht also doch recht deutlich von den typischerweise Verwendeten \SI{-2}{\milli \volt \per \kelvin} ab.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width = \textwidth]{Bilder/Slewrate_default.pdf}
-    \caption{Zeitlicher Verlauf der Spannungen}
+    \includegraphics[width = 0.55\textwidth]{tex/1_Microphone/pictures/KSESB_temp.pdf}
+    \caption{Kleinsignalersatzschaltbild der ersten Stufe mit berücksichtigter Temperatur}
+    \label{fig:my_label}
 \end{figure}
 
-\subsubsection{Warum unterscheidet sich die Slew-Rate für die fallende und steigende Flanke}
+\begin{align*}
+    M_1:& \quad U_E = \Delta U_{BE}(\Delta T) + i_b \left( r_{BE} + (B+1) R_E \right) \\
+    & \quad i_b = (U_E - \Delta U_{BE}(\Delta T)) \frac{1}{r_{BE} + (B+1) R_E} \\
+     & \quad \frac{\partial i_b}{\partial T} = -\frac{\partial \Delta U_{BE}(\Delta T)}{\partial T} \frac{1}{r_{BE} + (B+1) R_E}
+     = \frac{\SI{1.7361}{\milli \volt \per \kelvin}}{r_{BE} + (B+1) R_E} = \SI{1.426}{\nano \ampere \per \kelvin}\\
+    &  \quad \frac{\partial i_c}{\partial T} = B \frac{\partial i_b}{\partial T} = \SI{855}{\nano \ampere \per \kelvin} \approx \frac{\partial i_e}{\partial T}\\
+\end{align*}
 
-Die Ursache für den Unterschied zwischen der Slew-Rate bei steigender und fallender Flanke ist vermutlich in der Ausgangsstufe des OPVs zu suchen. Bei steigender Flanke muss die Kapazität erst geladen werden, dies erfordert kurzzeitig hohe Ströme und hohe Leistungen. $\rightarrow$ Bei der steigenden Flanke ist man durch den maximalen Ausgangsstrom des OPV limitiert, bei der fallenden Flanke hingegen ist der maximale Sink-Current entscheidend, der typischerweise um einiges größer ist.
+Die Ströme sind also tatsächlich sehr temperaturstabil.
 
-\subsubsection{Hat die Last einen Einfluss auf die Slew-Rate?}
+\section{Simulation in LTSpice}
 
-Die Last hat einen sehr großen Einfluss auf die Slew-Rate. Ein größerer Kondensator würde z.B. mehr Ladung brauchen um auf die selbe Spannung geladen zu werden, um dies in der gleichen Zeit zu schaffen also mehr Leistung.\\
+\subsection{Überprüfen der Arbeitspunkte}
 
-\textbf{Simulation mit der Last $C_1 = \SI{1}{\nano \farad}, R_3 = \SI{10}{\mega \ohm}$:}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+         Bezeichnung der Größe & errechneter/gewünschter Wert & simulierter Wert \\ \hline \hline
+         Spannung an $R_E$ & $\SI{2}{\volt}$ & $\SI{2.030}{\volt}$ \\ \hline
+         Basisquerstrom $I_q$ & $\SI{484}{\milli \ampere}$ & $\SI{485}{\milli \ampere}$ \\ \hline
+         Spannung an der Basis des $T_1$ & $\SI{2.71}{\volt}$ & $\SI{2.69}{\volt}$ \\ \hline
+         Kollektorstrom des ersten Transistors& \SI{1.064}{\milli \ampere} & \SI{1.032}{\milli \ampere} \\ \hline
+         Spannung am Emitter des $T_2$ & \SI{5}{\volt} & \SI{4.798}{\volt} \\ \hline
+         Kollektorstrom des $T_2$ & - & \SI{2.159}{\milli \ampere} \\ \hline
+    \end{tabular}
+    \caption{Vergleich der angepeilten und erreichten Werte}
+    \label{tab:my_label}
+\end{table}
+
+Die gemessenen Werte wurden wie folgt gemessen:
+\begin{itemize}
+    \item Aufbau der Schaltung in LTSpice mit den errrechneten Werten für Widerstände und Kapazitäten
+    \item Für den ersten Transistor wurde das Modell des BC 550C eingefügt, für den zweiten Transistor wurde ein generischer NPN verwendet.
+    \item Die Eingangsspannungsquelle wurde auf \SI{10}{\milli \volt} (konstante Gleichspannung) gesetzt.
+    \item Anschließend wurde die Schaltung eine Sekunde lang simuliert und danach die Werte aufgenommen.
+\end{itemize}
+
+\subsection{Dimension des minimalen Lastwiderstandes}
+
+Auch bei ungünstigsten Potistellungen darf der Strom über das Potentiometer nicht über \SI{8.25}{\volt} ansteigen.
+Im worst-case wird das Potentiometer beinahe vollständig vom Lastwiderstand überbrückt und bei einem Kurzschluss des Lastwiderstandes würde ein sehr hoher Strom über diese kurze Strecke des Potentiometers fließen $\rightarrow$ Zerstörung des Potentiometers!
+
+Um dies zu vermeiden muss der Lastwiderstand auch bei maximaler Austeuerung den Strom auf \SI{8.25}{\milli \ampere} begrenzen. Die maximale Aussteuerung beträgt \SI{8}{\volt}, somit ist ein minimaler Lastwiderstand von \SI{970}{\ohm} notwendig.
+
+\subsection{Simulation des Temperaturverhaltens}
+
+Wenn man die Temperatur variiert und den Kollektorstrom des ersten Transistors beobachtet stellt man folgende Beobachtungen auf:
 
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|}
     \hline
-         steigende Flanke & fallende Flanke  \\ \hline
-         \SI{33.3}{\kilo \volt \per \second} & \SI{-961}{\kilo \volt \per \second} \\ \hline
+         Temperatur & $I_{C}$  \\ \hline \hline
+         \SI{-20}{\celsius}& \SI{967}{\micro \ampere} \\ \hline
+         \SI{-10}{\celsius}& \SI{977}{\micro \ampere} \\ \hline
+         \SI{0}{\celsius}& \SI{986}{\micro \ampere} \\ \hline
+         \SI{10}{\celsius}& \SI{995}{\micro \ampere} \\ \hline
+         \SI{20}{\celsius}& \SI{1004}{\micro \ampere} \\ \hline
+         \SI{30}{\celsius}& \SI{1013}{\micro \ampere} \\ \hline
+         \SI{40}{\celsius}& \SI{1022}{\micro \ampere} \\ \hline
+         \SI{50}{\celsius}& \SI{1032}{\micro \ampere} \\ \hline
+         \SI{60}{\celsius}& \SI{1041}{\micro \ampere} \\ \hline
+         \SI{70}{\celsius}& \SI{1050}{\micro \ampere} \\ \hline
+         \SI{80}{\celsius}& \SI{1059}{\micro \ampere} \\ \hline
     \end{tabular}
-    \caption{Caption}
+    \caption{Zusammenhang Temperatur und $I_{C}$ am BC550C}
     \label{tab:my_label}
 \end{table}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = \textwidth]{Bilder/Slewrate_1n.pdf}
-    \caption{Zeitlicher Verlauf der Spannungen mit veränderter Last}
-\end{figure}
+gemittelt über den gesamten Bereich ergibt sich also folgender Temperaturkoeffizient für diesen Typ von Transistor und Arbeitspunkt:
 
-Bei kleinerer Last lässt sich hingegen eine schnellere Slew-Rate beobachten. Auffällig ist auch, dass sich die Geschwindigkeiten für steigende und fallende Flanken annähern:
+\begin{equation*}
+    \frac{\Delta I_{c}}{\Delta T} = \frac{\SI{1059}{\micro \ampere} - \SI{967}{\micro \ampere}}{\SI{100}{\kelvin}} = \SI{920}{\nano \ampere \per \kelvin}
+\end{equation*}
 
-\textbf{Simulation mit der Last $C_1 = \SI{1}{\pico \farad}, R_3 = \SI{20}{\mega \ohm}$:}
+Die \glqq gemessene \grqq{} Temperaturabhängigkeit passt also relativ gut zur errechneten von \SI{855}{\nano \ampere \per \kelvin}.
 
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|c|c|}
-    \hline
-         steigende Flanke & fallende Flanke  \\ \hline
-         \SI{5.55}{\mega \volt \per \second} & \SI{-5.47}{\mega \volt \per \second} \\ \hline
-    \end{tabular}
-    \caption{Caption}
-    \label{tab:my_label}
-\end{table}
+Kurioserweise sinkt der Basisstrom in der Simulation mit höherer Temperatur, während der Kollektorstrom steigt.
+
+\subsection{Überprüfung der erreichten Verstärkung}
+
+\subsubsection{Mit Emitterkondensator $C_E$}
+
+In der Simulation erreicht der Verstärker eine Verstärkung von $\approx \SI{31}{dB}$. Anmerkung: Diese Verstärkung bezieht sich auf die Signalquelle $U_G$ und nicht wie, in den vorhergegangen Berechnungen, auf die Basisspannung des ersten Transistors. Diese Basisspannung wird auf etwa \SI{-9}{dB} abgeschwächt. Von der Basis des ersten Verstärkers bis zum Emitter des zweiten Verstärkers wird also um \SI{40}{dB} verstärkt.
+Auf einer linearen Skala bedeudet dies eine Verstärkung von 100 (errechnet wurde ein Wert von 130).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width = \textwidth]{Bilder/Slewrate_1p.pdf}
-    \caption{Zeitlicher Verlauf der Spannungen mit veränderter Last}
+    \includegraphics[width = \textwidth]{tex/1_Microphone/pictures/Verstärkungen_CE.pdf}
+    \label{fig:my_label}
 \end{figure}
 
-\section{Simulation in LTSpcie}
+\subsubsection{Ohne Emitterkondensator $C_E$}
 
-\section{Anhang:}
+Ohne Emitterkondensator erreicht die erste Stufe eine wesentlich geringere Verstärkung. Zwischen Basispannung und Kollektorspannung des ersten Transistors liegen nur noch lediglich \SI{10}{dB}, also eine Verstärkung von circa $3.1$ (errechnet wurde ein Wert von 30). 
 
-Die Simulationen wurden mit LTSpice XVII durchgeführt. Die Diagramme wurden durch Datenexport von LTSpice mit Matplotlib erstellt.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{tex/1_Microphone/pictures/Verstärkungen_ohneCE.pdf}
+    \label{fig:my_label}
+\end{figure}
+
+\subsection{Erhöhung der Amplitude der Signalquelle - nichtlineare Verzerrungen}
+
+Im nächsten Schritt soll die Amplitude der Eingangsspannung auf \SI{0.5}{\volt} erhöht werden und die, daraus resultierenden Effekte untersucht werden. Dieser Versuch wird bei einer Frequenz von \SI{15}{\kilo \hertz} durchgeführt.
+
+Erste Erkenntnis: Dies ist eine sehr große Amplitudenänderung an der Basis der ersten Stufe, eine derart große Auslenkung aus dem dimensionierten Arbeitspunkt ist nicht möglich. Wenn die Basisspannung ansteigt, sinkt die Kollektor-Emitterspannung (der Transistor leitet). Es fließen nennenswerte Basisströme, es ist nicht möglich die Basis-Emitterspannung (PN-Übergang) über \SI{0.7}{\volt} zu treiben.
+
+Somit liegt schon am Eingang des Verstärkers eine nicht-sinusförmige Größe an:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{tex/1_Microphone/pictures/BaseEmitterVoltage.pdf}
+    \label{fig:my_label}
+\end{figure}
+
+Ein ähnliches Bild zeigt die Kollektor-Emitterspannung (der Transistor ist im Sättigungsbereich):
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{tex/1_Microphone/pictures/CollectorEmitterVoltage.pdf}
+    \label{fig:my_label}
+\end{figure}
+
+Am Ausgangspotentiometer kommt schließlich nur noch eine pulsförmige Spannung an: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{tex/1_Microphone/pictures/outputvoltage.pdf}
+    \label{fig:my_label}
+\end{figure}
+
+Die FFT-Analyse dieses Ausgangssignals zeigt ein verrauschtes Bild mit einem Auschlag bei der Grundfrequenz von \SI{15}{\kilo \hertz}, aber auch bei den Oberwellen (\SI{30}{\kilo \hertz}, \SI{45}{\kilo \hertz} \ldots).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{tex/1_Microphone/pictures/fft_output.png}
+    \label{fig:my_label}
+\end{figure}
+
+\subsection{THD bei verschiedenen Eingangsamplituden}
+
+In dieser Aufgabe soll der THD am Ausgang der Schaltung für verschiedene Amplituden des eingehenden Kleinsignals simuliert werden. Es ist zu erwarten, dass sich die Verzerrung für höhere Amplituden aufgrund der inhärenten nicht-linearität der Transistorkennlinie mit steigender Amplitude verschlechtert.
+
+Bei \SI{1}{\milli \volt} ergibt sich folgendes Bild:
+
+\begin{equation*}
+    THD = \frac{\sqrt{(6.904\cdot10^{-3})^2 + (3.565\cdot10^{-6})^2 + (1.253\cdot10^{-5})^2 +(1.324\cdot10^{-5})^2 + \ldots}}{1} = 0.69 \%
+\end{equation*}
+
+Durch die Abschätzung ergaben sich hingegen $1\%$
+
+Bei \SI{10}{\milli \volt}:
+
+\begin{equation*}
+    THD = \frac{\sqrt{(6.834\cdot10^{-2})^2 + (1.049\cdot10^{-3})^2 + (5.401\cdot10^{-4})^2 +(8.950\cdot10^{-5})^2 + \ldots}}{1} = 6.835 \%
+\end{equation*}
+
+Durch die Abschätzung ergaben sich hingegen $10\%$
+
+Bei \SI{100}{\milli \volt}:
+
+\begin{equation*}
+    THD = \frac{\sqrt{(3.273\cdot10^{-2})^2 + (2.449\cdot10^{-1})^2 + (5.782\cdot10^{-2})^2 +(8.829\cdot10^{-2})^2 + \ldots}}{1} = 27.95 \%
+\end{equation*}
+
+Durch die Abschätzung ergaben sich hingegen $100\%$, dieser Wert kann jedoch nicht erreicht werden (oberes Limit für Rechteckspannung ist $48.3 \%$)

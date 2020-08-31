@@ -1,0 +1,33 @@
+% This file was created by matlab2tikz.
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.517in,
+at={(0.758in,0.519in)},
+scale only axis,
+xmin=0.59,
+xmax=0.69,
+xlabel style={font=\color{white!15!black}},
+xlabel={$\text{\it{} U}_{\text{BE}}\text{ \rm{} in V}$},
+ymin=87,
+ymax=97,
+ylabel style={font=\color{white!15!black}},
+ylabel={$\text{\it{} f}_\text{0}\text{ \rm{} in Hz}$},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={$\text{\it{} f}_{\text{0}}$},
+xmajorgrids,
+ymajorgrids
+]
+\addplot [color=blue, mark=o, mark options={solid, blue}, forget plot]
+  table[row sep=crcr]{%
+0.68722	87.1\\
+0.67375	92\\
+0.64227	95.5\\
+0.627778	96\\
+0.595685	96.5\\
+};
+\end{axis}
+\end{tikzpicture}%
