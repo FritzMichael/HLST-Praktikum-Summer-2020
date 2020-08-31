@@ -13,14 +13,14 @@ scale only axis,
 xmin=0,
 xmax=5,
 xlabel style={font=\color{white!15!black}},
-xlabel={$\text{\it{} t \rm{} in s}$},
+xlabel={$t \text{ in s}$},
 ymin=-7,
 ymax=1,
 ylabel style={font=\color{white!15!black}},
-ylabel={$\text{\it{} U \rm{} in V}$},
+ylabel={$U \text{ in V}$},
 axis background/.style={fill=white},
 title style={font=\bfseries},
-title={$\text{\it{} U}_{\text{BE}}$},
+title={$U_{BE}$},
 xmajorgrids,
 ymajorgrids,
 legend style={legend cell align=left, align=left, draw=white!15!black}
@@ -529,7 +529,7 @@ legend style={legend cell align=left, align=left, draw=white!15!black}
 4.99	-1.483\\
 5	-1.364\\
 };
-\addlegendentry{$\text{U}_{\text{BE1}}$}
+\addlegendentry{$U_{BE1}$}
 
 \addplot [color=mycolor2]
   table[row sep=crcr]{%
@@ -1035,7 +1035,7 @@ legend style={legend cell align=left, align=left, draw=white!15!black}
 4.99	0.741\\
 5	0.741\\
 };
-\addlegendentry{$\text{U}_{\text{BE2}}$}
+\addlegendentry{$U_{BE2}$}
 
 \end{axis}
 \end{tikzpicture}%

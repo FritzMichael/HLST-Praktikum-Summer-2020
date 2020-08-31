@@ -9,19 +9,149 @@ Für die zu untersuchende Stromquelle wird die Schaltung eines einfachen Stromsp
 
 \begin{figure}[H]
 	\centering
-	\def\svgwidth{0.6\textwidth}
+	\def\svgwidth{0.5\textwidth}
 	\input{\figpath/EinfacherStromspiegel.pdf_tex}
 	\caption{Einfache Stromspiegelschaltung} 
 	\label{fig_Kap4_01:Stromspiegel01} 
 \end{figure}
 
+Die Transistoren $T_1$ und $T_2$ werden baugleich gewählt (jeweils Typ BC547B), womit auch 
+\begin{equation}
+    B_1 = B_2 = B
+\end{equation}
+gelten soll. 
 
+Des weiteren gilt für den Kollektorstrom an einem npn-Bipolartransistor
+
+\begin{equation}
+    \label{glgn_transist}
+    I_C = I_S \left(e^{\frac{U_{BE}}{U_T}} - 1 \right) .
+\end{equation}
+
+Für Masche I aus Abb. \ref{fig_Kap4_01:Stromspiegel01} gilt
+
+\begin{equation}
+    \text{MI: } U_{BE,1} + I_{C,1}\left( 1 + \frac{1}{B}\right)R_{E,1} = U_{BE,2} + I_{C,2}\left( 1 + \frac{1}{B}\right)R_{E,2} .
+\end{equation}
+
+Wählt man beide Emitterwiderstände gleich groß (jedoch $\nequ 0 $), so ergibt sich die Gleichung
+
+\begin{equation}
+    U_{BE,1} + I_S \left(e^{\frac{U_{BE,1}}{U_T}} - 1 \right)\left( 1 + \frac{1}{B}\right)R_E = U_{BE,2} + I_S \left(e^{\frac{U_{BE,2}}{U_T}} - 1 \right)\left( 1 + \frac{1}{B}\right)R_E .
+    \label{glng_transzend}
+\end{equation}
+
+Es ist naheliegend, dass sich durch den symmetrischen Schaltungsaufbau als Lösung der transzendenten Gleichung \ref{glng_transzend} wiederum gleich große Basis-Emitterspannungen einstellen werden, 
+
+\begin{equation}
+    U_{BE,1} = U_{BE,2} .
+\end{equation}
+
+Aus Gleichung \ref{glgn_transist} folg somit
+\begin{equation}
+    I_{C,1} = I_{C,2} = I_C \quad \Rightarrow \quad I_{B,1} = I_{B,2} = I_B
+\end{equation}
+
+Mithilfe von Knoten I erhält man die Gleichung
+
+\begin{equation}
+    I_e = I_C + 2 \cdot I_B = I_C \cdot \left( 1 + \frac{2}{B} \right) .
+\end{equation}
+
+Daraus lässt sich ein Zusammenhang zwischen Referenzstrom $I_e$ und Ausgangsstrom $I_a$ finden, 
+
+\begin{equation}
+    I_C = I_a = \frac{1}{1 + \frac{2}{B}} \cdot I_e  = k_I \cdot I_e .
+\end{equation}
+
+Aus Masche II ergibt sich folgender Zusammenhang
+
+\begin{equation}
+    U_B = U_{BE} + I_e \cdot R_1 + I_a \cdot \left(1 + \frac{1}{B} \right) \cdot R_E = U_{BE} + I_e \cdot \left( R_1 + k_I \left(1 + \frac{1}{B} \right) \cdot R_E \right) .
+\end{equation}
+
+Der Ausgangsstrom lässt sich daher folgendermaßen ausdrücken
+
+\begin{equation}
+    I_a = k_I I_e = k_I \frac{U_B - U_{BE}}{R_1 + k_I \left(1 + \frac{1}{B} \right) \cdot R_E} .
+\end{equation}
+
+Will man nun einen Ausgangsstrom von 
+
+\begin{equation*}
+    I_a = \SI{10}{\milli\ampere}
+\end{equation*}
+
+bei gegebenen Bauteilwerten (siehe Tab. \ref{tab_Kap4_01:Bauteilwerte} ) so ergibt sich für den Widerstand $R_1$
+
+\begin{equation}
+    R_1 = k_I \cdot \left(\frac{U_B - U_{BE}}{I_a} - R_1 \cdot \left( \right)\right) = \frac{1}{1+\frac{2}{290}}\left(\frac{\SI{15}{\volt} - \SI{0.7}{\volt}}{\SI{10}{\milli\ampere}} - \SI{100}{\ohm} \cdot \left( 1 + \frac{1}{290} \right)\right) = \SI{1.32}{\kilo\ohm} .
+\end{equation}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|} \hline
+Benennung & Größe \\ \hline
+$U_B$ & \SI{15}{\volt} \\ \hline
+$B$ & 290 \\ \hline
+$R_E$ & \SI{100}{\ohm} \\ \hline
+\end{tabular}
+\caption{Parameter für Berechnung und Simulation}
+\label{tab_Kap4_01:Bauteilwerte} 
+\end{table}
+
+Die Gleichstromverstärkung $B$ wurde dem Datenblatt bei $I_C = \SI{2}{\milli\ampere}$ und $U_{CE} = \SI{5}{\volt}$ entnommen.
+
+Von einer Konstantstromquelle darf eine gewisse Präzision erwartet werden, womit der Widerstand entsprechend der E48-Reihe mit
+
+\begin{equation*}
+    R_1 = \SI{1.33}{\kilo\ohm}
+\end{equation*}
+
+dimensioniert werden kann.
 
 \section{Maximaler Lastwiderstand $R_{L,max}$}
+Aus dem Datenblatt des BC547B lässt sich bei $I_C = \SI{10}{\milli\ampere}$ eine Kollektor-Emitter-Sättigungsspannung von 
+
+\begin{equation}
+    U_{CE,sat} = \SI{0.09}{\volt}
+\end{equation}
+
+ablesen.
+
+Legt man eine Masche über die Ausgangsseite, ergibt sich
+
+\begin{equation}
+    U_B = R_{L,max} \cdot I_a + U_{CE,sat} + R_E \cdot I_a \cdot \left(1 + \frac{1}{B} \right) .
+\end{equation}
+
+Somit beträgt der maximale Lastwiderstand, ab der der Kollektorstrom einbricht
+
+\begin{equation}
+    R_{L,max} = \frac{U_B - U_{CE,sat}}{I_a} - R_E = \frac{\SI{15}{\volt} - \SI{0.09}{\volt}}{\SI{10}{\milli\ampere}} - \SI{100}{\ohm} = \SI{1.39}{\kilo\ohm} .
+\end{equation}
 
 \section{Strom in Abhängigkeit des Lastwiderstandes $I_a(R_L)$}
+Für die LTSpice-Simulation wurde das Schematic aus Abb. \ref{fig_Kap4_02:SpiceSchematic} verwendet. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.6\textwidth]{\figpath/einfacherStromspiegel.jpg}
+    \caption{Einfacher Stromspiegel in LTSpice}
+    \label{fig_Kap4_02:SpiceSchematic}
+\end{figure}
+
+Das Simulationsergebnis kann in Abb. \ref{fig_Kap4_03:Ia} betrachtet werden.
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/I_a(R_L).tikz}}
+	\caption{Ausgangsstrom in Abhängigkeit des Lastwiderstandes}
+	\label{fig_Kap4_03:Ia}
+\end{figure}
 
 \section{Verlauf des Innenwiderstandes $R_i$}
+Lt. Abb. \ref{} wird nun am Ausgang der Lastwiderstand durch eine Spannungsquelle ersetzt. 
 
 \section{Temperaturabhängigkeit des Ausgangsstroms bei globaler Temperaturänderung}
 

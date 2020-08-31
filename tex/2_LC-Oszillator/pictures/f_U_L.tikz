@@ -4,20 +4,20 @@
 
 \begin{axis}[%
 width=4.521in,
-height=3.517in,
-at={(0.758in,0.519in)},
+height=3.566in,
+at={(0.758in,0.481in)},
 scale only axis,
 xmin=0.59,
 xmax=0.69,
 xlabel style={font=\color{white!15!black}},
-xlabel={$\text{\it{} U}_{\text{BE}}\text{ \rm{} in V}$},
+xlabel={$U_{BE} \text{ in } \text{V}$},
 ymin=87,
 ymax=97,
 ylabel style={font=\color{white!15!black}},
-ylabel={$\text{\it{} f}_\text{0}\text{ \rm{} in Hz}$},
+ylabel={$f_0 \text{ in } \text{Hz}$},
 axis background/.style={fill=white},
 title style={font=\bfseries},
-title={$\text{\it{} f}_{\text{0}}$},
+title={$f_{0}$},
 xmajorgrids,
 ymajorgrids
 ]

@@ -15,11 +15,11 @@ scale only axis,
 xmin=0,
 xmax=250,
 xlabel style={font=\color{white!15!black}},
-xlabel={$\text{\it{} t \rm{} in ms}$},
+xlabel={$t \text{ in s}$},
 ymin=-6,
 ymax=8,
 ylabel style={font=\color{white!15!black}},
-ylabel={$\text{\it{} U \rm{} in V}$},
+ylabel={$V \text{ in V}$},
 axis background/.style={fill=white},
 title style={font=\bfseries},
 title={Einschaltvorgang},
@@ -20065,7 +20065,7 @@ legend style={at={(0.03,0.03)}, anchor=south west, legend cell align=left, align
 4999	0.141\\
 5000	0.141\\
 };
-\addlegendentry{$\text{U}_{\text{CE2}}$}
+\addlegendentry{$U_{CE2}$}
 
 \end{axis}
 \end{tikzpicture}%
