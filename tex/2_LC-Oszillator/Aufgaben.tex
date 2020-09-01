@@ -143,18 +143,18 @@ Abbildung \ref{fig_Kap2_06:Einschw} zeigt den Einschwingvorgang der Oszillatorsc
 
 \begin{figure}[H]
 	\centering \small
-	\input{\figpath/U_out_LC_oszi.tikz}
-	\caption{$U_{out}$ am Oszillatorausgang}
-	\label{fig_Kap2_06:Einschw}
+	\input{\figpath/U_out_LC_oszi_inter.tikz}
+	\caption{Ausgangsspannung des Oszillators}
+	\label{fig_Kap2_06:Uout}
 \end{figure}
 
 Als nächstes wird der Einschwingvorgang weggeschnitten, d.h. die Ausgangsspannung im Zeitbereich von $\SI{1}{\micro\second}$ bis $\SI{2}{\micro\second}$ betrachtet und davon die FFT gebildet.
 
 \begin{figure}[H]
-	\centering \small
-	\includegraphics{\figpath/U_rms_fft_short}
-	\caption{FFT der Ausgangsspannung ohne Einschwingvorgang}
-	\label{fig_Kap2_07:FFT_ohne}
+    \centering
+    \includegraphics[width = 0.8\textwidth]{\figpath/U_FFT.jpg}
+    \caption{FFT der Ausgangsspannung ohne Einschwingvorgang}
+    \label{fig_Kap2_07:FFT}
 \end{figure}
 
 Mithilfe der Vergrößerung um den Resonanzbereich kann nun die Bandbreite und der Gütefaktor des Oszillators bestimmt werden. Der Zusammenhang des Gütefaktors $Q$, der Resonanzfrequenz $f_0$ und der 3dB-Bandbreite $B$ lautet folgendermaßen:

@@ -56,16 +56,16 @@
     \put(0,0){\includegraphics[width=\unitlength,page=1]{EinfacherStromspiegel.pdf}}%
     \put(0.42603176,0.77979837){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{EinfacherStromspiegel.pdf}}%
-    \put(0.04832071,0.72638397){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_B$\end{tabular}}}}%
+    \put(0.03824135,0.72638397){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_B$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{EinfacherStromspiegel.pdf}}%
     \put(0.86254955,0.72303372){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{CE,2}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{EinfacherStromspiegel.pdf}}%
-    \put(0.4313203,0.63655955){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{BE,1}$\end{tabular}}}}%
-    \put(0.70014757,0.6381756){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{BE,2}$\end{tabular}}}}%
+    \put(0.44391952,0.63655955){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{BE,1}$\end{tabular}}}}%
+    \put(0.68754854,0.6381756){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{BE,2}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{EinfacherStromspiegel.pdf}}%
     \put(0.74477873,0.7815615){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_2$\end{tabular}}}}%
-    \put(0.41942785,0.97906563){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R_{1}$\end{tabular}}}}%
-    \put(0.71533338,0.97970195){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R_{L}$\end{tabular}}}}%
+    \put(0.42950715,0.97906563){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R_{1}$\end{tabular}}}}%
+    \put(0.71785321,0.97970195){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R_{L}$\end{tabular}}}}%
     \put(0.42942168,0.45721262){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R_{E}$\end{tabular}}}}%
     \put(0.84879526,0.4554127){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R_{E}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{EinfacherStromspiegel.pdf}}%
@@ -73,12 +73,12 @@
     \put(0,0){\includegraphics[width=\unitlength,page=7]{EinfacherStromspiegel.pdf}}%
     \put(0.83196448,1.14229666){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$I_a$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{EinfacherStromspiegel.pdf}}%
-    \put(0.68372071,0.69758504){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$I_{B2}$\end{tabular}}}}%
-    \put(0.46605902,0.6952509){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$I_{B1}$\end{tabular}}}}%
+    \put(0.65651647,0.68655101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$I_{B2}$\end{tabular}}}}%
+    \put(0.51645586,0.68719628){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$I_{B1}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=9]{EinfacherStromspiegel.pdf}}%
     \put(0.88284934,0.98746156){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{a}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=10]{EinfacherStromspiegel.pdf}}%
-    \put(0.27051477,0.72589729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{CE,1}$\end{tabular}}}}%
+    \put(0.25539571,0.72589729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{CE,1}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=11]{EinfacherStromspiegel.pdf}}%
     \put(0.5756492,0.46230344){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_{I}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=12]{EinfacherStromspiegel.pdf}}%
