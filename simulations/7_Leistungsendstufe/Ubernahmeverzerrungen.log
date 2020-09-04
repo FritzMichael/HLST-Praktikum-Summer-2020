@@ -1,0 +1,21 @@
+Circuit: * C:\Users\Michael\Google Drive\Studium\SS20\HLST-Praktikum-Summer-2020\simulations\7_Leistungsendstufe\Ubernahmeverzerrungen.asc
+
+Direct Newton iteration for .op point succeeded.
+
+Date: Thu Sep 03 21:58:40 2020
+Total elapsed time: 64.787 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 10000050
+traniter = 10000038
+tranpoints = 5000020
+accept = 5000020
+rejected = 0
+matrix size = 23
+fillins = 6
+solver = Normal
+Matrix Compiler1: 2.05 KB object code size  0.3/0.2/[0.2]
+Matrix Compiler2: 2.24 KB object code size  0.2/0.3/[0.2]
+
