@@ -1,0 +1,129 @@
+% This file was created by matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
+\definecolor{mycolor4}{rgb}{0.49400,0.18400,0.55600}%
+\definecolor{mycolor5}{rgb}{0.46600,0.67400,0.18800}%
+\definecolor{mycolor6}{rgb}{0.30100,0.74500,0.93300}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmin=-20,
+xmax=80,
+xlabel style={font=\color{white!15!black}},
+xlabel={$T \text{ in }\SI{}{\celsius}$},
+ymin=10.08,
+ymax=10.28,
+ylabel style={font=\color{white!15!black}},
+ylabel={$I_a \text{ in mA}$},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={$I_a(T)$},
+xmajorgrids,
+ymajorgrids,
+legend style={at={(0.97,0.03)}, anchor=south east, legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [color=mycolor1]
+  table[row sep=crcr]{%
+-20	10.13982\\
+-10	10.15304\\
+0	10.16634\\
+10	10.17969\\
+20	10.19312\\
+30	10.2066\\
+40	10.22014\\
+50	10.23374\\
+60	10.2474\\
+70	10.26111\\
+80	10.27488\\
+};
+\addlegendentry{$R_L = \SI{0}{\ohm}$}
+
+\addplot [color=mycolor2]
+  table[row sep=crcr]{%
+-20	10.13184\\
+-10	10.14482\\
+0	10.15786\\
+10	10.17098\\
+20	10.18415\\
+30	10.19739\\
+40	10.21069\\
+50	10.22405\\
+60	10.23746\\
+70	10.25093\\
+80	10.26444\\
+};
+\addlegendentry{$R_L = \SI{200}{\ohm}$}
+
+\addplot [color=mycolor3]
+  table[row sep=crcr]{%
+-20	10.12358\\
+-10	10.13631\\
+0	10.1491\\
+10	10.16197\\
+20	10.17489\\
+30	10.18788\\
+40	10.20092\\
+50	10.21403\\
+60	10.22719\\
+70	10.2404\\
+80	10.25367\\
+};
+\addlegendentry{$R_L = \SI{400}{\ohm}$}
+
+\addplot [color=mycolor4]
+  table[row sep=crcr]{%
+-20	10.11503\\
+-10	10.1275\\
+0	10.14004\\
+10	10.15264\\
+20	10.1653\\
+30	10.17803\\
+40	10.19082\\
+50	10.20367\\
+60	10.21657\\
+70	10.22952\\
+80	10.24253\\
+};
+\addlegendentry{$R_L = \SI{600}{\ohm}$}
+
+\addplot [color=mycolor5]
+  table[row sep=crcr]{%
+-20	10.10617\\
+-10	10.11837\\
+0	10.13064\\
+10	10.14297\\
+20	10.15537\\
+30	10.16784\\
+40	10.18036\\
+50	10.19294\\
+60	10.20558\\
+70	10.21827\\
+80	10.23101\\
+};
+\addlegendentry{$R_L = \SI{800}{\ohm}$}
+
+\addplot [color=mycolor6]
+  table[row sep=crcr]{%
+-20	10.09696\\
+-10	10.10889\\
+0	10.12089\\
+10	10.13295\\
+20	10.14508\\
+30	10.15726\\
+40	10.16951\\
+50	10.18182\\
+60	10.19418\\
+70	10.2066\\
+80	10.21907\\
+};
+\addlegendentry{$R_L = \SI{1000}{\ohm}$}
+
+\end{axis}
+\end{tikzpicture}%

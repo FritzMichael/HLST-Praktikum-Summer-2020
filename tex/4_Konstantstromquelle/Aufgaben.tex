@@ -150,11 +150,109 @@ Das Simulationsergebnis kann in Abb. \ref{fig_Kap4_03:Ia} betrachtet werden.
 	\label{fig_Kap4_03:Ia}
 \end{figure}
 
+Man erkennt, dass der Ausgangsstrom bei ca. $\SI{1,4}{\kilo\ohm}$ einbricht, was gut mit den Berechnungen, siehe Glng. 4.14, übereinstimmt. Bis dahin fällt der Ausgangsstrom leicht, was durch den realen Innenwiderstand der Stromquelle begründet werden kann.
+
 \section{Verlauf des Innenwiderstandes $R_i$}
-Lt. Abb. \ref{} wird nun am Ausgang der Lastwiderstand durch eine Spannungsquelle ersetzt. 
+Der Ausgangswiderstand des Stromspiegels entspricht dem Innenwiderstand der damit realisierten Stromquelle, womit gilt:
+
+\begin{equation}
+    r_a = \frac{\partial U_a}{\partial I_a}\big|_{I_e = const} \hat{=} R_i .
+\end{equation}
+
+Lt. Abb. \ref{fig_Kap4_04:Ri} wird nun am Ausgang der Lastwiderstand durch eine Spannungsquelle ersetzt und ein DC-Sweep durchgeführt. Die invertierte Ableitung des Kollektorstroms nach der Ausgangsspannung entspricht dem Verlauf des Innenwiderstandes, siehe Abb. \ref{fig_Kap4_05:Ri}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.6\textwidth]{\figpath/stromspiegel_02.jpg}
+    \caption{Schaltung zur Bestimmung des Innenwiderstandes}
+    \label{fig_Kap4_04:Ri}
+\end{figure}
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/R_i(U_a).tikz}}
+	\caption{Innenwiderstand in Abhängigkeit der Ausgangsspannung}
+	\label{fig_Kap4_05:Ri}
+\end{figure}
+
+Die Kurve bricht erwartungsgemäß bei 
+
+\begin{equation}
+    V_2 = U_{CE,sat} + I_a (1 + \frac{1}{B}) \cdot R_E \approx \SI{0,1}{\volt} + \SI{10}{\milli\ampere} \cdot \SI{100}{\ohm} = \SI{1,1}{\volt}
+\end{equation}
+
+ein. Es kann gezeigt werden, dass der Ausgangswiderstand des Stromspiegels größtenteils vom Earlywidersstand des Transistors $T_2$ bestimmt wird. Für den Earlywiderstand gilt vereinfacht
+
+\begin{equation}
+    r_{EA} = \frac{U_{CE,0} + U_{EA}}{I_{C,0}}
+\end{equation}
+
+Somit steigt der Innenwiderstand mit steigender Kollektor-Emitterspannung.
 
 \section{Temperaturabhängigkeit des Ausgangsstroms bei globaler Temperaturänderung}
+Im nächsten Schritt wird ein Temperatursweep zwischen $\SI{-20}{\celsius}$ und $\SI{80}{\celsius}$ in 10 Schritten durchgeführt, wobei die globale Temperatur aller Bauteile variiert. In Abb. \ref{} kann nun die Änderung des Ausgangstromes bei globaler Temperaturänderung und unterschiedlichen Belastungen betrachtet werden. 
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/globTemp.tikz}}
+	\caption{Ausgangstrom bei globaler Temperaturänderung}
+	\label{fig_Kap4_06:T_1}
+\end{figure}
+
+Offensichtlich hat die Last keinen großen Einfluss auf das Temperaturverhalten, womit repräsentativ die Werte für $R_L = \SI{1}{\kilo\ohm}$ für die Berechnung verwendet werden.
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/diff_globTemp.tikz}}
+	\caption{Differenzenquotient des Ausgangsstromes nach der globalen Temperatur}
+	\label{fig_Kap4_07:T_2}
+\end{figure}
+
+Mittelt man den Temperaturkoeffizient über den Temperaturbereich erhält man
+
+\begin{equation}
+    \overline{\left({\frac{\Delta I_{c,i}}{\Delta T}}\right)} = \SI{1.221}{\micro\ampere\per\kelvin}
+\end{equation}
 
 \section{Temperaturabhängigkeit der Schaltung bei unterschiedlichen Bauteiltemperaturen}
+Interessanter wird es, wenn beide Transistoren unterschiedliche Temperaturen aufweisen. In der ersten Simulation wird die Temperatur des Transistors $T_1$ bei $\SI{50}{\celsius}$ festgehalten und ein Temperatursweep beim Transistor $T_2$ durchgeführt.
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/diffTemp_011.tikz}}
+	\caption{Temperaturabhängigkeit $T_1$ bei konstanter Temperatur}
+	\label{fig_Kap4_08:diffT_1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/diffTemp_012.tikz}}
+	\caption{Temperaturabhängigkeit $T_1$ bei konstanter Temperatur}
+	\label{fig_Kap4_09:diffT_2}
+\end{figure}
+
+\begin{equation}
+    \overline{\left({\frac{\Delta I_{c,i}}{\Delta T}}\right)} = \SI{15.9}{\micro\ampere\per\kelvin}
+\end{equation}
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/diffTemp_021.tikz}}
+	\caption{Temperaturabhängigkeit $T_2$ bei konstanter Temperatur}
+	\label{fig_Kap4_08:diffT_1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/diffTemp_022.tikz}}
+	\caption{Temperaturabhängigkeit $T_2$ bei konstanter Temperatur}
+	\label{fig_Kap4_09:diffT_2}
+\end{figure}
+
+\begin{equation}
+    \overline{\left({\frac{\Delta I_{c,i}}{\Delta T}}\right)} = \SI{-14.6}{\micro\ampere\per\kelvin}
+\end{equation}
 
 \section{Vergleich mit Berechnung}
+
+

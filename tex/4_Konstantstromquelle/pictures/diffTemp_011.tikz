@@ -1,0 +1,41 @@
+% This file was created by matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmin=-20,
+xmax=80,
+xlabel style={font=\color{white!15!black}},
+xlabel={$T \text{ in }\SI{}{\celsius}$},
+ymin=9,
+ymax=10.8,
+ylabel style={font=\color{white!15!black}},
+ylabel={$I_a \text{ in mA}$},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={$I_a(T)$},
+xmajorgrids,
+ymajorgrids
+]
+\addplot [color=mycolor1, forget plot]
+  table[row sep=crcr]{%
+-20	9.073243\\
+-10	9.229739\\
+0	9.386907\\
+10	9.544717\\
+20	9.70314\\
+30	9.862147\\
+40	10.02172\\
+50	10.18182\\
+60	10.34244\\
+70	10.50356\\
+80	10.66515\\
+};
+\end{axis}
+\end{tikzpicture}%
