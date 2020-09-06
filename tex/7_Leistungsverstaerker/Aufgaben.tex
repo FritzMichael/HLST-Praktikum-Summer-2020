@@ -1,15 +1,14 @@
 \chapter{Leistungsendstufen}
+\section{Übernahmeverzerrung}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics{emitter}
-    \caption{Caption}
+    \includegraphics{tex/7_Leistungsverstaerker/pictures/Schematic_Emitterfolger.png}
+    \caption{Push-Pull Endstufe}
     \label{fig:my_label}
 \end{figure}
 
 In diesem Kapitel werden Leistungsendstufen mit zwei komplementären Transistoren behandelt.
-
-\section{Übernahmeverzerrung}
 
 \begin{figure}[H]
     \centering
@@ -41,6 +40,19 @@ Der verwendete NPN-Darlington-Transistor verfügt über eine leitende Verbindung
 \end{figure}
 
 \section{Der rückgekoppelte Emitterfolger}
+
+\subsection{Dimensionierung Eingangshochpass und resultierender Amplitudengang}
+
+\begin{equation}
+    RC = \frac{1}{2 \pi \SI{20}{\hertz}} = \SI{7.958}{\milli \second} \rightarrow R = \SI{10}{\kilo \ohm}, C = \SI{8}{\micro \farad}
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{Ampli}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
 
 \section{Gegentaktendstufe mit Ruhestromeinstellung}
 
