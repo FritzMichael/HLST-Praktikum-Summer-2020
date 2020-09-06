@@ -1,0 +1,41 @@
+% This file was created by matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmin=-20,
+xmax=80,
+xlabel style={font=\color{white!15!black}},
+xlabel={$T \text{ in }\SI{}{\celsius}$},
+ymin=-15,
+ymax=-14.3,
+ylabel style={font=\color{white!15!black}},
+ylabel={$dI_a/dT \text{ in }\SI{}{\micro\ampere}/\SI{}{\celsius}$},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={$dI_a(T)/dT$},
+xmajorgrids,
+ymajorgrids
+]
+\addplot [color=mycolor1, forget plot]
+  table[row sep=crcr]{%
+-20	-14.31536\\
+-10	-14.35718\\
+0	-14.43909\\
+10	-14.5176\\
+20	-14.59303\\
+30	-14.66563\\
+40	-14.73548\\
+50	-14.80267\\
+60	-14.86745\\
+70	-14.92994\\
+80	-14.96058\\
+};
+\end{axis}
+\end{tikzpicture}%
