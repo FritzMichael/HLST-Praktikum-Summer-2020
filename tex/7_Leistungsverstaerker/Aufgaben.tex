@@ -11,7 +11,7 @@ In diesem Kapitel werden Leistungsendstufen mit zwei komplementären Transistore
     \label{fig:my_label}
 \end{figure}
 
-Trotz der Unterschiede in der Wellenform, waren für mich bei einer Grundfrequenz von \SI{1}{\hilo \hertz} keine Unterschiede hörbar.
+Trotz der Unterschiede in der Signalform, waren für mich bei einer Grundfrequenz von \SI{1}{\hilo \hertz} keine Unterschiede hörbar.
 
 Im Frequenzspektrum betrachtet, wirken sich diese nicht-Linearitäten  in der Verstärkung wie folgt aus:
 
@@ -22,6 +22,11 @@ Im Frequenzspektrum betrachtet, wirken sich diese nicht-Linearitäten  in der Ve
 \end{figure}
 
 Man erkennt, dass besonders die ungeraden vielfachen der Grundfrequenz deutliche Oberwellen erzeugen (3, 5, 7 ... kHz).
+
+\subsection{Warum gibt es keine Übernahmeverzerrungen bei hohem Lastwiderstand bzw. Leerlauf?Hinweis: siehe interne Beschaltung der Darlington–Transistoren}
+
+
+\section{Der rückgekoppelte Emitterfolger}
 
 \section{Gegentaktendstufe mit Ruhestromeinstellung}
 
@@ -42,9 +47,22 @@ Wie bereits im Praktikumsskript thematisiert besteht in dieser Schaltung ein Tra
          \SI{0.7}{\volt}& $7.39\%$ & \SI{32}{\micro \ampere} \\ \hline
          \SI{1.4}{\volt}& $3.54\%$ & \SI{199}{\micro \ampere} \\ \hline
          \SI{2.8}{\volt}& $0.06\%$ & \SI{1.4}{\ampere} \\ \hline
-    \end{tabular}
+    \end{tabular} 
     \caption{verhalten bei verschiedenen Bias-Spannungen}
     \label{tab:my_label}
 \end{table}
 
 \section{Der in Brücke geschaltete Verstärker}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{tex/7_Leistungsverstaerker/pictures/Bridgeamp.png}
+    \caption{Brückenschaltung mit 2 Verstärkern}
+    \label{fig:my_label}
+\end{figure}
+
+Als abschließende Aufgabe ist zu Überlegen wie viel Leistung am Lautsprecher in dieser Konfiguration umgesetzt wird. Die Spannung am Lautsprecher wird effektiv verdoppelt, womit sich die umgesetzte Leistung vervierfachen müsste. 
+
+\begin{equation*}
+    P = \frac{(2 U)^2}{R} = 4 \frac{U^2}{R}
+\end{equation*}
