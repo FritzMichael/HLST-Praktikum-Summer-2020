@@ -1,5 +1,12 @@
 \chapter{Leistungsendstufen}
 
+\begin{figure}
+    \centering
+    \includegraphics{emitter}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
+
 In diesem Kapitel werden Leistungsendstufen mit zwei komplementären Transistoren behandelt.
 
 \section{Übernahmeverzerrung}
@@ -25,6 +32,13 @@ Man erkennt, dass besonders die ungeraden vielfachen der Grundfrequenz deutliche
 
 \subsection{Warum gibt es keine Übernahmeverzerrungen bei hohem Lastwiderstand bzw. Leerlauf?Hinweis: siehe interne Beschaltung der Darlington–Transistoren}
 
+Der verwendete NPN-Darlington-Transistor verfügt über eine leitende Verbindung zwischen Basis und Emitter ($R_1$ und $R_2$). Wenn die Transistoren sperren und am Emitter keine Last anliegt, wird der Emitter durch diese leitende Verbindung auf das Basisspannungspotential angehoben.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{tex/7_Leistungsverstaerker/pictures/Darlington.png}
+    \caption{Interne Beschaltung der verwendeten Darlingtontransistoren}
+\end{figure}
 
 \section{Der rückgekoppelte Emitterfolger}
 
