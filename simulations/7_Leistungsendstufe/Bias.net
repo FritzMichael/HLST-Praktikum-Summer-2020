@@ -1,11 +1,10 @@
 * C:\Users\Michael\Google Drive\Studium\SS20\HLST-Praktikum-Summer-2020\simulations\7_Leistungsendstufe\Bias.asc
 V1 N001 0 15
-V2 0 N003 15
+V2 0 N002 15
 V3 basis 0 SINE(0 5 1k)
-R1 last 0 1k
-XU2 N001 N002 last TIP122
-XU1 N003 basis last TIP127
-V4 N002 basis {V4}
+R1 last 0 100k
+XU2 N001 basis last TIP122
+XU1 N002 basis last TIP127
 .tran 0 0.5 0 1e-6
 .param V4=0
 .four 1kHz V(last)
