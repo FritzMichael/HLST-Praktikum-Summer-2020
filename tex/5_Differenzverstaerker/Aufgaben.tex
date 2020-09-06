@@ -5,6 +5,15 @@
 In Kapitel 5 werden die Eigenschaften einer einfachen und einer erweiterten Differenzverstärkerschaltung untersucht.
 
 \section{Einfacher Differenzverstärker}
+Abb. \ref{} zeigt das Ersatzschaltbild eines einfachen Differenzverstärkers mit einem einzigen Ausgang. 
+
+\begin{figure}[H]
+	\centering
+	\def\svgwidth{0.7\textwidth}
+	\input{\figpath/DiffVerstärker.pdf_tex}
+	\caption{Einfacher Differenzverstärker} 
+	\label{fig_Kap5_01:ESBDiffVerst} 
+\end{figure}
 
 \subsection{Dimensionierung der Kollektorwiderstände $R_C$}
 
@@ -17,62 +26,209 @@ Der Strom der Stromquelle von \SI{10}{\milli \ampere} teilt sich gleichmäßig a
 \end{equation}
 
 \subsection{Kleinsignal-Spannungsverstärkung $A_{ed}$}
-
-In diesem Punkt soll die Kleinsignal.Spannungsverstärkung für die zwei verschiedenen Werte $R_E = \SI{0}{\ohm}$ und $R_E = \SI{33}{\ohm}$ berechnet werden. Am Arbeitspunkt, also am Wert von $r_{BE}$ sollte die Änderung des Emitterwiderstandes nichts verändern, da der Kollektorstrom in dieser Schaltung von einer Stromquelle getrieben wird und unabhängig vom Kollektorwiderstand ist.
-
-Zur Berechung der gesuchten Größe $A_{ed} = \frac{u_a}{u_p - u_n}$ wird das Kleinsignalersatzschaltbild analysiert:
-
-FALSCHER ANSATZ: Werd das Thema morgen (Samstag) vormittag ausbessern
-
-\subsubsection{$u_a$ zufolge $u_p$}
-
-\begin{align}
-    u_p =& I_{B,1} r_{BE} + I_E 2 R_E + I_{B,2} r_{BE} \\
-    I_{B,1} (B+1) =& I_E \\
-    I_{B,2} (B+1) =& I_E \\
-    u_a = r_{BE} I_{B,2}
-\end{align}
-
-Aus den beiden Knotengleichungen folgt, dass $I_{B,1} = I_{B,2} = I_B$ gelten muss:
-
-\begin{align}
-    u_p =& I_{B} \left( 2 r_{BE} + (B+1) 2 R_E \right) \rightarrow I_B = \frac{u_p}{2 \left( r_{BE} + (B+1) R_E \right)}\\
-    u_a =& r_{BE} I_{B} = u_p \frac{r_{BE}}{2 \left( r_{BE} + (B+1) R_E \right)}
-\end{align}
-
-\subsubsection{$u_a$ zufolge $u_n$}
-
-\begin{align}
-    u_n =& I_{B,2} r_{BE} + I_E 2 R_E + I_{B,1} r_{BE} \\
-    I_{B,2} (B+1) =& I_E \\
-    I_{B,1} (B+1) =& I_E \\
-    u_a = - r_{BE} I_{B,2} + u_n
-\end{align}
-
-Aus den beiden Knotengleichungen folgt, dass $I_{B,1} = I_{B,2} = I_B$ gelten muss:
-
-\begin{align}
-    u_n =& I_{B} \left( 2 r_{BE} + (B+1) 2 R_E \right) \rightarrow I_B = \frac{u_n}{2 \left( r_{BE} + (B+1) R_E \right)}\\
-    u_a =& - r_{BE} I_{B} + u_n = u_n \left( 1 - \frac{r_{BE}}{2 \left( r_{BE} + (B+1) R_E \right)} \right)
-\end{align}
-
-\subsubsection{$u_a$ zufolge beider Quellen}
+Im nächsten Schritt soll die Kleinsignal-Spannungsverstärkung nach
 
 \begin{equation}
-    u_a = u_p \frac{r_{BE}}{2 \left( r_{BE} + (B+1) R_E \right)} + u_n \left( 1 - \frac{r_{BE}}{2 \left( r_{BE} + (B+1) R_E \right)} \right)
+    A_{ed} = \frac{u_A}{u_P - u_N}
 \end{equation}
 
-Mit $u_n = - u_p$ eingesetzt:
+für die Fälle $R_E = \SI{0}{\ohm}$ und $R_E = \SI{33}{\ohm}$berechnet und simuliert werden. Dafür wird zunächst das KSESB betrachtet, siehe Abb. \ref{fig_Kap5_02:ESBDiffVerstKSBES}.
 
-\begin{align}
-    u_a &= u_p \frac{r_{BE}}{2 \left( r_{BE} + (B+1) R_E \right)} + u_p \left( - 1 + \frac{r_{BE}}{2 \left( r_{BE} + (B+1) R_E \right)} \right)\\
-    u_a &= u_p \left(\frac{r_{BE}}{\left( r_{BE} + (B+1) R_E \right)} - 1 \right) \\
-    \frac{u_a}{u_p - u_n} = 
-\end{align}
+\begin{figure}[H]
+	\centering
+	\def\svgwidth{0.9\textwidth}
+	\input{\figpath/DiffVerstärker_1_KSESB.pdf_tex}
+	\caption{Einfacher Differenzverstärker KSESB} 
+	\label{fig_Kap5_02:ESBDiffVerstKSBES} 
+\end{figure}
+
+Des Weiteren soll es sich hier um eine schiefsymmetrische Aussteuerung handeln, sprich
+
+\begin{equation}
+    u_P = -u_N = u_E
+\end{equation}
+
+\begin{equation}
+    \label{Gln_I}
+    u_P = i{B,1} ( \frac{B}{S} + R_E\cdot (B + 1) ) + R_i \cdot (B+1)(i{B,1} + i{B,2}) = u_E
+\end{equation}
+
+\begin{equation}
+    \label{Gln_II}
+    u_N = i{B,2} ( \frac{B}{S} + R_E\cdot (B + 1) ) + R_i \cdot (B+1)(i{B,1} + i{B,2}) = -u_E
+\end{equation}
+
+Subtrahiert man beide Gleichungen voneinander, erhält man
+
+\begin{equation}
+    i_{B,1} \cdot \left( -\frac{B}{S} - R_E(B+1) - 2R_i(B+1) \right) = i_{B,2} \cdot \left( +\frac{B}{S} + R_E(B+1) + 2R_i(B+1) \right)
+\end{equation}
+
+\begin{equation}
+    \label{current}
+    i_{B,1} = -i_{B,2}
+\end{equation}
+
+Für die Ausgangsspannung gilt
+
+\begin{equation}
+    u_a = -R_C B i_{B,2} = R_C B i_{B,1}
+\end{equation}
+
+Legt man eine Maschen von $u_P$ bis $u_N$ gelangt man zum Zusammenhang
+
+\begin{equation}
+    u_P = \left( \frac{B}{S} + R_E(B+1) \right) (i_{B,1} - i_{B,2} ) + u_N, 
+\end{equation}
+
+woraus folgt dass mit Glng. \ref{current} gilt
+
+\begin{equation}
+    u_P - u_N = 2i_{B,1} \left( \frac{B}{S} + R_E(B+1) \right)
+\end{equation}
+
+Setzt man dies in Glng. 5.2 ein, so erhält man für die Differenzverstärkung
+
+\begin{equation}
+    A_{ed} = \frac{R_C B i_{B,1}}{2i_{B,1} \left( \frac{B}{S} + R_E(B+1) \right)} = \frac{R_C S}{2\left( 1 + R_E S(1+\frac{1}{B}) \right)} \approx \frac{R_C S}{2\left( 1 + R_E S \right)}
+\end{equation}
+
+Für die in Tab. \ref{tab_Kap5_01:Bauteilwerte} angeführten Parameter gilt lässt sich die Differenzverstärkung berechnen.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|} \hline
+Benennung & Größe \\ \hline
+$R_C$ & \SI{1500}{\ohm} \\ \hline
+$I_{C,0}$ & \SI{5}{\milli\ampere} \\ \hline
+$B$ & 290 \\ \hline
+$U_T$ & \SI{25,9}{\milli\volt} \\ \hline
+\end{tabular}
+\caption{Parameter für Berechnung und Simulation}
+\label{tab_Kap5_01:Bauteilwerte} 
+\end{table}
+
+Für einen Emitterwiderstand von $R_E = \SI{33}{\ohm}$ gilt somit
+
+\begin{equation}
+    A_{ed} = \frac{R_C S}{2\left( 1 + R_E S(1+\frac{1}{B}) \right)} = \frac{\SI{1500}{\ohm}\cdot\SI{0,2}{\ampere\per\volt}}{2(1+\SI{33}{\ohm} \cdot \SI{0,2}{\ampere\per\volt} (1 + \frac{1}{290}) )} = 19.68 \hat{=} 25.88\text{dB} .
+\end{equation}
+
+Für einen Emitterwiderstand von $R_E = \SI{0}{\ohm}$ gilt dagegen
+
+\begin{equation}
+    A_{ed} = \frac{R_C S}{2} =  \frac{\SI{1500}{\ohm}\cdot\SI{0,2}{\ampere\per\volt}}{2} = 150 \hat{=} 43.5\text{dB} .
+\end{equation}
+
+Nun wird die Kleinsignalverstärkung simuliert, siehe Abb. \ref{fig_Kap5_03:SpiceSchematic}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.6\textwidth]{\figpath/einfachDiff.jpg}
+    \caption{Einfacher Stromspiegel in LTSpice}
+    \label{fig_Kap5_03:SpiceSchematic}
+\end{figure}
+
+Mit einer AC-Analyse kann das Bode-Diagramm und daraus die Verstärkung abgelesen werden. Mit $R_E = \SI{0}{\ohm}$ wird eine Verstärkung von 
+
+\begin{equation}
+    A_{ed} = 41.17\text{dB} \hat{=} 114.4
+\end{equation}
+
+simuliert. Mit $R_E = \SI{33}{\ohm}$ wird hingegen eine Verstärkung von 
+
+\begin{equation}
+    A_{ed} = 25.5\text{dB} \hat{=} 18.8
+\end{equation}
+
+erreicht. Die Verstärkung bei $R_E = \SI{0}{\ohm}$ weicht doch beträchtlich vom berechneten Wert ab.
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/A_ed_Diff_1.tikz}}
+	\caption{Bodediagramm der Differenzverstärkung}
+	\label{fig_Kap5_04:Bode}
+\end{figure}
 
 \subsection{Gleichtaktverstärkung $A_{gl}$}
+Für die Gleichtaktaussteuerung wird eine symmetrische Aussteuerung mit Gleichtaktspannung $U_{gl}$ angenommen, 
+
+\begin{equation}
+    u_P = u_N = u_{gl} \quad \Rightarrow \quad u_{gl} = \frac{u_P + u_N}{2} .
+\end{equation}
+
+Womit sich gleiche Basisströme einstellen,
+
+\begin{equation}
+    i_{B,1} = i_{B,2} = i_{B} .
+\end{equation}
+
+Addiert man nun \ref{Gln_I} und \ref{Gln_II} erhält man
+
+\begin{equation}
+    u_P + u_N = 2 i_B \cdot \left( \frac{B}{S} + (R_E + 2 \cdot R_i)(B+1) \right) .
+\end{equation}
+
+Somit erhält man für die Gleichtaktverstärkung
+
+\begin{equation}
+    A_{gl} = \frac{2 \cdot u_a}{u_P + u_N} = -\frac{2BR_Ci_B}{2 i_B \cdot \left( \frac{B}{S} + (R_E + 2 \cdot R_i)(B+1) \right)} = - \frac{R_C}{\frac{1}{S} + (R_E + 2 \cdot R_i)(1+\frac{1}{B})} \approx -\frac{R_C}{R_E + 2R_i}
+\end{equation}
+
+Für die Berechnung wird nun lt. Abb. \ref{fig_Kap4_05:Ri} ein Widerstand von $R_i = \SI{250}{\kilo\ohm}$ angenommen (extrapolierter Wert bei einer Ausgangsspannung von $\SI{21,8}{\volt}$, hier wurde die Ausgangsspannung am Stromspiegel im Arbeitspunkt ermittelt). Im Vergleich dazu ist der gewählte Emitterwiderstand äußerst niedrig, womit sich die Gleichtaktverstärkung folgendermaßen berechnet, 
+
+\begin{equation}
+    A_{gl} \approx -\frac{R_C}{2R_i} = -\frac{\SI{1500}{\ohm}}{\SI{500}{\kilo\ohm}} = 0.003 \hat{=} -50.5 \text{dB} .
+\end{equation}
+
+Lt. Simulation ergibt sich ein Wert von 
+
+\begin{equation}
+    A_{gl} =-52.1 \text{dB} \hat{=} 0.0025 .
+\end{equation}
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/A_gl_Diff_1.tikz}}
+	\caption{Bodediagramm der Gleichtaktverstärkung}
+	\label{fig_Kap5_05:Bode}
+\end{figure}
 
 \subsection{Gleichtaktverstärkung (Stromquelle durch Widerstand ersetzt)}
+Als nächstes wird nun die Stromquelle durch einen Widerstand $R$ ersetzt, durch welchen im Arbeitspunkt ebenso $\SI{10}{\milli\ampere}$ fließen sollen. Hierzu wird zunächst eine Masche über die Versorgungsspannung gelegt, wobei eine symmetrische Aufteilung des Stromes angenommen wird ($I_{C0,1} = I_{C0,2} = I_{C0}$ und die Basiströme vernachlässigt werden,
+
+\begin{equation}
+    2\cdot U_B = I_{C0} (R_C + R_E) + 2 \cdot RI_{C0}
+\end{equation}
+
+woraus sich der Widerstand berechnen lässt
+
+\begin{equation}
+    R = \frac{2\cdot U_B - I_{C0} (R_C + R_E)}{2 I_{C0} } = \frac{\SI{30}{\volt} - \SI{0.005}{\ampere} \cdot \SI{1533}{\ohm}}{\SI{0,01}{\ampere}} = \SI{2233,5}{\ohm} 
+\end{equation}
+
+Letztendlich wurde der Widerstand mit
+
+\begin{equation}
+    R = \SI{2.2}{\kilo\ohm}
+\end{equation}
+
+gewählt.
+
+Für die Berechnung der Gleichtaktverstärkung wird nun der Innenwiderstand der Stromquelle durch $R$ erstetzt.
+
+\begin{equation}
+    A_{gl} \approx -\frac{R_C}{R_E + 2R} = -\frac{\SI{1500}{\ohm}}{\SI{4433}{\ohm}} = -0.338 \hat{ = } -9.4 \text{dB}
+\end{equation}
+
+Der berechnete Wert stimmt gut mit der Simulation überein.
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/A_gl_Diff_1_R.tikz}}
+	\caption{Bodediagramm der Gleichtaktverstärkung mit Widerstand statt Stromquelle}
+	\label{fig_Kap5_06:Bode}
+\end{figure}
 
 \subsection{Temperaturverhalten der Kollektorpotenziale}
 
