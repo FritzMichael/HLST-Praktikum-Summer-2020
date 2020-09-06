@@ -231,17 +231,180 @@ Der berechnete Wert stimmt gut mit der Simulation überein.
 \end{figure}
 
 \subsection{Temperaturverhalten der Kollektorpotenziale}
+Für das Temperaturverhalten der Kollektorpotenziale wird das ESB von Abb. \ref{fig_Kap5_07:Temp} verwendet.
+
+\begin{figure}[H]
+	\centering
+	\def\svgwidth{0.9\textwidth}
+	\input{\figpath/DiffVerstärker_1_KSESB_Temp.pdf_tex}
+	\caption{Einfacher Differenzverstärker KSESB mit Temperatureinfluss} 
+	\label{fig_Kap5_07:Temp} 
+\end{figure}
+
+Für die Berechnung wird angenommen, dass die Temperatur von Transitor $T_2$ stabil ist und $T_1$ mit der Temperatur schwankt.  Für die Differenz der Kollektorpotentiale gilt
+
+\begin{equation}
+    u_{c,1} = -R_C B i_{B,1}
+\end{equation}
+
+\begin{equation}
+    u_{c,2} = -R_C B i_{B,2}
+\end{equation}
+
+\begin{equation}
+    u_{c,1} - u_{c,2} = -R_C B ( i_{B,1} - i_{B,2} )
+\end{equation}
+
+Über eine Maschengleichung zwischen beiden Transistorbasen kommt man auf folgenden Zusammenhang,
+
+\begin{equation}
+    \Delta U(\Delta T) + i_{B,1}(\frac{B}{S} + (B + 1)R_E) = i_{B,2} (\frac{B}{S} + (B + 1)R_E)
+\end{equation}
+
+\begin{equation}
+    i_{B,2} = \frac{\Delta U(\Delta T)}{(\frac{B}{S} + (B + 1)R_E)} + i_{B,1}
+\end{equation}
+
+Somit berechnet sich die Temperaturdifferenz über
+
+\begin{equation}
+    u_{c,1} - u_{c,2} = R_C B \cdot \frac{\Delta U(\Delta T)}{R_E(B+1) + \frac{B}{S}}
+\end{equation}
+
+Mit dem in Kap. 1 ermittelten Temperaturkoeffizienten 
+
+\begin{equation}
+    \frac{\Delta U_{BE}}{\Delta T} \approx -\SI{1,74}{\milli\volt\per\kelvin}
+\end{equation}
+
+lässt sich mit $R_E = \SI{33}{\ohm}$ bei $\SI{1}{\kelvin}$ Temperaturdifferenz folgende Spannungsdifferenz berchnen,
+
+\begin{equation}
+    u_{c,1} - u_{c,2} = -\SI{1500}{\ohm} \cdot 290  \frac{\SI{1,74}{\milli\volt\per\kelvin}}{\SI{33}{\ohm} \cdot 291 + \frac{290}{0.2}\SI{}{\ohm}} = -\SI{68}{\milli\volt} .
+\end{equation}
+
+Für $R_E = \SI{0}{\ohm}$ ergibt sich
+
+\begin{equation}
+    u_{c,1} - u_{c,2} = -\SI{1500}{\ohm} \cdot 290  \frac{\SI{1,74}{\milli\volt\per\kelvin}}{\frac{290}{0.2}\SI{}{\ohm}} = -\SI{522}{\milli\volt} .
+\end{equation}
+
+Die Emitterwiderstände $R_E$ verbessern also die Temperaturstabilität deutlich.
 
 \subsection{Auswirkungen einer globalen und einer Differenztemperaturänderung}
+In LTSpice wird die Ausgangsspannung zufolge einer globalen Temperaturänderung betrachtet, siehe Abb. \ref{fig_Kap5_08:Temp}. Hierbei bleibt die Ausgangsspannung konstant.
+
+%\begin{figure}[H]
+%	\centering \small
+%	\scalebox{0.9}{\input{\figpath/U_a_diff1_globTemp.tikz}}
+%	\caption{Verhalten der Ausgangsspannung über globaler Temperaturänderung}
+%	\label{fig_Kap5_08:Temp}
+%\end{figure}
+
+Als nächstes wird der Transistor $T_2$ konstant bei $T_{T,2} = \SI{25}{\celsius}$ gehalten und die Temperatur von $T_1$ zwischen $-\SI{20}{celsius}$ und $+\SI{80}{celsius}$ variiert, die Differenztemperatur wurde auf der x-Achse aufgetragen.
+
+%\begin{figure}[H]
+%	\centering \small
+%	\scalebox{0.9}{\input{\figpath/U_a_diff1_diffTemp.tikz}}
+%	\caption{Verhalten der Ausgangsspannung bei differenzieller Temperaturänderung}
+%	\label{fig_Kap5_09:Temp}
+%\end{figure}
 
 \subsection{Aussteuerbereich des Verstärkers}
 
+%\begin{figure}[H]
+%	\centering \small
+%	\scalebox{0.9}{\input{\figpath/U_diff_1_aussteuer.tikz}}
+%	\caption{Betrieb des Verstärkers im Aussteuerbereich}
+%	\label{fig_Kap5_10:Aussteuer}
+%\end{figure}
+
 \subsection{Überlagerung einer Brummspannung}
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/U_diff_1_brumm.tikz}}
+	\caption{Ausgangsspannung bei überlagerter Brummspannung (positive Versorgungsspannung)}
+	\label{fig_Kap5_11:Brumm}
+\end{figure}
 
 \subsection{Verhalten bei negativer Betriebsspannung}
 
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/U_diff_1_brumm_neg.tikz}}
+	\caption{Ausgangsspannung bei überlagerter Brummspannung (negative Versorgungsspannung)}
+	\label{fig_Kap5_12:Brumm}
+\end{figure}
+
+
 \section{Erweiterter Differenzverstärker / Operationsverstärker}
 
+
+\subsection{Transferkennlinie und Offsetabgleich}
+Transferkennlinie:
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/OP_transfer.tikz}}
+	\caption{Transferkennlinie des Miller-OP}
+	\label{fig_Kap5_13:transfer}
+\end{figure}
+
+\begin{equation}
+    U_{off} = -\SI{103,5}{\micro\volt}
+\end{equation}
+
+\begin{equation}
+    U_{a,min} = -\SI{14.99}{\volt}
+\end{equation}
+
+\begin{equation}
+    U_{a,max} = \SI{14.82}{\volt}
+\end{equation}
+
+Ein erfolgreicher Offsetabgleich erfolgte mit 
+
+\begin{equation}
+    R_E = \SI{33,28}{\ohm}
+\end{equation}
+
+am linken pnp-Transistor.
+
+
+
+\subsection{Kleinsignalspannungsverstärkung}
+
+
+\subsection{Gleichtaktverstärkung}
+
+\subsection{Ersetze Stromquelle durch Widerstand}
+
+\subsection{Globale Temperaturabhängigkeit}
+
+\subsection{Temperatursensitive Bauteile}
+
+\subsection{Millerkapazität und Slew-Rate}
+
+\subsection{Nichtinvertierender Verstärker}
+
+\subsection{Frequenzgang nichtinvertierender Verstärker}
+
+\subsection{-3dB Bandbreite}
+
+\subsection{Offsetspannung}
+
+\subsection{Temperaturerhöhung durch Eigenerwärmung}
+
+\subsection{Auswirkung von Brummspannungen}
+
+\subsection{Ausgangswiderstand}
+
+\subsection{Nichtlineare Verzerrungen}
+
+\subsection{Ersetze $R_A$ durch Stromquelle}
+
+\subsection{Rauschsimulation}
 
 
 
