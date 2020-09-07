@@ -41,6 +41,12 @@ Der verwendete NPN-Darlington-Transistor verfügt über eine leitende Verbindung
 
 \section{Der rückgekoppelte Emitterfolger}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{tex/7_Leistungsverstaerker/pictures/feedback_schem.png}
+    \caption{Emitterfolger mit Feedback}
+\end{figure}
+
 \subsection{Dimensionierung Eingangshochpass und resultierender Amplitudengang}
 
 
@@ -58,6 +64,25 @@ Der verwendete NPN-Darlington-Transistor verfügt über eine leitende Verbindung
 
 Im Amplitudengang des Verstärkers ist deutlich zu erkennen, dass der Verstärker im Maximum bei circa \SI{20}{\kilo \hertz} um \SI{32}{dB} verstärkt. Das entspricht einer Verstärkung um den Faktor 40.
 Bei einer Frequenz von \SI{20}{\hertz} wird um \SI{29}{dB} verstärkt, also die geforderten \SI{3}{dB} weniger durch den Hochpass am Eingang.
+
+\subsection{Betrachtung der Linearität/Klirrfaktoren}
+
+Es ist zu beurteilen wie sich die Klirrfaktoren dieser Schaltungen bei den Frequenzen \SI{1}{\kilo \hertz} und \SI{10}{\kilo \hertz} verhalten.
+
+Der Ausgang des Verstärkers bewegt sich im Intervall $\left[\SI{-14.99}{\volt} \ldots \SI{13.23}{\volt}\right]$. Die maximale symmetrische Aussteuerung beträgt also $\pm \SI{13.23}{\volt}$
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c||c|} \hline
+         {Frequenz $f$} & {THD - $10\%$ Aussteuerung} & {THD -$80\%$ Aussteuerung} \\ \hline \hline
+         \SI{1}{\kilo \hertz}& $0.0321\%$  & $0.038517\%$ \\ \hline
+         \SI{10}{\kilo \hertz}& $0.020788\%$  & $0.035021\%$ \\ \hline
+    \end{tabular}
+    \caption{THD bei verschiedenen Aussteuerungsniveaus und Frequenzen}
+    \label{tab:my_label}
+\end{table}
+
+Es zeigt sich also, dass Rückkopplung eine ausgezeichnete Methode ist um die Qualität der Verstärkung zu verbessern. Einerseits ist der Amplitudengang im relevanten Bereich sehr flach, andererseits ist auch die Nichtlinearität minimal.
 
 \section{Gegentaktendstufe mit Ruhestromeinstellung}
 
@@ -82,6 +107,17 @@ Wie bereits im Praktikumsskript thematisiert besteht in dieser Schaltung ein Tra
     \caption{verhalten bei verschiedenen Bias-Spannungen}
     \label{tab:my_label}
 \end{table}
+
+\section{Audioverstäker}
+
+In dieser Aufgabe sollen die Punkte Biasing der Transistoren und Feedback kombiniert werden.
+
+\begin{figure}
+    \centering
+    \includegraphics{}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
 
 \section{Der in Brücke geschaltete Verstärker}
 
