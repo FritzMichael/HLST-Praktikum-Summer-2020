@@ -1,0 +1,61 @@
+Circuit: * C:\Users\Michael\Google Drive\Studium\SS20\HLST-Praktikum-Summer-2020\simulations\5_Differenzverstärker\MillerOP_ra.asc
+
+Direct Newton iteration for .op point succeeded.
+Semiconductor Device Operating Points:
+                        --- Bipolar Transistors ---
+Name:      q§t5        q§t4        q§t3        q§t1        q§t2
+Model:    bc557b      bc557b      bc557b      bc547b      bc547b
+Ib:      -8.98e-03   -1.48e-06   -1.49e-06    1.39e-06    2.88e-05
+Ic:      -7.22e-01   -4.93e-04   -4.82e-04    4.85e-04    9.47e-03
+Vbe:     -1.30e+00   -6.07e-01   -6.07e-01    6.14e-01    6.98e-01
+Vbc:      1.30e+01    6.74e-01    0.00e+00   -1.44e+01   -1.36e+01
+Vce:     -1.43e+01   -1.28e+00   -6.07e-01    1.50e+01    1.43e+01
+BetaDC:   8.03e+01    3.33e+02    3.23e+02    3.49e+02    3.29e+02
+Gm:       1.49e+01    1.88e-02    1.83e-02    1.85e-02    3.44e-01
+Rpi:      2.91e+00    1.79e+04    1.77e+04    1.88e+04    9.07e+02
+Rx:       1.00e+00    1.00e+00    1.00e+00    1.00e+00    1.00e+00
+Ro:       4.59e+01    4.34e+04    4.30e+04    1.57e+05    7.93e+03
+Cbe:      1.41e-08    4.15e-11    4.13e-11    4.32e-11    2.22e-10
+Cbc:      1.22e-12    3.30e-12    6.80e-12    7.95e-13    8.07e-13
+Cjs:      0.00e+00    0.00e+00    0.00e+00    0.00e+00    0.00e+00
+BetaAC:   4.33e+01    3.35e+02    3.25e+02    3.49e+02    3.12e+02
+Cbx:      7.20e-13    1.95e-12    4.01e-12    4.89e-13    4.96e-13
+Ft:       1.68e+08    6.38e+07    5.59e+07    6.62e+07    2.45e+08
+
+Name:       q2          q1
+Model:    bc547b      bc547b
+Ib:       3.09e-05    3.74e-05
+Ic:       9.99e-03    9.93e-03
+Vbe:      7.00e-01    7.05e-01
+Vbc:     -1.27e+01    0.00e+00
+Vce:      1.34e+01    7.05e-01
+BetaDC:   3.24e+02    2.65e+02
+Gm:       3.61e-01    3.55e-01
+Rpi:      8.46e+02    6.97e+02
+Rx:       1.00e+00    1.00e+00
+Ro:       7.43e+03    6.19e+03
+Cbe:      2.31e-10    2.42e-10
+Cbc:      8.23e-13    2.32e-12
+Cjs:      0.00e+00    0.00e+00
+BetaAC:   3.06e+02    2.48e+02
+Cbx:      5.06e-13    1.43e-12
+Ft:       2.48e+08    2.30e+08
+
+
+
+Date: Mon Sep 07 12:04:26 2020
+Total elapsed time: 1.289 seconds.
+
+tnom = 27
+temp = 27
+method = trap
+totiter = 5
+traniter = 0
+tranpoints = 0
+accept = 0
+rejected = 0
+matrix size = 37
+fillins = 14
+solver = Normal
+Matrix Compiler1: 3.56 KB object code size
+Matrix Compiler2: 3.50 KB object code size
