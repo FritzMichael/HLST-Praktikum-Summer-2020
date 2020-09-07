@@ -20,21 +20,39 @@ Gmin = 2.70769e-013
 Gmin = 0
 Gmin stepping succeeded in finding the operating point.
 
+N-Period=1
+Fourier components of V(n009)
+DC component:-0.00410762
 
-Date: Mon Sep 07 00:18:59 2020
-Total elapsed time: 0.043 seconds.
+Harmonic	Frequency	 Fourier 	Normalized	 Phase  	Normalized
+ Number 	  [Hz]   	Component	 Component	[degree]	Phase [deg]
+    1   	1.000e+04	1.318e+00	1.000e+00	   -2.74°	    0.00°
+    2   	2.000e+04	2.647e-05	2.008e-05	 -140.83°	 -138.09°
+    3   	3.000e+04	1.007e-04	7.639e-05	   -7.96°	   -5.22°
+    4   	4.000e+04	6.688e-05	5.074e-05	 -104.86°	 -102.12°
+    5   	5.000e+04	9.840e-05	7.465e-05	    5.65°	    8.39°
+    6   	6.000e+04	8.259e-05	6.266e-05	   32.51°	   35.25°
+    7   	7.000e+04	6.206e-05	4.708e-05	 -178.44°	 -175.70°
+    8   	8.000e+04	1.667e-04	1.264e-04	   69.02°	   71.76°
+    9   	9.000e+04	1.079e-04	8.184e-05	  153.89°	  156.63°
+Total Harmonic Distortion: 0.020788%(0.039254%)
+
+
+
+Date: Mon Sep 07 01:24:55 2020
+Total elapsed time: 1.811 seconds.
 
 tnom = 27
 temp = 27
-method = trap
-totiter = 474
-traniter = 0
-tranpoints = 0
-accept = 0
+method = modified trap
+totiter = 200510
+traniter = 200036
+tranpoints = 100018
+accept = 100018
 rejected = 0
 matrix size = 55
-fillins = 32
+fillins = 36
 solver = Normal
-Matrix Compiler1:     366 opcodes
-Matrix Compiler2: 5.75 KB object code size  0.4/0.6/[0.4]
+Matrix Compiler1: 6.77 KB object code size  1.1/0.6/[0.5]
+Matrix Compiler2: 5.81 KB object code size  0.5/0.6/[0.4]
 
