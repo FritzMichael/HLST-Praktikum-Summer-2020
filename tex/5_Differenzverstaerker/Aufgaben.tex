@@ -443,10 +443,10 @@ Für $U_{ed} = \SI{0.1}{\milli\volt}$ und $U_T = \SI{25}{\milli\volt}$ bedetuet 
     A_{ed} = \SI{10}{\milli\ampere} \cdot 290 \cdot \SI{2200}{\ohm} \cdot 20 = 127600 \hat{=} 102.1 \text{dB} .
 \end{equation}
 
-Lt. LTSpice ergibt sich bei $U_{ed} = \SI{0.1}{\milli\volt}$ eine Verstärkung von
+Lt. LTSpice ergibt sich bei $U_{ed} = \SI{1}{\micro\volt}$ eine Verstärkung von (Arbeitspunktsimulation)
 
 \begin{equation}
-    A_{ed} = \frac{U_a}{U_ed} = \frac{\SI{8.45}{\volt}}{\SI{0.1}{\milli\volt}} = 84 450
+    A_{ed} = \frac{U_a}{U_ed} = \frac{\SI{0.111661}{\volt}}{\SI{1}{\micro\volt}} = 111 661 .
 \end{equation}
 
 \subsection{Gleichtaktverstärkung}
@@ -469,14 +469,10 @@ Nun wird die Gleichtaktverstärkung über einen DC-Sweep der Eingangsspannung $U
 \subsection{Ersetze Stromquelle durch Widerstand}
 Das Emitterpotenzial der npn-Transistoren liegt im Arbeitspunkt bei (Simulationswert)
 
-\begin{equation}
-    U_{E} = -\SI{0,678}{\volt} .
-\end{equation}
-
 Die Stromquelle wird somit durch einen Widerstand 
 
 \begin{equation}
-    R = \frac{U_E - U_{B}}{I_0} =\SI{-\SI{0,678}{\volt} + -\SI{15}{\volt}}{\kilo\ohm} = \SI{1,43}{\kilo\ohm}
+    R = \frac{U_B - U_{BE}}{I_0} = \frac{\SI{\SI{15}{\volt} - \SI{0,7}{\volt}}}{\SI{10}{\milli\ampere}} = \SI{1,43}{\kilo\ohm}
 \end{equation}
 
 ersetzt.
@@ -519,7 +515,7 @@ Der gemittelte Temperaturkoeffizient beträgt
 Soll nun ein 40kHz Signal Verzerrungsfrei übertragen werden, berechnet sich die Millerkapazität folgendermaßen
 
 \begin{equation}
-    C_M = \frac{I_0}{SR} = \frac{\SI{10}{\milli\ampere}}{\SI{3,8}{\volt\per\micro\second}} = \SI{2.6}{\nano\farad} .
+    C_M = \frac{I_0}{SR} = \frac{\SI{10}{\milli\ampere}}{\SI{3,8}{\volt\per\micro\second}} = \SI{2.63}{\nano\farad} .
 \end{equation}
 
 In einer Transientensimulation wird nun die SR überprüft, siehe Abb. \ref{fig_Kap5_21:SR}.
@@ -538,8 +534,52 @@ Die Sew-Rate beträgt:
 \end{equation}
 
 \subsection{Nichtinvertierender Verstärker}
+Die Verstärkung einer nichtinvertierenden Schaltung, siehe Abb. \ref{fig_Kap5_22:ESB}, berechnet sich nach
 
+\begin{equation}
+    A_d = \frac{U_a}{U_e} = \frac{R_1+R_2}{R_1}
+\end{equation}
 
+womit die Widerstände lt. Skriptum mit
+
+\begin{itemize}
+    \item $R_1$ = \SI{1}{\kilo\ohm}
+    \item $R_2$ = \SI{39}{\kilo\ohm}
+\end{itemize}
+
+gewählt werden, um eine Verstärkung von $A_d = 40$ zu erreichen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.5\textwidth]{\figpath/ninv.png}
+    \caption{Nichtinvertierender Verstärker}
+    \label{fig_Kap5_22:ESB}
+\end{figure}
+
+Es muss erneut ein Offsetabgleich stattfinden. Der Trimmwiderstand wird mit 
+
+\begin{equation*}
+    R_E = \SI{33.2994}{\ohm}
+\end{equation*}
+
+gewählt, wobei eine Ausgangsspannung von
+
+\begin{equation*}
+    U_a = -\SI{0,6}{\micro\volt}
+\end{equation*}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{\figpath/NINV.jpg}
+    \caption{Schematic des nichtinvertierenden Verstärkers}
+    \label{fig_Kap5_23:SpiceSchematic}
+\end{figure}
+
+Ohne erneuten Offsetabgleich ergibt sich bei $U_p = \SI{0}{\volt}$ eine Ausgangsspannung von 
+
+\begin{equation*}
+    U_a = \SI{562}{\micro\volt} .
+\end{equation*}
 
 \subsection{Frequenzgang nichtinvertierender Verstärker}
 Der Frequenzgang sieht folgendermaßen aus:
@@ -548,7 +588,7 @@ Der Frequenzgang sieht folgendermaßen aus:
 	\centering \small
 	\scalebox{0.9}{\input{\figpath/OP_NINV_Mag.tikz}}
 	\caption{Frequenzgang des Nichtinvertierenden Verstärkers}
-	\label{fig_Kap5_22:Mag}
+	\label{fig_Kap5_23:Mag}
 \end{figure}
 
 Die -3dB Grenzfrequenz liegt bei
@@ -566,7 +606,31 @@ Die -3dB Grenzfrequenz liegt bei
 \subsection{Auswirkung von Brummspannungen}
 Wenn man die beiden Versorgungsspannungen mit gegengleichen \SI{50}{\hertz} Brummspannungen mit einer Amplitude von \SI{1}{\volt} beaufschlagt, während man \SI{0.1}{\volt} am nicht-invertierenden Eingang anlegt hat dies folgenden Auswirkungen auf den Ausgang:
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{tex/5_Differenzverstaerker/pictures/Brumm.pdf}
+    \label{fig:my_label}
+\end{figure}
+
+Die Amplitude der \SI{50}{\hertz} Schwingung, die sich dem Ausgang überlagert beträgt etwa \SI{5}{\milli \volt}. In Anbetracht der enormen Brummspannung auf den Versorgungsspannungen ist dies ein sehr gutes Resultat.
+
 \subsection{Ausgangswiderstand}
+
+Um den Ausgangswiderstand zu bestimmen, wird bei konstanter Eingangsspannung der Lastwiderstand variiert. Die Spannung an diesem Lastwiderstand ist abhängig vom Innenwiderstand (Bei kleiner Last, fällt die gesamte Ausgangsspannung am Lastwiderstand ab).
+
+\begin{equation}
+    U_{Last} = U_{LL} \frac{R_L}{R_L + R_i}
+\end{equation}
+
+Umgeformt auf $R_i$ folgt: 
+
+\begin{equation}
+    R_i = R_L \frac{U_{LL} - U_L}{U_L}
+\end{equation}
+
+Als Funktion des Lastwiderstandes ergibt sich folgendes Bild (der Innenwiderstand stellt sich bei kleinen Lasten auf ein sehr niedriges Niveau von circa \SI{700}{\milli \ohm} ein. Bei größeren Lasten laufen die Leistungstransistoren in ihre Grenzen und der Innenwiderstand steigt an):
+
+
 
 \subsection{Nichtlineare Verzerrungen}
 
