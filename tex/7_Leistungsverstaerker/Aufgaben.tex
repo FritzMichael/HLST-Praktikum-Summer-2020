@@ -112,10 +112,32 @@ Wie bereits im Praktikumsskript thematisiert besteht in dieser Schaltung ein Tra
 
 In dieser Aufgabe sollen die Punkte Biasing der Transistoren und Feedback kombiniert werden.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics{}
-    \caption{Caption}
+    \includegraphics[width = \textwidth]{tex/7_Leistungsverstaerker/pictures/AudioAmp.png}
+    \caption{Audioverstärker mit Biasing und Feedback}
+\end{figure}
+
+Das Vorspannnen der Transistoren wird über einen $U_{BE}$-Vervielfacher realisiert. Im Leerlauf (keine Aussteuerung und keine Last) sollte ein Querstrom von \SI{20}{\milli \ampere} fließen. Dies wird bei folgendem Verhältnis erreicht:
+
+\begin{equation}
+    \frac{R_6}{R_7} = \frac{\SI{1545.8}{\ohm}}{\SI{654.2}{\ohm}} = 2.36
+\end{equation}
+
+Die Spannung über diese \lgqq einstellbare Diode\rgqq{} beträgt also:
+
+\begin{equation}
+    U_{BE} \left( 1 + 2.36 \right) = U_{BE} 3.36 \approx \SI{2.35}{\volt}
+\end{equation}
+
+\subsection{Frequenzverhalten und Funktionalität}
+
+Das Frequenzverhalten wird durch diese Modifikation nicht weiter verändert:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{Audio}
+    \caption{Amplitudengang zwischen Eingang und Ausgang des Verstärkeres (mit Feedback und Biasing)}
     \label{fig:my_label}
 \end{figure}
 
