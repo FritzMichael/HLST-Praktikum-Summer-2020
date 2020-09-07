@@ -156,13 +156,26 @@ Das nicht-lineare Verhalten hingegen wird weiter verbessert:
 
 \subsection{Auswirkungen der zusätzlichen Offsetspannung}
 
-Der $U_{BE]$-Vervielfacher führt durch das Vorspannen der Transistoren zu einer Offsetspannung, diese wird durch die Rückkoppelung sehr gut kompensiert. Wie gut wird hier betrachtet:
+Der $U_{BE}$-Vervielfacher führt durch das Vorspannen der Transistoren zu einer Offsetspannung, diese wird durch die Rückkoppelung sehr gut kompensiert. Wie gut wird hier betrachtet:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{tex/7_Leistungsverstaerker/pictures/Flowchart_audioamp.png}
+    \caption{Strukturschaltbild des Audioverstärkers mit Bias und Rückkopplung}
+    \label{fig:my_label}
+\end{figure}
 
 \begin{align}
     U_a &= \left( U_e - k U_a \right) V_0 + U_0 \\
     U_a (1 + V_0) &= U_e V_0 + U_0 \\
     U_a &= \frac{U_e V_0 + U_0}{1 + V_0}
 \end{align}
+
+Bei den genannten Werten für Offset, $k$ und $v_0 \approx 10^5$ ergibt sich:
+
+\begin{equation}
+    U_a(U_0) = \frac{U_0}{V_0} = \SI{25}{\micro \volt}
+\end{equation}
 
 Dieser Offset wird etwa um den Faktor der Leerlaufverstärkung abgeschwächt (typisches Verhalten von OPV-Schaltungen).
 
