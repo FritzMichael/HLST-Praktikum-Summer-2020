@@ -1,0 +1,41 @@
+% This file was created by matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmin=-20,
+xmax=80,
+xlabel style={font=\color{white!15!black}},
+xlabel={$T \text{ in } \SI{}{\celsius}$},
+ymin=-1.5,
+ymax=1.5,
+ylabel style={font=\color{white!15!black}},
+ylabel={$U_a \text{ in } \text{V}$},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={$U_a$},
+xmajorgrids,
+ymajorgrids
+]
+\addplot [color=mycolor1, forget plot]
+  table[row sep=crcr]{%
+-20	-1.268872\\
+-10	-0.980409\\
+0	-0.702238\\
+10	-0.433733\\
+20	-0.174317\\
+30	0.076554\\
+40	0.31941\\
+50	0.554822\\
+60	0.783477\\
+70	1.006341\\
+80	1.224957\\
+};
+\end{axis}
+\end{tikzpicture}%
