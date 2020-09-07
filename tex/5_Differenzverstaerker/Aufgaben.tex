@@ -340,9 +340,23 @@ Als nächstes wird der Transistor $T_2$ konstant bei $T_{T,2} = \SI{25}{\celsius
 
 \section{Erweiterter Differenzverstärker / Operationsverstärker}
 
+\begin{figure}[H]
+	\centering
+	\def\svgwidth{0.9\textwidth}
+	\input{\figpath/MillerOP.pdf_tex}
+	\caption{Verbesserter Differenzverstärker} 
+	\label{fig_Kap5_13:Miller} 
+\end{figure}
 
 \subsection{Transferkennlinie und Offsetabgleich}
 Transferkennlinie:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{\figpath/millerOP.jpg}
+    \caption{Schematic des erweiterten OP}
+    \label{fig_Kap5_14:SpiceSchematic}
+\end{figure}
 
 \begin{figure}[H]
 	\centering \small
@@ -352,7 +366,7 @@ Transferkennlinie:
 \end{figure}
 
 \begin{equation}
-    U_{off} = -\SI{103,5}{\micro\volt}
+    U_{off} = -\SI{207}{\micro\volt}
 \end{equation}
 
 \begin{equation}
@@ -375,6 +389,65 @@ am linken pnp-Transistor.
 
 \subsection{Kleinsignalspannungsverstärkung}
 
+\begin{equation}
+    U_a = (I_2 - I_1) \cdot B R_A - U_B
+\end{equation}
+
+Transistorgleichung:
+
+\begin{equation}
+    I_C \approx I_S \cdot e^{\frac{U_{BE}}{U_T}}
+\end{equation}
+
+Masche I:
+
+\begin{equation}
+    U_N = U_{BE,1} - U_{BE,2} + U_P
+\end{equation}
+
+\begin{equation}
+    U_{ed}  = U_P - U_N =  U_{BE,2} - U_{BE,1} = U_{BE,0} + \frac{U_{ed}}{2} - (U_{BE,0} - \frac{U_{ed}}{2})
+\end{equation}
+
+\begin{equation}
+    I_1 = I_S \cdot e^{\frac{U_{BE,1}}{U_T}} = I_S \cdot e^{\frac{U_{BE,0}}{U_T}} \cdot e^{-\frac{U_{ed}}{2U_T}}
+\end{equation}
+
+\begin{equation}
+    I_2 = I_S \cdot e^{\frac{U_{BE,2}}{U_T}} = I_S \cdot e^{\frac{U_{BE,0}}{U_T}} \cdot e^{\frac{U_{ed}}{2U_T}}
+\end{equation}
+
+\begin{equation}
+    I_2 - I_1 = I_S \cdot e^{\frac{U_{BE,0}}{U_T}} \cdot ( e^{\frac{U_{ed}}{2U_T}} - e^{-\frac{U_{ed}}{2U_T}} ) = I_S \cdot e^{\frac{U_{BE,0}}{U_T}} \cdot 2 \cdot \text{sinh}\left( \frac{U_{ed}}{2U_T}  \right)
+\end{equation}
+
+\begin{equation}
+    I_0 = I_1 + I_2 = I_S \cdot e^{\frac{U_{BE,0}}{U_T}} \cdot ( e^{\frac{U_{ed}}{2U_T}} + e^{-\frac{U_{ed}}{2U_T}} ) = I_S \cdot e^{\frac{U_{BE,0}}{U_T}} \cdot 2 \cdot \text{cosh}\left( \frac{U_{ed}}{2U_T}  \right)
+\end{equation}
+
+\begin{equation}
+    I_S = I_0 \cdot e^{-\frac{U_{BE,0}}{U_T}} \frac{1}{2 \cdot \text{cosh}\left( \frac{U_{ed}}{2U_T}  \right)}
+\end{equation}
+
+\begin{equation}
+    U_a = ( I_2 - I_1 ) B R_A - U_B = I_0BR_A \frac{\text{sinh}\left( \frac{U_{ed}}{2U_T}  \right)}{\text{cosh}\left( \frac{U_{ed}}{2U_T}  \right)} - U_B = I_0BR_A \cdot \text{tanh}\left( \frac{U_{ed}}{2U_T} \right) - U_B
+\end{equation}
+
+\begin{equation}
+    A_{ed} = \frac{\partial U_a}{\partial U_{ed}} = I_0BR_A \cdot \frac{1}{2U_T} \cdot \frac{1}{\text{cosh}^2\left( \frac{U_ed}{2U_T}  \right)} = I_0BR_A \cdot \frac{1}{2U_T} \cdot \left( 1 - \text{tanh}^2\left(\frac{U_ed}{2U_T} \right) \right)
+\end{equation}
+
+Für $U_{ed} = \SI{0.1}{\milli\volt}$ und $U_T = \SI{25}{\milli\volt}$ bedetuet dies ca. eine Leerlaufdifferenzverstärkung von
+
+\begin{equation}
+    A_{ed} = \SI{10}{\milli\ampere} \cdot 290 \cdot \SI{2200}{\ohm} \cdot 20 = 127600 \hat{=} 102.1 \text{dB} .
+\end{equation}
+
+Lt. LTSpice ergibt sich bei $U_{ed} = \SI{0.1}{\milli\volt}$ eine Verstärkung von
+
+\begin{equation}
+    A_{ed} = \frac{U_a}{U_ed} = \frac{\SI{8.45}{\volt}}{\SI{0.1}{\milli\volt}} = 84 450
+\end{equation}
 
 \subsection{Gleichtaktverstärkung}
 
