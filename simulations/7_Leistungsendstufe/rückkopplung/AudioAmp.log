@@ -4,37 +4,37 @@ WARNING: Less than two connections to node N012.  This node is used by R4.
 Direct Newton iteration for .op point succeeded.
 N-Period=1
 Fourier components of V(n009)
-DC component:-0.00250902
+DC component:-0.0669611
 
 Harmonic	Frequency	 Fourier 	Normalized	 Phase  	Normalized
  Number 	  [Hz]   	Component	 Component	[degree]	Phase [deg]
-    1   	1.000e+04	1.318e+00	1.000e+00	   -2.72°	    0.00°
-    2   	2.000e+04	1.782e-05	1.352e-05	  -41.07°	  -38.35°
-    3   	3.000e+04	9.777e-06	7.416e-06	   45.94°	   48.66°
-    4   	4.000e+04	7.030e-05	5.332e-05	  -92.57°	  -89.86°
-    5   	5.000e+04	8.404e-05	6.375e-05	   -8.45°	   -5.74°
-    6   	6.000e+04	3.634e-05	2.757e-05	 -108.12°	 -105.41°
-    7   	7.000e+04	1.044e-04	7.918e-05	  -20.45°	  -17.74°
-    8   	8.000e+04	9.337e-05	7.083e-05	   90.81°	   93.53°
-    9   	9.000e+04	1.377e-05	1.045e-05	  -16.74°	  -14.03°
-Total Harmonic Distortion: 0.013893%(0.037767%)
+    1   	1.000e+03	1.058e+01	1.000e+00	    0.86°	    0.00°
+    2   	2.000e+03	1.840e-03	1.740e-04	  130.14°	  129.28°
+    3   	3.000e+03	2.783e-04	2.631e-05	   51.63°	   50.77°
+    4   	4.000e+03	8.484e-04	8.023e-05	 -128.84°	 -129.70°
+    5   	5.000e+03	3.535e-04	3.343e-05	 -129.31°	 -130.16°
+    6   	6.000e+03	1.028e-03	9.717e-05	 -138.14°	 -139.00°
+    7   	7.000e+03	1.754e-03	1.658e-04	  150.73°	  149.87°
+    8   	8.000e+03	1.716e-03	1.623e-04	   77.10°	   76.24°
+    9   	9.000e+03	9.065e-04	8.572e-05	  -37.49°	  -38.34°
+Total Harmonic Distortion: 0.033036%(0.039962%)
 
 
 
-Date: Mon Sep 07 08:52:59 2020
-Total elapsed time: 2.499 seconds.
+Date: Mon Sep 07 09:13:19 2020
+Total elapsed time: 4.804 seconds.
 
 tnom = 27
 temp = 27
 method = modified trap
-totiter = 200047
-traniter = 200037
+totiter = 200046
+traniter = 200036
 tranpoints = 100018
 accept = 100018
 rejected = 0
 matrix size = 61
 fillins = 38
 solver = Normal
-Matrix Compiler1: 7.42 KB object code size  1.1/0.6/[0.5]
+Matrix Compiler1: 7.42 KB object code size  1.2/0.5/[0.5]
 Matrix Compiler2: 6.37 KB object code size  0.4/0.6/[0.4]
 
