@@ -294,21 +294,21 @@ Die Emitterwiderstände $R_E$ verbessern also die Temperaturstabilität deutlich
 \subsection{Auswirkungen einer globalen und einer Differenztemperaturänderung}
 In LTSpice wird die Ausgangsspannung zufolge einer globalen Temperaturänderung betrachtet, siehe Abb. \ref{fig_Kap5_08:Temp}. Hierbei bleibt die Ausgangsspannung konstant.
 
-%\begin{figure}[H]
-%	\centering \small
-%	\scalebox{0.9}{\input{\figpath/U_a_diff1_globTemp.tikz}}
-%	\caption{Verhalten der Ausgangsspannung über globaler Temperaturänderung}
-%	\label{fig_Kap5_08:Temp}
-%\end{figure}
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/U_a_diff1_globTemp.tikz}}
+	\caption{Verhalten der Ausgangsspannung über globaler Temperaturänderung}
+	\label{fig_Kap5_08:Temp}
+\end{figure}
 
 Als nächstes wird der Transistor $T_2$ konstant bei $T_{T,2} = \SI{25}{\celsius}$ gehalten und die Temperatur von $T_1$ zwischen $-\SI{20}{celsius}$ und $+\SI{80}{celsius}$ variiert, die Differenztemperatur wurde auf der x-Achse aufgetragen.
 
-%\begin{figure}[H]
-%	\centering \small
-%	\scalebox{0.9}{\input{\figpath/U_a_diff1_diffTemp.tikz}}
-%	\caption{Verhalten der Ausgangsspannung bei differenzieller Temperaturänderung}
-%	\label{fig_Kap5_09:Temp}
-%\end{figure}
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/U_a_diff1_diffTemp.tikz}}
+	\caption{Verhalten der Ausgangsspannung bei differenzieller Temperaturänderung}
+	\label{fig_Kap5_09:Temp}
+\end{figure}
 
 \subsection{Aussteuerbereich des Verstärkers}
 
@@ -362,7 +362,7 @@ Transferkennlinie:
 	\centering \small
 	\scalebox{0.9}{\input{\figpath/OP_transfer.tikz}}
 	\caption{Transferkennlinie des Miller-OP}
-	\label{fig_Kap5_13:transfer}
+	\label{fig_Kap5_15:transfer}
 \end{figure}
 
 \begin{equation}
@@ -456,29 +456,106 @@ Nun wird die Gleichtaktverstärkung über einen DC-Sweep der Eingangsspannung $U
 	\centering \small
 	\scalebox{0.9}{\input{\figpath/millerOP_Agl_1.tikz}}
 	\caption{Ausgangsspannung}
-	\label{fig_Kap5_13:transfer}
+	\label{fig_Kap5_16:transfer}
 \end{figure}
 
 \begin{figure}[H]
 	\centering \small
 	\scalebox{0.9}{\input{\figpath/millerOP_Agl_2.tikz}}
 	\caption{Ausgangsspannung}
-	\label{fig_Kap5_13:transfer}
+	\label{fig_Kap5_17:transfer}
 \end{figure}
 
 \subsection{Ersetze Stromquelle durch Widerstand}
+Das Emitterpotenzial der npn-Transistoren liegt im Arbeitspunkt bei (Simulationswert)
 
-    
+\begin{equation}
+    U_{E} = -\SI{0,678}{\volt} .
+\end{equation}
+
+Die Stromquelle wird somit durch einen Widerstand 
+
+\begin{equation}
+    R = \frac{U_E - U_{B}}{I_0} =\SI{-\SI{0,678}{\volt} + -\SI{15}{\volt}}{\kilo\ohm} = \SI{1,43}{\kilo\ohm}
+\end{equation}
+
+ersetzt.
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/millerOP_R_Agl_1.tikz}}
+	\caption{Ausgangsspannung}
+	\label{fig_Kap5_18:transfer}
+\end{figure}
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/millerOP_R_Agl_2.tikz}}
+	\caption{Ausgangsspannung}
+	\label{fig_Kap5_19:transfer}
+\end{figure}
+
+Es handelt sich um eine viel höhere Gleichtaktaussteuerung.
 
 \subsection{Globale Temperaturabhängigkeit}
 
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/OP_globTemp.tikz}}
+	\caption{Ausgangsspannung bei globaler Temperaturänderung}
+	\label{fig_Kap5_20:transfer}
+\end{figure}
+
+Der gemittelte Temperaturkoeffizient beträgt
+
+\begin{equation}
+    \overline{\left({\frac{\Delta U_{a,i}}{\Delta T}}\right)} = \SI{24,9}{\milli\volt\per\kelvin} .
+\end{equation}
+
 \subsection{Temperatursensitive Bauteile}
 
+
 \subsection{Millerkapazität und Slew-Rate}
+Soll nun ein 40kHz Signal Verzerrungsfrei übertragen werden, berechnet sich die Millerkapazität folgendermaßen
+
+\begin{equation}
+    C_M = \frac{I_0}{SR} = \frac{\SI{10}{\milli\ampere}}{\SI{3,8}{\volt\per\micro\second}} = \SI{2.6}{\nano\farad} .
+\end{equation}
+
+In einer Transientensimulation wird nun die SR überprüft, siehe Abb. \ref{fig_Kap5_21:SR}.
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/OP_SR.tikz}}
+	\caption{Ausgangsspannung bei Rechtecksignal}
+	\label{fig_Kap5_21:SR}
+\end{figure}
+
+Die Sew-Rate beträgt:
+
+\begin{equation}
+    SR = \frac{\Delta U_a}{\Delta t} = \SI{3.81}{\volt\per\micro\second}
+\end{equation}
 
 \subsection{Nichtinvertierender Verstärker}
 
+
+
 \subsection{Frequenzgang nichtinvertierender Verstärker}
+Der Frequenzgang sieht folgendermaßen aus:
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/OP_NINV_Mag.tikz}}
+	\caption{Frequenzgang des Nichtinvertierenden Verstärkers}
+	\label{fig_Kap5_22:Mag}
+\end{figure}
+
+Die -3dB Grenzfrequenz liegt bei
+
+\begin{equation}
+    f_{-3dB} = \SI{240}{\kilo\hertz} .
+\end{equation}
 
 \subsection{-3dB Bandbreite}
 
@@ -487,6 +564,7 @@ Nun wird die Gleichtaktverstärkung über einen DC-Sweep der Eingangsspannung $U
 \subsection{Temperaturerhöhung durch Eigenerwärmung}
 
 \subsection{Auswirkung von Brummspannungen}
+Wenn man die beiden Versorgungsspannungen mit gegengleichen \SI{50}{\hertz} Brummspannungen mit einer Amplitude von \SI{1}{\volt} beaufschlagt, während man \SI{0.1}{\volt} am nicht-invertierenden Eingang anlegt hat dies folgenden Auswirkungen auf den Ausgang:
 
 \subsection{Ausgangswiderstand}
 
