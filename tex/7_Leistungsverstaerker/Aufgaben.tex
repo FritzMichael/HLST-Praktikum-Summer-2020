@@ -43,16 +43,21 @@ Der verwendete NPN-Darlington-Transistor verfügt über eine leitende Verbindung
 
 \subsection{Dimensionierung Eingangshochpass und resultierender Amplitudengang}
 
+
+
 \begin{equation}
     RC = \frac{1}{2 \pi \SI{20}{\hertz}} = \SI{7.958}{\milli \second} \rightarrow R = \SI{10}{\kilo \ohm}, C = \SI{8}{\micro \farad}
 \end{equation}
 
 \begin{figure}[H]
     \centering
-    \includegraphics{Ampli}
-    \caption{Caption}
+    \includegraphics{tex/7_Leistungsverstaerker/pictures/Amplitudengang.pdf}
+    \caption{Amplitudengang zwischen Eingang und Ausgang des Verstärkeres}
     \label{fig:my_label}
 \end{figure}
+
+Im Amplitudengang des Verstärkers ist deutlich zu erkennen, dass der Verstärker im Maximum bei circa \SI{20}{\kilo \hertz} um \SI{32}{dB} verstärkt. Das entspricht einer Verstärkung um den Faktor 40.
+Bei einer Frequenz von \SI{20}{\hertz} wird um \SI{29}{dB} verstärkt, also die geforderten \SI{3}{dB} weniger durch den Hochpass am Eingang.
 
 \section{Gegentaktendstufe mit Ruhestromeinstellung}
 
