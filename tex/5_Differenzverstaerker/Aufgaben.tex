@@ -198,7 +198,7 @@ Lt. Simulation ergibt sich ein Wert von
 Als nächstes wird nun die Stromquelle durch einen Widerstand $R$ ersetzt, durch welchen im Arbeitspunkt ebenso $\SI{10}{\milli\ampere}$ fließen sollen. Hierzu wird zunächst eine Masche über die Versorgungsspannung gelegt, wobei eine symmetrische Aufteilung des Stromes angenommen wird ($I_{C0,1} = I_{C0,2} = I_{C0}$ und die Basiströme vernachlässigt werden,
 
 \begin{equation}
-    2\cdot U_B = I_{C0} (R_C + R_E) + 2 \cdot RI_{C0}
+    2\cdot U_B = I_{C0} (R_C + R_E) + 2 \cdot RI_{C0} + U_{CE,0}
 \end{equation}
 
 woraus sich der Widerstand berechnen lässt
@@ -452,10 +452,23 @@ Lt. LTSpice ergibt sich bei $U_{ed} = \SI{0.1}{\milli\volt}$ eine Verstärkung v
 \subsection{Gleichtaktverstärkung}
 Nun wird die Gleichtaktverstärkung über einen DC-Sweep der Eingangsspannung $U_P = U_N$ simuliert.
 
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/millerOP_Agl_1.tikz}}
+	\caption{Ausgangsspannung}
+	\label{fig_Kap5_13:transfer}
+\end{figure}
 
-
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/millerOP_Agl_2.tikz}}
+	\caption{Ausgangsspannung}
+	\label{fig_Kap5_13:transfer}
+\end{figure}
 
 \subsection{Ersetze Stromquelle durch Widerstand}
+
+    
 
 \subsection{Globale Temperaturabhängigkeit}
 

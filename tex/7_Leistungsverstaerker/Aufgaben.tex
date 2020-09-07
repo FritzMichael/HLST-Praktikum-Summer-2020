@@ -136,10 +136,35 @@ Das Frequenzverhalten wird durch diese Modifikation nicht weiter verändert:
 
 \begin{figure}[H]
     \centering
-    \includegraphics{Audio}
+    \includegraphics{tex/7_Leistungsverstaerker/pictures/Amplitudengang_AudioAmp.pdf}
     \caption{Amplitudengang zwischen Eingang und Ausgang des Verstärkeres (mit Feedback und Biasing)}
     \label{fig:my_label}
 \end{figure}
+
+Das nicht-lineare Verhalten hingegen wird weiter verbessert:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c||c|} \hline
+         {Frequenz $f$} & {THD - $10\%$ Aussteuerung} & {THD -$80\%$ Aussteuerung} \\ \hline \hline
+         \SI{1}{\kilo \hertz}& $0.019377\%$  & $0.033655\%$ \\ \hline
+         \SI{10}{\kilo \hertz}& $0.015069\%$  & $0.031914\%$ \\ \hline
+    \end{tabular}
+    \caption{THD bei verschiedenen Aussteuerungsniveaus und Frequenzen}
+    \label{tab:my_label}
+\end{table}
+
+\subsection{Auswirkungen der zusätzlichen Offsetspannung}
+
+Der $U_{BE]$-Vervielfacher führt durch das Vorspannen der Transistoren zu einer Offsetspannung, diese wird durch die Rückkoppelung sehr gut kompensiert. Wie gut wird hier betrachtet:
+
+\begin{align}
+    U_a &= \left( U_e - k U_a \right) V_0 + U_0 \\
+    U_a (1 + V_0) &= U_e V_0 + U_0 \\
+    U_a &= \frac{U_e V_0 + U_0}{1 + V_0}
+\end{align}
+
+Dieser Offset wird etwa um den Faktor der Leerlaufverstärkung abgeschwächt (typisches Verhalten von OPV-Schaltungen).
 
 \section{Der in Brücke geschaltete Verstärker}
 
