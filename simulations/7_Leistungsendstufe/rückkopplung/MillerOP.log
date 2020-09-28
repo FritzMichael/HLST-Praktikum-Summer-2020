@@ -39,8 +39,8 @@ Total Harmonic Distortion: 0.020788%(0.039254%)
 
 
 
-Date: Mon Sep 07 01:24:55 2020
-Total elapsed time: 1.811 seconds.
+Date: Mon Sep 07 15:41:07 2020
+Total elapsed time: 1.864 seconds.
 
 tnom = 27
 temp = 27
@@ -53,6 +53,6 @@ rejected = 0
 matrix size = 55
 fillins = 36
 solver = Normal
-Matrix Compiler1: 6.77 KB object code size  1.1/0.6/[0.5]
-Matrix Compiler2: 5.81 KB object code size  0.5/0.6/[0.4]
+Matrix Compiler1: 6.77 KB object code size  1.0/0.5/[0.5]
+Matrix Compiler2: 5.81 KB object code size  0.5/0.7/[0.4]
 

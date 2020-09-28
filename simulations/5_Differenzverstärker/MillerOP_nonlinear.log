@@ -1,0 +1,39 @@
+Circuit: * C:\Users\Michael\Google Drive\Studium\SS20\HLST-Praktikum-Summer-2020\simulations\5_Differenzverstärker\MillerOP_nonlinear.asc
+
+Direct Newton iteration for .op point succeeded.
+N-Period=1
+Fourier components of V(n008)
+DC component:-0.00908177
+
+Harmonic	Frequency	 Fourier 	Normalized	 Phase  	Normalized
+ Number 	  [Hz]   	Component	 Component	[degree]	Phase [deg]
+    1   	1.000e+03	3.998e+00	1.000e+00	    0.86°	    0.00°
+    2   	2.000e+03	3.081e-05	7.706e-06	   73.85°	   72.99°
+    3   	3.000e+03	6.603e-04	1.652e-04	   -8.84°	   -9.70°
+    4   	4.000e+03	2.547e-04	6.369e-05	  -35.76°	  -36.61°
+    5   	5.000e+03	7.382e-04	1.846e-04	   21.23°	   20.37°
+    6   	6.000e+03	1.572e-04	3.931e-05	 -118.05°	 -118.91°
+    7   	7.000e+03	1.026e-03	2.566e-04	  152.86°	  152.01°
+    8   	8.000e+03	5.551e-04	1.388e-04	  164.05°	  163.19°
+    9   	9.000e+03	4.780e-04	1.196e-04	 -108.24°	 -109.10°
+Total Harmonic Distortion: 0.040798%(0.066605%)
+
+
+
+Date: Mon Sep 07 15:03:32 2020
+Total elapsed time: 6.872 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 1000040
+traniter = 1000034
+tranpoints = 500018
+accept = 500018
+rejected = 0
+matrix size = 38
+fillins = 18
+solver = Normal
+Matrix Compiler1: 3.81 KB object code size  0.7/0.3/[0.3]
+Matrix Compiler2: 3.60 KB object code size  0.2/0.4/[0.3]
+
