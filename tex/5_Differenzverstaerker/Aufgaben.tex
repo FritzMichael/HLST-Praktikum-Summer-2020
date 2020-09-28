@@ -312,12 +312,12 @@ Als nächstes wird der Transistor $T_2$ konstant bei $T_{T,2} = \SI{25}{\celsius
 
 \subsection{Aussteuerbereich des Verstärkers}
 
-%\begin{figure}[H]
-%	\centering \small
-%	\scalebox{0.9}{\input{\figpath/U_diff_1_aussteuer.tikz}}
-%	\caption{Betrieb des Verstärkers im Aussteuerbereich}
-%	\label{fig_Kap5_10:Aussteuer}
-%\end{figure}
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/U_diff_1_aussteuer.tikz}}
+	\caption{Betrieb des Verstärkers im Aussteuerbereich}
+	\label{fig_Kap5_10:Aussteuer}
+\end{figure}
 
 \subsection{Überlagerung einer Brummspannung}
 
@@ -472,7 +472,7 @@ Das Emitterpotenzial der npn-Transistoren liegt im Arbeitspunkt bei (Simulations
 Die Stromquelle wird somit durch einen Widerstand 
 
 \begin{equation}
-    R = \frac{U_B - U_{BE}}{I_0} = \frac{\SI{\SI{15}{\volt} - \SI{0,7}{\volt}}}{\SI{10}{\milli\ampere}} = \SI{1,43}{\kilo\ohm}
+    R = \frac{U_B - U_{BE}}{I_0} = \frac{\SI{15}{\volt} - \SI{0,7}{\volt}}{\SI{10}{\milli\ampere}} = \SI{1,43}{\kilo\ohm}
 \end{equation}
 
 ersetzt.
@@ -509,7 +509,32 @@ Der gemittelte Temperaturkoeffizient beträgt
 \end{equation}
 
 \subsection{Temperatursensitive Bauteile}
+Die Temperaturabhängigkeit des Stromspiegels wurde bereits im vorigen Kapitel untersucht. Als nächstes wird die Temperatur des npn-Transistors $T_1$ variiert.
 
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/Temp_npn.tikz}}
+	\caption{Temperaturänderung $T_1$}
+	\label{fig_Kap5_21:SR}
+\end{figure}
+
+Nun wird die Temperatur des pnp-Transistors $T_3$ variiert.
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/Temp_pnp.tikz}}
+	\caption{Temperaturänderung $T_3$}
+	\label{fig_Kap5_21:SR}
+\end{figure}
+
+Nun wird die Temperatur des Transistors $T_5$ variiert.
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/Temp_T5.tikz}}
+	\caption{Temperaturänderung $T_5$}
+	\label{fig_Kap5_21:SR}
+\end{figure}
 
 \subsection{Millerkapazität und Slew-Rate}
 Soll nun ein 40kHz Signal Verzerrungsfrei übertragen werden, berechnet sich die Millerkapazität folgendermaßen
@@ -556,17 +581,31 @@ gewählt werden, um eine Verstärkung von $A_d = 40$ zu erreichen.
     \label{fig_Kap5_22:ESB}
 \end{figure}
 
+Legt man den positiven Eingang auf Masse, so liegen am Ausgang
+
+\begin{equation*}
+    U_{a} = \SI{569,9}{\milli\volt}
+\end{equation*}
+
+an. Dies kann man durch den Eingangsruhestrom am invertierenden Eingang begründen, der einen zusätzlichen Spannungsabfall am Widerstand $R_2$ hervorruft
+
+\begin{equation}
+    \Delta U_{a,off} \approx R_2 \cdot I_{bias,n} = \SI{39}{\kilo\ohm} \cdot \SI{14,62}{\micro\ampere} = \SI{570,2}{\milli\volt} .
+\end{equation}
+
 Es muss erneut ein Offsetabgleich stattfinden. Der Trimmwiderstand wird mit 
 
 \begin{equation*}
-    R_E = \SI{33.2994}{\ohm}
+    R_E = \SI{52.3841}{\ohm}
 \end{equation*}
 
 gewählt, wobei eine Ausgangsspannung von
 
 \begin{equation*}
-    U_a = -\SI{0,6}{\micro\volt}
+    U_a = -\SI{0,3}{\micro\volt}
 \end{equation*}
+
+simuliert wird.
 
 \begin{figure}[H]
     \centering
@@ -575,14 +614,18 @@ gewählt, wobei eine Ausgangsspannung von
     \label{fig_Kap5_23:SpiceSchematic}
 \end{figure}
 
-Ohne erneuten Offsetabgleich ergibt sich bei $U_p = \SI{0}{\volt}$ eine Ausgangsspannung von 
+\subsection{Frequenzgang nichtinvertierender Verstärker}
+In Abb. \ref{fig_Kap5_23:Mag} wird zuerst der simulierte Frequenzgang, und jener Frequenzgang der durch Transientensimulation erstellt wurde, verglichen. Um den Verstärker in Vollaussteuerung zu betreiben, wird eine Sinusspannung mit einer Amplitude von 
 
 \begin{equation*}
-    U_a = \SI{562}{\micro\volt} .
+    \hat{U}_d = \SI{375}{\milli\volt}
 \end{equation*}
 
-\subsection{Frequenzgang nichtinvertierender Verstärker}
-Der Frequenzgang sieht folgendermaßen aus:
+angelegt. Die Aussteuergrenzen des OP führen dazu, dass der Sinus verzerrt übertragen wird, was sich besonders bei höheren Frequenzen bemerkbar macht. Für die Berechnung der Verstärkung wurden die Spitze-Spitze-Werte verwendet.
+
+\begin{equation}
+    A_d = 20 \cdot \text{log}_{10} \left( \frac{U_{a,pp}}{U_{p,pp}} \right)
+\end{equation}
 
 \begin{figure}[H]
 	\centering \small
@@ -591,17 +634,35 @@ Der Frequenzgang sieht folgendermaßen aus:
 	\label{fig_Kap5_23:Mag}
 \end{figure}
 
-Die -3dB Grenzfrequenz liegt bei
+Die simulierte -3dB Grenzfrequenz liegt bei
 
-\begin{equation}
+\begin{equation*}
     f_{-3dB} = \SI{240}{\kilo\hertz} .
-\end{equation}
+\end{equation*}
 
-\subsection{-3dB Bandbreite}
+Die -3dB Grenzfrequenz der Transientensimulation liegt bei
 
-\subsection{Offsetspannung}
+\begin{equation*}
+    f_{-3dB} = \SI{70}{\kilo\hertz} .
+\end{equation*}
 
 \subsection{Temperaturerhöhung durch Eigenerwärmung}
+In einer Transientenanalyse wurden am Eingang 0V angelegt und die Verlusleistung an den Transistoren gemessen.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|} \hline
+Benennung & Verlustleistung in mW & Erwärmung in K \\ \hline
+$T_1$ & 59.4 & 11.8 \\ \hline
+$T_2$  & 89.3 & 17.9 \\ \hline
+$T_3$  & 2.65 & 0.53 \\ \hline
+$T_4$  & 2.8 & 0.56 \\ \hline
+$T_5$  & 102.3 & 20.5 \\ \hline
+\end{tabular}
+\caption{Eigenerwärmung der Bauteile}
+\label{tab} 
+\end{table}
+
 
 \subsection{Auswirkung von Brummspannungen}
 Wenn man die beiden Versorgungsspannungen mit gegengleichen \SI{50}{\hertz} Brummspannungen mit einer Amplitude von \SI{1}{\volt} beaufschlagt, während man \SI{0.1}{\volt} am nicht-invertierenden Eingang anlegt hat dies folgenden Auswirkungen auf den Ausgang:
@@ -628,15 +689,55 @@ Umgeformt auf $R_i$ folgt:
     R_i = R_L \frac{U_{LL} - U_L}{U_L}
 \end{equation}
 
-Als Funktion des Lastwiderstandes ergibt sich folgendes Bild (der Innenwiderstand stellt sich bei kleinen Lasten auf ein sehr niedriges Niveau von circa \SI{700}{\milli \ohm} ein. Bei größeren Lasten laufen die Leistungstransistoren in ihre Grenzen und der Innenwiderstand steigt an):
+Als Funktion des Laststromes ergibt sich folgendes Bild (der Innenwiderstand stellt sich bei kleinen Lasten auf ein sehr niedriges Niveau von circa \SI{700}{\milli \ohm} ein. Bei größeren Lasten laufen die Leistungstransistoren in ihre Grenzen und der Innenwiderstand steigt an):
 
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth] {simulations/5_Differenzverstärker/Innenwiderstand.pdf}
+    \label{fig:my_label}
+\end{figure}
 
 \subsection{Nichtlineare Verzerrungen}
 
+Um die nichtlinearen Verzerrungen zu beurteilen, wird wieder der Klirrfaktorb bzw. die THD herangezogen.
+
+Das Ausgangssignal bewegt sich im Intervall $\left[\SI{-14.21}{\volt} \ldots \SI{14.96}{\volt} \right]$. 2/3 der maximalen Austeurung bedeuten also eine Aussteuerung von $\pm\SI{9.5}{\volt}$. Dies wird durch eine Ansteuerung am Eingang mit einem Sinus mit Amplitude von \SI{236}{\milli \ampere} erreicht.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|} \hline
+         {Frequenz $f$} & {THD - $66\%$ Aussteuerung} \\ \hline \hline
+         \SI{1}{\kilo \hertz}& $2.905173\%$  \\ \hline
+         \SI{10}{\kilo \hertz}& $1.480344\%$  \\ \hline
+    \end{tabular}
+    \caption{THD bei verschiedenen Frequenzen}
+    \label{tab:my_label}
+\end{table}
+
 \subsection{Ersetze $R_A$ durch Stromquelle}
+
+In der vorhergegangenen Simulation fließen durch $R_A$ zwischen \SI{2.5}{\milli \ampere} und \SI{11.5}{\milli \ampere}. $R_A$ wird also durch eine \SI{13}{\milli \ampere} Stromquelle ersetzt. Es zeigten sich folgende Ergebnisse:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|} \hline
+         {Frequenz $f$} & {THD - $66\%$ Aussteuerung} \\ \hline \hline
+         \SI{1}{\kilo \hertz}& $2.813604\%$  \\ \hline
+         $\SI{10}{\kilo \hertz}$& $2.138550\%$  \\ \hline
+    \end{tabular}
+    \caption{THD bei verschiedenen Frequenzen}
+    \label{tab:my_label}
+\end{table}
+
+Diese Modifikation der Schaltung brachte keine wesentlichen Veränderung bei den Verzerrungen. 
 
 \subsection{Rauschsimulation}
 
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/noise.tikz}}
+	\caption{Rauschleistungsdichte}
+	\label{fig_Kap5_23:Mag}
+\end{figure}
 
 

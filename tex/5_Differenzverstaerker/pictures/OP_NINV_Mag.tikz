@@ -24,9 +24,10 @@ title style={font=\bfseries},
 title={$V$},
 xmajorgrids,
 xminorgrids,
-ymajorgrids
+ymajorgrids,
+legend style={at={(0.03,0.03)}, anchor=south west, legend cell align=left, align=left, draw=white!15!black}
 ]
-\addplot [color=mycolor1, forget plot]
+\addplot [color=mycolor1]
   table[row sep=crcr]{%
 1	31.916\\
 1.259	31.916\\
@@ -100,5 +101,18 @@ ymajorgrids
 7943282.347	2.703\\
 10000000	1.266\\
 };
+\addlegendentry{AC Sweep}
+
+\addplot [color=red, draw=none, mark=x, mark options={solid, red}]
+  table[row sep=crcr]{%
+10000	31.9\\
+20000	31.8\\
+50000	30.5\\
+100000	26\\
+200000	20.5\\
+500000	10\\
+};
+\addlegendentry{Transient}
+
 \end{axis}
 \end{tikzpicture}%

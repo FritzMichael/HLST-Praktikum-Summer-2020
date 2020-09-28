@@ -1,6 +1,7 @@
 % This file was created by matlab2tikz.
 %
 \definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
 %
 \begin{tikzpicture}
 
@@ -13,29 +14,48 @@ xmin=-20,
 xmax=80,
 xlabel style={font=\color{white!15!black}},
 xlabel={$T \text{ in }\SI{}{\celsius}$},
-ymin=9.6,
-ymax=11.4,
+ymin=0,
+ymax=70,
 ylabel style={font=\color{white!15!black}},
 ylabel={$I_a \text{ in mA}$},
 axis background/.style={fill=white},
 title style={font=\bfseries},
 title={$I_a(T)$},
 xmajorgrids,
-ymajorgrids
+ymajorgrids,
+legend style={at={(0.97,0.03)}, anchor=south east, legend cell align=left, align=left, draw=white!15!black}
 ]
-\addplot [color=mycolor1, forget plot]
+\addplot [color=mycolor1]
   table[row sep=crcr]{%
--20	11.20033\\
--10	11.05717\\
-0	10.91318\\
-10	10.76839\\
-20	10.62283\\
-30	10.47653\\
-40	10.32952\\
-50	10.18182\\
-60	10.03346\\
-70	9.884471\\
-80	9.734865\\
+-20	10.67258\\
+-10	10.52792\\
+0	10.38243\\
+10	10.23614\\
+20	10.08909\\
+30	9.941298\\
+40	9.792804\\
+50	9.643631\\
+60	9.493805\\
+70	9.343351\\
+80	9.192293\\
 };
+\addlegendentry{$R_E = \SI{100}{\ohm}$}
+
+\addplot [color=mycolor2]
+  table[row sep=crcr]{%
+-20	63.47382\\
+-10	49.26951\\
+0	36.62716\\
+10	25.86991\\
+20	17.2487\\
+30	10.83461\\
+40	6.441074\\
+50	3.661731\\
+60	2.015503\\
+70	1.085791\\
+80	0.5769384\\
+};
+\addlegendentry{$R_E = \SI{0}{\ohm}$}
+
 \end{axis}
 \end{tikzpicture}%

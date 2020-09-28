@@ -1,0 +1,94 @@
+%% Creator: Inkscape inkscape 0.92.5, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Stromspiegel_KSESB.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{841.88976378bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.70707071)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Stromspiegel_KSESB.pdf}}%
+    \put(0.03816786,0.42867734){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Stromspiegel_KSESB.pdf}}%
+    \put(0.14077267,0.37894658){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$r_{EA}$\end{tabular}}}}%
+    \put(0.77925942,0.37632315){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$r_{EA}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Stromspiegel_KSESB.pdf}}%
+    \put(0.22881037,0.44838399){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$B \cdot i_{B}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Stromspiegel_KSESB.pdf}}%
+    \put(0.43450311,0.45555993){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i_{B}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Stromspiegel_KSESB.pdf}}%
+    \put(0.51739764,0.45466907){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i_{B}$\end{tabular}}}}%
+    \put(0.30849649,0.54548691){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$2 \cdot i_{B}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{Stromspiegel_KSESB.pdf}}%
+    \put(0.66357108,0.44749307){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$B \cdot i_{B}$\end{tabular}}}}%
+    \put(0.41800587,0.41935047){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{B}{S}$\end{tabular}}}}%
+    \put(0.52011581,0.38753959){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{B}{S}$\end{tabular}}}}%
+    \put(0.32659573,0.27213886){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R_E$\end{tabular}}}}%
+    \put(0.68423349,0.27378203){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R_E$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{Stromspiegel_KSESB.pdf}}%
+    \put(0.96279907,0.40608179){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$u_a$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{Stromspiegel_KSESB.pdf}}%
+    \put(0.85299518,0.49475745){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i_{a}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{Stromspiegel_KSESB.pdf}}%
+    \put(0.45838908,0.25411931){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{Stromspiegel_KSESB.pdf}}%
+    \put(0.78918118,0.21498051){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_{2}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{Stromspiegel_KSESB.pdf}}%
+    \put(0.74723775,0.31213261){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i_{a} - B\cdot i_{B}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{Stromspiegel_KSESB.pdf}}%
+    \put(0.09198057,0.23641012){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_{3}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{Stromspiegel_KSESB.pdf}}%
+    \put(0.03032032,0.49910384){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$K_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{Stromspiegel_KSESB.pdf}}%
+    \put(0.13722268,0.49910384){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$K_2$\end{tabular}}}}%
+    \put(0.03281193,0.3388582){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i_{R1}$\end{tabular}}}}%
+    \put(0.05493014,0.45912335){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i_{x}$\end{tabular}}}}%
+    \put(0.13592816,0.31658689){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i_{x} + Bi_B$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
