@@ -1,7 +1,6 @@
 % This file was created by matlab2tikz.
 %
 \definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
-\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
 %
 \begin{tikzpicture}
 
@@ -14,8 +13,8 @@ xmin=-20,
 xmax=80,
 xlabel style={font=\color{white!15!black}},
 xlabel={$T \text{ in }\SI{}{\celsius}$},
-ymin=0,
-ymax=70,
+ymin=9.92,
+ymax=10.06,
 ylabel style={font=\color{white!15!black}},
 ylabel={$I_a \text{ in mA}$},
 axis background/.style={fill=white},
@@ -27,35 +26,19 @@ legend style={at={(0.97,0.03)}, anchor=south east, legend cell align=left, align
 ]
 \addplot [color=mycolor1]
   table[row sep=crcr]{%
--20	9.23597\\
--10	9.394199\\
-0	9.553152\\
-10	9.712799\\
-20	9.87311\\
-30	10.03406\\
-40	10.19562\\
-50	10.35778\\
-60	10.5205\\
-70	10.68377\\
-80	10.84757\\
+-20	9.924627\\
+-10	9.937502\\
+0	9.950446\\
+10	9.963454\\
+20	9.976524\\
+30	9.989655\\
+40	10.00284\\
+50	10.01609\\
+60	10.02939\\
+70	10.04274\\
+80	10.05615\\
 };
-\addlegendentry{$R_E = \SI{100}{\ohm}$}
-
-\addplot [color=mycolor2]
-  table[row sep=crcr]{%
--20	0.5457383\\
--10	1.225083\\
-0	2.555356\\
-10	4.934936\\
-20	8.787761\\
-30	14.41808\\
-40	21.90206\\
-50	31.09918\\
-60	41.7471\\
-70	53.55456\\
-80	66.25371\\
-};
-\addlegendentry{$R_E = \SI{0}{\ohm}$}
+\addlegendentry{$R_L = \SI{100}{\ohm}$}
 
 \end{axis}
 \end{tikzpicture}%

@@ -181,78 +181,229 @@ Die Kurve bricht erwartungsgemäß bei
     V_2 = U_{CE,sat} + I_a (1 + \frac{1}{B}) \cdot R_E \approx \SI{0,1}{\volt} + \SI{10}{\milli\ampere} \cdot \SI{100}{\ohm} = \SI{1,1}{\volt}
 \end{equation}
 
-ein. Es kann gezeigt werden, dass der Ausgangswiderstand des Stromspiegels größtenteils vom Earlywidersstand des Transistors $T_2$ bestimmt wird. Für den Earlywiderstand gilt vereinfacht
+ein. Es kann gezeigt werden, dass der Ausgangswiderstand des Stromspiegels größtenteils vom Earlywidersstand des Transistors $T_2$ bestimmt wird. 
+
+\begin{figure}[H]
+	\centering
+	\def\svgwidth{0.9\textwidth}
+	\input{\figpath/Stromspiegel_KSESB.pdf_tex}
+	\caption{KSESB des einfachen Stromspiegels} 
+	\label{fig_Kap4_11:Stromspiegel01} 
+\end{figure}
+
+Zufolge des symmetrischen Schaltungsaufbaus werden sich, wie schon vorhin gezeigt, gleiche Basisströme einstellen, somit gilt $i_{B1} = i_{B2} = i_{B}$.
 
 \begin{equation}
-    r_{EA} = \frac{U_{CE,0} + U_{EA}}{I_{C,0}}
+    \label{K1}
+    K_1: -2i_B - i_{R1} + i_x = 0
+\end{equation}
+
+\begin{equation}
+    \label{K2}
+    K_2: i_x = 2i_B + i_{R1}
+\end{equation}
+
+\begin{equation}
+    \label{M2}
+    M_2: u_a = r_{EA} (i_a - B\cdot i_B) + R_E (i_B + i_a)
+\end{equation}
+
+\begin{equation}
+    \label{M3}
+    M_3: -i_{R1} R_1 - r_{EA}(i_x + Bi_B) + R_E (i_B - i_x) = 0
+\end{equation}
+
+Setzt man nun Glng. \ref{K2} in \ref{M3} ein, erhält man
+
+\begin{equation}
+    i_{R1} = -i_B \cdot \frac{r_{EA}(2+B) + R_E}{R_1 + r_{EA} + R_E}.
+\end{equation}
+
+Somit ergibt sich
+
+\begin{equation}
+     i_x = i_B\left(2 - \frac{r_{EA}(2 + B) + R_E}{R_1 + r_{EA} + R_E} \right) ,
+\end{equation}
+
+was letztendlich für den Basisstrom folgendes bedetutet,
+
+\begin{equation}
+    i_{B} \left(R_1 \cdot \frac{r_{EA}(2 + B) + R_E}{R_1 + r_{EA} + R_E} - r_{EA}\left(B + 2 - \frac{r_{EA}(2 + B) + R_E}{R_1 + r_{EA} + R_E}\right) + R_E \left(\frac{r_{EA}(2 + B) + R_E}{R_1 + r_{EA} + R_E} - 1\right) \right) = 0 .
+\end{equation}
+
+Somit beträgt der Basisstrom im Kleinsignalersatzschaltbild 
+\begin{equation}
+    i_B = 0 .
+\end{equation}
+
+Womit sich aus Glng. \ref{M2} der Ausgangswiderstand berechnen lässt:
+
+\begin{equation}
+    r_a = \frac{u_a}{i_a} = r_{EA} + R_E .
+\end{equation}
+
+Für den Earlywiderstand gilt vereinfacht
+
+\begin{equation}
+    r_{EA} = \frac{U_{CE,0} + U_{EA}}{I_{C,0}} .
 \end{equation}
 
 Somit steigt der Innenwiderstand mit steigender Kollektor-Emitterspannung.
 
 \section{Temperaturabhängigkeit des Ausgangsstroms bei globaler Temperaturänderung}
-Im nächsten Schritt wird ein Temperatursweep zwischen $\SI{-20}{\celsius}$ und $\SI{80}{\celsius}$ in 10 Schritten durchgeführt, wobei die globale Temperatur aller Bauteile variiert. In Abb. \ref{} kann nun die Änderung des Ausgangstromes bei globaler Temperaturänderung und unterschiedlichen Belastungen betrachtet werden. 
+Im nächsten Schritt wird ein Temperatursweep zwischen $\SI{-20}{\celsius}$ und $\SI{80}{\celsius}$ in 10 Schritten durchgeführt, wobei die globale Temperatur aller Bauteile variiert. In Abb. \ref{fig_Kap4_06:T_1} kann nun die Änderung des Ausgangstromes bei globaler Temperaturänderung und unterschiedlichen Belastungen betrachtet werden. 
 
 \begin{figure}[H]
 	\centering \small
-	\scalebox{0.9}{\input{\figpath/globTemp.tikz}}
-	\caption{Ausgangstrom bei globaler Temperaturänderung}
+	\scalebox{0.9}{\input{\figpath/globTemp_RE_0.tikz}}
+	\caption{Ausgangstrom bei globaler Temperaturänderung ($R_E = \SI{100}{\ohm}$, $R_L = \SI{100}{\ohm}$)}
 	\label{fig_Kap4_06:T_1}
 \end{figure}
 
-Offensichtlich hat die Last keinen großen Einfluss auf das Temperaturverhalten, womit repräsentativ die Werte für $R_L = \SI{1}{\kilo\ohm}$ für die Berechnung verwendet werden.
+Offensichtlich hat die Last keinen großen Einfluss auf das Temperaturverhalten, womit repräsentativ die Werte für $R_L = \SI{100}{\ohm}$ für die Berechnung verwendet werden.
 
 \begin{figure}[H]
 	\centering \small
-	\scalebox{0.9}{\input{\figpath/diff_globTemp.tikz}}
-	\caption{Differenzenquotient des Ausgangsstromes nach der globalen Temperatur}
+	\scalebox{0.9}{\input{\figpath/diff_globTemp_RE_100.tikz}}
+	\caption{Differenzenquotient des Ausgangsstromes ($R_E = \SI{100}{\ohm}$, $R_L = \SI{100}{\ohm}$)}
 	\label{fig_Kap4_07:T_2}
 \end{figure}
 
 Mittelt man den Temperaturkoeffizient über den Temperaturbereich erhält man
 
 \begin{equation}
-    \overline{\left({\frac{\Delta I_{c,i}}{\Delta T}}\right)} = \SI{1.221}{\micro\ampere\per\kelvin}
+    \label{tempKoeff01}
+    \overline{\left({\frac{\Delta I_{c,i}}{\Delta T}}\right)} = \SI{1.32}{\micro\ampere\per\kelvin}
 \end{equation}
+
+Die Auswirkung globaler Temperaturänderung wird nun auch für jenen Fall untersucht, dass die Emitterwiderstände $R_E = \SI{0}{\ohm}$ betragen, siehe Abb. \ref{fig_Kap4_061:T_1} und \ref{fig_Kap4_071:T_2}.
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/globTemp_RE_0.tikz}}
+	\caption{Ausgangstrom bei globaler Temperaturänderung ($R_E = \SI{0}{\ohm}$, $R_L = \SI{100}{\ohm}$)}
+	\label{fig_Kap4_061:T_1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.9}{\input{\figpath/diff_globTemp_RE_0.tikz}}
+	\caption{Differenzenquotient des Ausgangsstromes ($R_E = \SI{0}{\ohm}$, $R_L = \SI{100}{\ohm}$)}
+	\label{fig_Kap4_071:T_2}
+\end{figure}
+
+Der mittlere Differenzenquotienten des Temperaturkoeffizienten beträgt für $R_E = \SI{0}{\ohm}$ ca. 
+
+\begin{equation}
+    \overline{\left({\frac{\Delta I_{c,i}}{\Delta T}}\right)} = \SI{2.57}{\micro\ampere\per\kelvin}
+\end{equation}
+
+Dieser Wert liegt doch deutlich über dem Berechneten aus Glng. \ref{tempKoeff01}, was auf den positiven Einfluss der Emitterwiderstände hinsichtlich Temperaturstabilisierung rückzuführen ist.
 
 \section{Temperaturabhängigkeit der Schaltung bei unterschiedlichen Bauteiltemperaturen}
-Interessanter wird es, wenn beide Transistoren unterschiedliche Temperaturen aufweisen. In der ersten Simulation wird die Temperatur des Transistors $T_1$ bei $\SI{50}{\celsius}$ festgehalten und ein Temperatursweep beim Transistor $T_2$ durchgeführt.
+Interessanter wird es, wenn beide Transistoren unterschiedliche Temperaturen aufweisen. In der ersten Simulation wird die Temperatur des Transistors $T_1$ bei $\SI{27}{\celsius}$ festgehalten und ein Temperatursweep beim Transistor über $T_2$ durchgeführt.
 
 \begin{figure}[H]
 	\centering \small
-	\scalebox{0.9}{\input{\figpath/diffTemp_011.tikz}}
-	\caption{Temperaturabhängigkeit $T_1$ bei konstanter Temperatur}
+	\scalebox{0.8}{\input{\figpath/diffTemp_011.tikz}}
+	\caption{Ausgangsstrom bei festgehaltenem $T_1$ ($R_L = \SI{100}{\ohm}$)}
 	\label{fig_Kap4_08:diffT_1}
 \end{figure}
 
-\begin{figure}[H]
-	\centering \small
-	\scalebox{0.9}{\input{\figpath/diffTemp_012.tikz}}
-	\caption{Temperaturabhängigkeit $T_1$ bei konstanter Temperatur}
-	\label{fig_Kap4_09:diffT_2}
-\end{figure}
+Der Ausgangsstrom sinkt also mit steigender Temperatur. Wie zu erwarten, wirkt sich eine unterschiedliche Erwärmung beider Transistoren viel stärker auf das Verhalten der Schaltung aus, als eine globale Temperaturänderung. Die Auswirkungen einer differentiellen Temperaturänderung werden noch extremer, wenn die stabilisierenden Emitterwiderstände wegfallen.
 
 \begin{equation}
-    \overline{\left({\frac{\Delta I_{c,i}}{\Delta T}}\right)} = \SI{15.9}{\micro\ampere\per\kelvin}
+    \overline{\left({\frac{\Delta I_{c,i}}{\Delta T}}\right)} = \SI{16.12}{\micro\ampere\per\kelvin}
 \end{equation}
-
-\begin{figure}[H]
-	\centering \small
-	\scalebox{0.9}{\input{\figpath/diffTemp_021.tikz}}
-	\caption{Temperaturabhängigkeit $T_2$ bei konstanter Temperatur}
-	\label{fig_Kap4_08:diffT_1}
-\end{figure}
-
-\begin{figure}[H]
-	\centering \small
-	\scalebox{0.9}{\input{\figpath/diffTemp_022.tikz}}
-	\caption{Temperaturabhängigkeit $T_2$ bei konstanter Temperatur}
-	\label{fig_Kap4_09:diffT_2}
-\end{figure}
 
 \begin{equation}
-    \overline{\left({\frac{\Delta I_{c,i}}{\Delta T}}\right)} = \SI{-14.6}{\micro\ampere\per\kelvin}
+    \overline{\left({\frac{\Delta I_{c,i}}{\Delta T}}\right)} = \SI{658.2}{\micro\ampere\per\kelvin}
 \end{equation}
+
+Im nächsten Schritt wird nun die Temperatur des Transistors $T_2$ bei $\SI{27}{\celsius}$ festgehalten und ein Temperatursweep beim Transistor über $T_1$ durchgeführt.
+
+\begin{figure}[H]
+	\centering \small
+	\scalebox{0.8}{\input{\figpath/diffTemp_021.tikz}}
+	\caption{Ausgangsstrom bei festgehaltenem $T_2$ ($R_L = \SI{100}{\ohm}$)}
+	\label{fig_Kap4_09:diffT_1}
+\end{figure}
+
+Hierbei steigt der Ausgangsstrom mit steigender Temperatur.
+
+\begin{equation}
+    \overline{\left({\frac{\Delta I_{c,i}}{\Delta T}}\right)} = -\SI{14.8}{\micro\ampere\per\kelvin}
+\end{equation}
+
+\begin{equation}
+    \overline{\left({\frac{\Delta I_{c,i}}{\Delta T}}\right)} = -\SI{638.7}{\micro\ampere\per\kelvin}
+\end{equation}
+
+
 
 \section{Vergleich mit Berechnung}
 
+Der differentielle Temperatureinfluss kann ebenso im KSESB des Stromspiegels analysiert werden, wobei hier die Earlyleitwerte vernachlässigt werden, siehe Abb. \ref{fig_Kap4_11:Temp01}.
 
+\begin{figure}[H]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{\figpath/Stromspiegel_KSESB_Temp.pdf_tex}
+	\caption{KSESB des einfachen Stromspiegels zum Temperatureinfluss} 
+	\label{fig_Kap4_11:Temp01} 
+\end{figure}
+
+Aus dem Ersatzschaltbild lassen sich folgende Gleichungen aufstellen:
+
+\begin{equation}
+    M1: i_{B1}\left(\frac{B}{S} + R_E (B+1) \right) + \Delta U_{BE,1}(\Delta T_1) = i_{B2}\left(\frac{B}{S} + R_E (B+1) \right) + \Delta U_{BE,2}(\Delta T_2)
+\end{equation}
+
+\begin{equation}
+    i_a = B \cdot i_{B2}
+\end{equation}
+
+Der Ausgangsstrom berechnet sich nun nach
+
+\begin{equation}
+    i_a = Bi_{B1} + \frac{\Delta U_{BE,1}(\Delta T_1) - \Delta U_{BE,2}(\Delta T_2)}{\frac{1}{S} + R_E (1+\frac{1}{B})} .
+\end{equation}
+
+Der Temperaturkoeffizient wird nun lt. Kaptitel 1.1.5 für beide Transistoren mit
+
+\begin{equation}
+    \frac{\partial \Delta U_{BE}}{\partial T} \approx -\SI{1.74}{\milli\volt\per\kelvin}
+\end{equation}
+angenommen.
+
+Eine globale Temperaturänderung sollte sich nicht auf den Ausgangsstrom auswirken, 
+
+\begin{equation}
+    \frac{\partial i_a}{\partial T} = \frac{\frac{\partial \Delta U_{BE,1}}{\partial T} - \frac{\partial \Delta U_{BE,2}}{\partial T}}{\frac{1}{S} + R_E (1+\frac{1}{B})} \approx 0 .
+\end{equation}
+
+Erwärmt sich der Transistor 2 stärker gegenüber Transistor 1 (Temperatur $T_1$ wird festgehalten), so gilt für die Änderung des Ausgangsstromes
+
+\begin{equation}
+    \frac{\partial i_a}{\partial T_2} = \frac{-\frac{\partial \Delta U_{BE,2}}{\partial T_2}}{\frac{1}{S} + R_E (1+\frac{1}{B})} = \frac{\SI{1.74}{\milli\volt\per\kelvin}}{\SI{100}{\ohm}(1 + \frac{1}{290}) + \frac{1}{\SI{0,386}{\ampere\per\volt}}} = \SI{16,9}{\micro\ampere\per\kelvin} .
+\end{equation}
+
+Ohne Emitterwiderstand steigt die Temperaturabhängigkeit deutlich an,
+
+\begin{equation}
+    \frac{\partial i_a}{\partial T_2} = -\frac{\partial \Delta U_{BE,2}}{\partial T_2} \cdot S = \SI{1.74}{\milli\volt\per\kelvin} \cdot \SI{0,386}{\ampere\per\volt} = \SI{671.6}{\micro\ampere\per\kelvin} .
+\end{equation}
+
+Bei einer Erwärmung des Transtistors 1 gegenüber dem Transistor 2 kehren sich die Verhältnisse um, 
+
+\begin{equation}
+    \frac{\partial i_a}{\partial T_1} = \frac{\frac{\partial \Delta U_{BE,1}}{\partial T_1}}{\frac{1}{S} + R_E (1+\frac{1}{B})} = \frac{-\SI{1.74}{\micro\ampere\per\kelvin}}{\SI{100}{\ohm}(1 + \frac{1}{290}) + \frac{1}{\SI{0,386}{\ampere\per\volt}}} = \SI{16,9}{\micro\ampere\per\kelvin} .
+\end{equation}
+
+Wiederum steigt die Temperaturabhängigkeit ohne $R_E$ deutlich, 
+
+\begin{equation}
+    \frac{\partial i_a}{\partial T_1} = \frac{\partial \Delta U_{BE,1}}{\partial T_1} \cdot S = -\SI{1.74}{\milli\volt\per\kelvin} \cdot \SI{0,386}{\ampere\per\volt} = -\SI{671.6}{\micro\ampere\per\kelvin} .
+\end{equation}
+
+Die berechneten Werte stimmen doch erstaunlich gut mit den simulierten Werten überein, siehe Abb. \ref{fig_Kap4_08:diffT_1} und \ref{fig_Kap4_09:diffT_1}.

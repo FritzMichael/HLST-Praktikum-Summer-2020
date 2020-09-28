@@ -21,34 +21,34 @@
 
 Der Basisquerstrom wird durch die Widerstände $R_1$ und $R_2$ bestimmt (Der Basisstrom wird als vernachlässigbar klein gegenüber dem Querstrom angenommen).
 
-\begin{equation*}
+\begin{equation}
     I_q = \SI{0.5}{\milli \ampere} = \frac{U_0}{R_1 + R_2} \rightarrow R_1 + R_2 = \frac{U_0}{I_q} = \SI{18}{\kilo \ohm}
-\end{equation*}
+\end{equation}
 
 Weiters ist bekannt, dass an der Basis des BC550 etwa \SI{2.7}{\volt} anliegen (Emitterspannung + PN-Übergang). 
 
-\begin{equation*}
+\begin{equation}
     U_{B,0} = \SI{2.7}{\volt} = U_0 \frac{R_2}{R_1+R_2} \rightarrow \frac{R_2}{R_1+R_2} = \frac{U_{B,0}}{U_0} = \frac{2.7}{9} = 0.3
     \rightarrow R_1 = 2.3 \ R_2
-\end{equation*}
+\end{equation}
 
 In einer ersten Abschätzung ergeben sich somit folgende Werte für $R_1$ und $R_2$:
 
-\begin{equation*}
-    R_1 = \SI{12.545}{\kilo \ohm} \quad R_2 = \SI{5.454}{\kilo \ohm}
-\end{equation*}
+\begin{equation}
+    R_1 = \SI{12.545}{\kilo \ohm} \quad R_2 = \SI{5.454}{\kilo \ohm} \quad .
+\end{equation}
 
-Gerundet auf die nähestenden Werte der E24-Reihe ergeben sich Widerstandswerte von:
+Gerundet auf die nähesten Werte der E24-Reihe ergeben sich Widerstandswerte von:
 
-\begin{equation*}
-    R_1 = \SI{13}{\kilo \ohm} \quad R_2 = \SI{5.6}{\kilo \ohm}
-\end{equation*}
+\begin{equation}
+    R_1 = \SI{13}{\kilo \ohm} \quad R_2 = \SI{5.6}{\kilo \ohm} \quad .
+\end{equation}
 
 Dies führt zu folgenden Schaltungsparametern:
 
-\begin{equation*}
-    I_q = \SI{484}{\milli \ampere} \quad U_{B,0} = \SI{2.710}{\volt}
-\end{equation*}
+\begin{equation}
+    I_q = \SI{484}{\milli \ampere} \quad U_{B,0} = \SI{2.710}{\volt} \quad .
+\end{equation}
 
 In dieser Berechnung wurden einige Vereinfachungen durchgeführt, wie zutreffend dieses Ergebnis ist, muss durch die Simulation geprüft werden.
 
@@ -56,27 +56,27 @@ In dieser Berechnung wurden einige Vereinfachungen durchgeführt, wie zutreffend
 
 Der optimale Kollektorstrom für einen möglichst rauscharmen Verstärker wird mit Gleichung 2.1 aus dem Praktikumsskript bestimmt:
 
-\begin{equation*}
-    R_0 = \sqrt{\frac{2 \ \beta \  r_{BB}}{I_{C0}}U_T + \frac{\beta}{ {I_{C0}}^2 }U_{T}^2}
-\end{equation*}
+\begin{equation}
+    R_0 = \sqrt{\frac{2 \ \beta \  r_{BB}}{I_{C0}}U_T + \frac{\beta}{ {I_{C0}}^2 }U_{T}^2} \quad .
+\end{equation}
 
 umgeformt auf den gesuchten Strom ergibt sich:
 
-\begin{align*}
+\begin{align}
     0 &= R_0^2 I_{C0}^2 - 2 \ \beta  r_{BB}  U_T  I_{C0} - \beta U_{T}^2 \\
     I_{C0} &= \frac{2 \ \beta  r_{BB}  U_T \pm \sqrt{\left( 2 \ \beta  r_{BB}  U_T\right)^2 + 4  R_{0}^2 \beta U_{T}^2 }}{2 R_{0}^2} \\
     I_{C0} &= U_T \frac{ \ \beta  r_{BB} \pm \sqrt{ \beta^2  r_{BB}^2 +  R_{0}^2 \beta }}{ R_{0}^2} \\
     I_{C0} &= \SI{25}{\milli \volt} \frac{600 \cdot \SI{150}{\ohm} \pm \sqrt{(600 \cdot \SI{150}{\ohm})^2 + (\SI{2136}{\ohm})^2 \cdot 600}}{(\SI{2136}{\ohm})^2} = \SI{1.064}{\milli \ampere}, \SI{-77.28}{\micro \ampere}
-\end{align*}
+\end{align}
 
 Das negative Ergebnis für $I_{C0}$ wird als nicht-physikalisch interpretiert und verworfen, weitergerechnet wird mit $I_{C0} = \SI{1}{\milli \ampere}$
 
-Verwendeete Werte:
+Verwendete Werte:
 
 \begin{itemize}
     \item Kleinsignalverstärkung des BC550C \emph{typ.: }$\beta = 600$
     \item Basisbahnwiderstand \emph{Base Spreading Resistance}: $r_{BB} \approx \SI{150}{\ohm}$ \\
-    Anm.: $r_{BB}$ ist eine funktion von $I_{C0}$, dieser Wert gilt für ca. \SI{3}{\milli\ampere}, bei großer Abweichung muss iterativ eingesetzt werden.
+    Anm.: $r_{BB}$ ist eine Funktion von $I_{C0}$, dieser Wert gilt für ca. \SI{3}{\milli\ampere}, bei großer Abweichung muss iterativ eingesetzt werden.
     \item Temperaturspannung: $U_T = \frac{k_b T}{e} = \SI{25}{\milli \volt}$ \\
     Anm.: Dieser Wert gilt bei Raumtemperatur, je nach Temperatur bzw. Verlustleistung des Transistors ist dieser Wert zu hinterfragen.
     \item Generatorwiderstand $R_0 = \left( G_1 + G_2 + G_G\right)^{-1} = \SI{2136}{\ohm}$
@@ -86,9 +86,9 @@ Verwendeete Werte:
 
 Durch $R_E$ und $R_C$ fließen im wesentlichen der eben berechnete Kollektorstrom (der Basisstrom wird vernachlässigt).
 
-\begin{equation*}
+\begin{equation}
     U_{R_{E}} = \SI{2}{\volt} = I_{C0} R_E \rightarrow R_E = \SI{2}{\kilo \ohm}
-\end{equation*}
+\end{equation}
 
 Der Kollektor des ersten Transistors ist an der Basis des zweiten Transistors angeschlossen. Dessen Emitter soll auf einem Potential von etwa \SI{5}{\volt} liegen. Damit liegt die Basis dieses zweiten Transistors auf \SI{5.7}{\volt}.
 
@@ -117,39 +117,39 @@ Aus den Anmerkungen zur Auslegung der Koppelkondensatoren ist zu entnehmen dass 
 
 Im DC-Fall ($\omega \rightarrow 0$), sperrt der Kondensator $C_1$ und der Eingangswiderstand ist im eingeschwungenen Zustand sehr hoch. In der Praxis jedoch nicht unendlich (Leckströme und andere parasitäre Effekte). Zur Abschätzung des worst-case $r_{e,\text{min}}$ wird also der hochfrequente Fall ($\omega \rightarrow \infty$) betrachtet.
 
-Analog wie im Übungsskriptum werden die Koppelkondensatoren $C_1$ und $C_2$ durch einen Kurzschluss ersetzt und der Emitterkondensator $C_E$ durch einen Leerlauf. Weiters wird der Earlywiderstand vernachlässigt, in der späteren Simulation wird sich zeigen ob dies gerechtfertigt ist.
+Analog wie im Übungsskriptum werden die Koppelkondensatoren $C_1$ und $C_2$ durch einen Kurzschluss ersetzt. Aufgrund des Grenzfalles für unendlich hohe Frequenzen, kann auch der Emitterkondensator $C_E$ durch einen Kurzschluss ersetzt werden. Weiters wird der Earlywiderstand vernachlässigt, in der späteren Simulation wird sich zeigen ob dies gerechtfertigt ist.
 
 Es ergibt sich folgende Gleichung:
 
-\begin{equation*}
-    U_e = \underbrace{\left( i_e - \frac{U_e}{R_1 || R_2}\right)}_{i_B} \left( r_{BE} + R_E \left( B + 1\right) \right)
-\end{equation*}
+\begin{equation}
+    U_e = \underbrace{\left( i_e - \frac{U_e}{R_1 || R_2}\right)}_{i_B} r_{BE}
+\end{equation}
 
-\begin{equation*}
-    U_e = i_e \left( r_{BE} + R_E \left( B + 1\right) \right) - U_e \frac{r_{BE} + R_E \left( B + 1\right)}{R_1 || R_2}
-\end{equation*}
+\begin{equation}
+    U_e = i_e  r_{BE}  - U_e \frac{r_{BE}}{R_1 || R_2}
+\end{equation}
 
-\begin{equation*}
-    U_e \left( 1 + \frac{r_{BE} + R_E \left( B + 1\right)}{R_1 || R_2}) \right)= i_e \left( r_{BE} + R_E \left( B + 1\right) \right)
-\end{equation*}
+\begin{equation}
+    U_e \left( 1 + \frac{r_{BE}}{R_1 || R_2} \right)= i_e \left( r_{BE} \right)
+\end{equation}
 
-\begin{equation*}
-    r_e = \frac{u_e}{i_e} = \frac{r_{BE} + R_E \left( B + 1\right)}{ 1 + \frac{r_{BE} + R_E \left( B + 1\right)}{R_1 || R_2} }= \SI{3901.42}{\ohm} \approx R_1 || R_2
-\end{equation*}
+\begin{equation}
+    r_e = \frac{u_e}{i_e} = \frac{r_{BE}}{ 1 + \frac{r_{BE}}{R_1 || R_2} }= \SI{3104.04}{\ohm}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
     C_E = \frac{S}{2 \pi f_G} = \frac{\SI{1}{\milli \ampere}}{2 \pi \ \SI{57.735}{\hertz} \ \SI{25}{\milli \volt}} = \SI{110.3}{\micro \farad}
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
    r_{BE} = \frac{B}{S} = \frac{600}{\frac{\SI{1}{\milli \volt\ampere}}{\SI{25}{\milli\volt}}} = \SI{15}{\kilo \ohm} 
-\end{equation*}
+\end{equation}
 
 \subsubsection{Ausgangswiderstand}
 
-\begin{equation*}
+\begin{equation}
     r_a = \left. - \frac{u_a}{i_a}\right|_{R_G, U_G = 0}
-\end{equation*}
+\end{equation}
 
 Zur Berechnung des Ausgangswiderstandes muss ein leicht verändertes KSESB verändert werden:
 
@@ -201,7 +201,6 @@ Der Strom $i_a$ fließt also nur durch die Widerstände $P_1$, $r_{BE}$ (des zwe
 \begin{align*}
     M_1:& \quad i_b(R_C + r_{BE} + (B+1) P_{1,1}) + P_{1,2} i_1= 0 \\
     M_2:& \quad U_a = P_{1,2} i_1 \\
-    M_3:& \quad P_{1,1} (i_b (B+1)) = U_a\\
     K_2:& \quad i_b (B+1) - i_1 = i_a
 \end{align*}
 
@@ -211,7 +210,6 @@ Nach einigen Umformungen folgt:
     M_1:& \quad i_b(R_C + r_{BE} + (B+1) P_{1,1}) + U_a= 0 \\
     & \quad i_b = \frac{-U_a}{R_C + r_{BE} + (B+1) P_{1,1}}\\
     M_2:& \quad i_1 = \frac{U_a }{ P_{1,2}} \\
-    M_3:& \quad P_{1,1} (i_b (B+1)) = U_a\\
     K_2:& \quad i_b (B+1) - \frac{U_a }{ P_{1,2}} = i_a \\
         & \quad - \frac{U_a}{R_C + r_{BE} + (B+1) P_{1,1}}(B+1) - \frac{U_a }{ P_{1,2}} = i_a \\
         & \quad - U_a \left( \frac{B+1}{R_C + r_{BE} + (B+1) P_{1,1}} + \frac{1}{P_{1,2}} \right) = i_a \\
@@ -244,7 +242,7 @@ Der maximale Ausgangswiderstand von \SI{555}{\ohm} wird bei einer mittleren Pote
 Die Berechnung der Kapazitäten wurden aus dem beigelegten Dokument \glqq Anmerkung zur Auslegung der Koppelkondensatoren beim Mikrofonverstärker\grqq{} übernommen:
 
 \begin{equation*}
-    C_1 = \frac{1}{2 \pi f_G \left( R_G + r_{E,\text{min}} \right)} = \frac{1}{2 \pi \SI{57.735}{\hertz} \left(\SI{4.7}{\kilo \ohm} +  \SI{3901}{\ohm}\right)} = \SI{320}{\nano \farad} \rightarrow \SI{300}{\nano \farad}
+    C_1 = \frac{1}{2 \pi f_G \left( R_G + r_{E,\text{min}} \right)} = \frac{1}{2 \pi \SI{57.735}{\hertz} \left(\SI{4.7}{\kilo \ohm} +  \SI{3104}{\ohm}\right)} = \SI{320}{\nano \farad} \rightarrow \SI{353}{\nano \farad}
 \end{equation*}
 
 Bei der dimensionierung von $C_2$ ist der minimale Ausgangswiderstand der Schaltung relevant, da sich die Zeitkonstante $\tau = RC$ mit sinkenden Widerstand absenkt, niedrigere Zeitkonstante gleich niedrigere Grenzfrequenz. Bei diesem Hochpass besteht die Gefahr, dass die Grenzfrequenz zu hoch liegt, also muss man mit dem minimalen Widerstand dimensionieren.
@@ -282,8 +280,8 @@ Gesucht ist folgender Ausdruck: $\frac{U_{E,2}}{U_E}$
     M_2:& \quad R_E i_b (B+1) + R_C i_b B = 0 \\
     {} & \quad U_{BE} = i_b r_{BE} = U_E \frac{r_{BE}}{r_{BE}+R_E(B+1)}\\
     {} & \quad r_{BE} \approx \frac{B}{S}\\
-    {} & \quad U_{E,2} = - S U_{BE} R_C = - U_E R_C \frac{B}{\frac{B}{S}+S R_E(B+1)}\\
-    & \quad \frac{U_{E,2}}{U_E} = - R_C \frac{B}{\frac{B}{S}+S R_E(B+1)} = -31.39
+    {} & \quad U_{E,2} = - S U_{BE} R_C = - U_E R_C \frac{S B}{\frac{B}{S}+R_E(B+1)}\\
+    & \quad \frac{U_{E,2}}{U_E} = - R_C \frac{S B}{\frac{B}{S}+R_E(B+1)} = -31.39
 \end{align*}
 
 \subsubsection{Berechnung mit $C_E$}

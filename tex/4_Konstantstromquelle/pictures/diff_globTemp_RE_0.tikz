@@ -13,29 +13,29 @@ xmin=-20,
 xmax=80,
 xlabel style={font=\color{white!15!black}},
 xlabel={$T \text{ in }\SI{}{\celsius}$},
-ymin=15.6,
-ymax=16.2,
+ymin=2.35,
+ymax=2.8,
 ylabel style={font=\color{white!15!black}},
-ylabel={$\Delta I_a(T)/\Delta T \text{ in }\SI{}{\micro\ampere}/\SI{}{\celsius}$},
+ylabel={$dI_a/dT \text{ in }\SI{}{\micro\ampere}/\SI{}{\celsius}$},
 axis background/.style={fill=white},
 title style={font=\bfseries},
-title={$\Delta I_a(T)/\Delta T$},
+title={$dI_a(T)/dT$},
 xmajorgrids,
 ymajorgrids
 ]
 \addplot [color=mycolor1, forget plot]
   table[row sep=crcr]{%
--20	15.64957\\
--10	15.68319\\
-0	15.7489\\
-10	15.81162\\
-20	15.87151\\
-30	15.92878\\
-40	15.98364\\
-50	16.0363\\
-60	16.08683\\
-70	16.1354\\
-80	16.15928\\
+-20	2.790056\\
+-10	2.758205\\
+0	2.69739\\
+10	2.642255\\
+20	2.592243\\
+30	2.546702\\
+40	2.505118\\
+50	2.46712\\
+60	2.432382\\
+70	2.400484\\
+80	2.38521\\
 };
 \end{axis}
 \end{tikzpicture}%

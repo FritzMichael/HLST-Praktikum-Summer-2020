@@ -143,12 +143,12 @@ Abbildung \ref{fig_Kap2_06:Einschw} zeigt den Einschwingvorgang der Oszillatorsc
 
 \begin{figure}[H]
 	\centering \small
-	\input{\figpath/U_out_LC_oszi_inter.tikz}
+	\includegraphics[width = 0.8\textwidth]{\figpath/U_out_LC_oszi_inter.jpg}
 	\caption{Ausgangsspannung des Oszillators}
 	\label{fig_Kap2_06:Uout}
 \end{figure}
 
-Als nächstes wird der Einschwingvorgang weggeschnitten, d.h. die Ausgangsspannung im Zeitbereich von $\SI{1}{\micro\second}$ bis $\SI{2}{\micro\second}$ betrachtet und davon die FFT gebildet.
+Als nächstes wird der Einschwingvorgang weggeschnitten, d.h. die Ausgangsspannung im Zeitbereich von $\SI{1}{\micro\second}$ bis $\SI{2}{\micro\second}$ betrachtet und davon die FFT gebildet. In Abb. \ref{fig_Kap2_07:FFT} wird einmal die FFT des Oszillatorsignals bei $\SI{2}{\micro\second}$ (short) und einmal bei $\SI{10}{\micro\second}$ (long) Simulationszeit dargestellt. Es stellt sich heraus, dass die Simulationsdauer in diesem Fall erheblichen Einfluss auf das Ergebnis der FFT hat. Die Resonanzfrequenz liegt bei längerer Simulationsdauer im Vergleich etwas höher und ist um ein schmaleres Frequenzband ausgeprägt, was letztendlich in einem höheren Gütefaktor resultiert. Der Grund für diesen Effekt liegt in den Fehlern der numerischen Berechnungen, die der Simulation zu Grunde liegen.
 
 \begin{figure}[H]
     \centering
@@ -163,7 +163,7 @@ Mithilfe der Vergrößerung um den Resonanzbereich kann nun die Bandbreite und d
     Q = \frac{f_0}{B}
 \end{equation}
 
-Der in Abb. gezeigte Ausschnitt der FFT aus LTSpice soll nun dazu dienen, die gewünschten Größen abzulesen.
+Für die kurze Simulationsdauer ergeben sich folgende Werte:
 
 \begin{equation*}
     f_0 = \SI{95}{\mega\hertz}
@@ -177,35 +177,7 @@ Der in Abb. gezeigte Ausschnitt der FFT aus LTSpice soll nun dazu dienen, die ge
     Q = \frac{f_0}{B} = \frac{95}{0.7} = 135.7
 \end{equation*}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = 0.8\textwidth]{\figpath/Oszi_fft_zoom_4.jpg}
-    \caption{Vergrößerung der FFT um die Resonanzfrequenz}
-    \label{fig_Kap2_05:LTSpiceSchematic}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = 0.8\textwidth]{\figpath/Oszi_fft_zoom_1.jpg}
-    \caption{Vergrößerung der FFT um die Resonanzfrequenz}
-    \label{fig_Kap2_05:LTSpiceSchematic}
-\end{figure}
-
-Im nächsten Schritt wurde die Simulationszeit von $\SI{2}{\micro\second}$ auf $\SI{10}{\micro\second}$ erhöht, der Einschwingvorgang wurde wiederum nach $\SI{1}{\micro\second}$ weggeschnitten und vom eingeschwungenen Zustand die FFT berechnet. Von außen betrachtet ähneln sich die Fouriertransformierten beider Simulationsvarianten stark, vergrößert man jedoch die Ansicht um die Resonanzfrequenz erkennt man Unterschiede. Die Resonanzfrequenz hat sich etwas nach oben verschoben. Die 3dB-Bandbreite um die Resonanzfrequenz ist schmaler ausgeprägt, was in einem höheren Gütefaktor resultiert.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = 0.8\textwidth]{\figpath/Oszi_fft_zoom_2.jpg}
-    \caption{Vergrößerung der FFT um die Resonanzfrequenz}
-    \label{fig_Kap2_05:LTSpiceSchematic}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = 0.8\textwidth]{\figpath/Oszi_fft_zoom_3.jpg}
-    \caption{Vergrößerung der FFT um die Resonanzfrequenz}
-    \label{fig_Kap2_05:LTSpiceSchematic}
-\end{figure}
+Für die lange Simulationsdauer ergibt sich eine etwas höhere Resonanzfrequenz und eine höhere Güte.
 
 \begin{equation*}
     f_0 = \SI{95.8}{\mega\hertz}
@@ -241,6 +213,8 @@ $R_1$ in k$\Omega$ & $U_L$ in V & $f_0$ im MHz \\ \hline
 	\caption{$f_0$ in Abhängigkeit des AP}
 	\label{fig_Kap2_09:AP}
 \end{figure}
+
+Die Abhängigkeit der parasitären Kapazitäten vom Arbeitspunkt des Transistors führen dazu, dass sich die Resonanzfrequenz des Oszillators gemeinsam mit dem Arbeitspunkt verändert. In Kombination mit dem Mikrofonverstärker könnte dieser Effekt dazu genutzt werden, einen Mono-FM-Sender zu realisieren.
 
 
 
