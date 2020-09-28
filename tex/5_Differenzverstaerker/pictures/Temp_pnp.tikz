@@ -1,0 +1,81 @@
+% This file was created by matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmin=26,
+xmax=28.5,
+xlabel style={font=\color{white!15!black}},
+xlabel={$T_3 \text{ in } \SI{}{\celsius}$},
+ymin=-15,
+ymax=15,
+ylabel style={font=\color{white!15!black}},
+ylabel={$U_a \text{ in } \text{V}$},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={$U_a$},
+xmajorgrids,
+ymajorgrids
+]
+\addplot [color=mycolor1, forget plot]
+  table[row sep=crcr]{%
+26	-15\\
+26.05	-15\\
+26.1	-15\\
+26.15	-15\\
+26.2	-15\\
+26.25	-14.99\\
+26.3	-14.98\\
+26.35	-14.96\\
+26.4	-14.9\\
+26.45	-14.76\\
+26.5	-14.47\\
+26.55	-13.9\\
+26.6	-12.95\\
+26.65	-11.62\\
+26.7	-10.02\\
+26.75	-8.28\\
+26.8	-6.49\\
+26.85	-4.75\\
+26.9	-3.07\\
+26.95	-1.48\\
+27	0\\
+27.05	1.39\\
+27.1	2.68\\
+27.15	3.88\\
+27.2	4.99\\
+27.25	6.03\\
+27.3	6.99\\
+27.35	7.89\\
+27.4	8.73\\
+27.45	9.52\\
+27.5	10.25\\
+27.55	10.94\\
+27.6	11.59\\
+27.65	12.2\\
+27.7	12.78\\
+27.75	13.32\\
+27.8	13.84\\
+27.85	14.32\\
+27.9	14.73\\
+27.95	14.79\\
+28	14.82\\
+28.05	14.83\\
+28.1	14.83\\
+28.15	14.85\\
+28.2	14.85\\
+28.25	14.85\\
+28.3	14.86\\
+28.35	14.86\\
+28.4	14.86\\
+28.45	14.87\\
+28.5	14.87\\
+};
+\end{axis}
+\end{tikzpicture}%

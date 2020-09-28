@@ -133,28 +133,28 @@ Es wurde eine 5 Sekunden lang eine Transientensimulation mit einem Zeitschritt v
 
 \begin{figure}[H]
 	\centering \small
-	\scalebox{0.9}{\input{\figpath/Einschalt.tikz}}
+	\includegraphics[width = 0.8\textwidth]{\figpath/Einschalt.jpg}
 	\caption{Spannungen während Einschaltvorgang}
 	\label{fig_Kap3_04:Einschalt}
 \end{figure}
 
 \begin{figure}[H]
 	\centering \small
-	\scalebox{0.9}{\input{\figpath/U_BE.tikz}}
+	\includegraphics[width = 0.8\textwidth]{\figpath/U_BE.jpg}
 	\caption{Basis-Emitter-Spannungen}
 	\label{fig_Kap3_05:U_BE}
 \end{figure}
 
 \begin{figure}[H]
 	\centering \small
-	\scalebox{0.9}{\input{\figpath/U_CE.tikz}}
+	\includegraphics[width = 0.8\textwidth]{\figpath/U_CE.jpg}
 	\caption{Kollektor-Emitter-Spannungen}
 	\label{fig_Kap3_06:U_CE}
 \end{figure}
 
 \begin{figure}[H]
 	\centering \small
-	\scalebox{0.9}{\input{\figpath/I_D.tikz}}
+	\includegraphics[width = 0.8\textwidth]{\figpath/I_D.jpg}
 	\caption{Diodenströme}
 	\label{fig_Kap3_07:I_D}
 \end{figure}
@@ -174,7 +174,7 @@ Die Basis-Emitter-Stufe ist sehr hochohmig, weswegen in der Simulation der Poten
 
 \begin{figure}[H]
 	\centering \small
-	\scalebox{0.9}{\input{\figpath/U_diode.tikz}}
+	\includegraphics[width = 0.8\textwidth]{\figpath/U_diode.jpg}
 	\caption{Spannungen der Astabilen Kippstufe mit Schutzdiode}
 	\label{fig_Kap3_09:Spannungen}
 \end{figure}
@@ -195,12 +195,21 @@ In Abb. \ref{fig_Kap3_11:Spannungen} können nun die Basis-Emitterspannungen der
 
 \begin{figure}[H]
 	\centering \small
-	\scalebox{0.9}{\input{\figpath/U_3stufig.tikz}}
+	\includegraphics[width = 0.8\textwidth]{\figpath/U_3stufig.jpg}
 	\caption{Basis-Emitter-Spannungen des 3-Stufigen LED-Blinklichts}
 	\label{fig_Kap3_11:Spannungen}
 \end{figure}
 
-Anhand der Basis-Emitterspannungen erkennt man, das immer 2 Transistoren leiten, während einer sperrt. Die Dauer der einzelnen Schaltzustände ergibt sich wiederum aus den Ladevorgängen der Basisseitig angebrachten Kondensatoren und beträgt ca. $\SI{0,5}{\second}$.
+Anhand der Basis-Emitterspannungen erkennt man, das immer 2 Transistoren leiten, während einer sperrt. Die Dauer der einzelnen Schaltzustände ergibt sich wiederum aus den Ladevorgängen der Basisseitig angebrachten Kondensatoren und beträgt ca. $\SI{0,5}{\second}$. 
+
+Will man erreichen, dass immer nur eine LED leuchtet, schaltet man einfach die LEDs mit einem geeignetem Vorwiderstand parallel zur Kollektor-Emitterstufe der npn-Transistoren, siehe Abb. \ref{fig_Kap3_111:Spannungen}.
+
+\begin{figure}[H]
+	\centering \small
+	\includegraphics[width = 0.8\textwidth]{\figpath/Kipp_schem_3stufig_variation.jpg}
+	\caption{Basis-Emitter-Spannungen des 3-Stufigen LED-Blinklichts}
+	\label{fig_Kap3_111:Spannungen}
+\end{figure}
 
 Nun wird die Schaltung um eine Stufe erweitert, Abb. \ref{fig_Kap3_12:4stufig}.
 
@@ -213,7 +222,7 @@ Nun wird die Schaltung um eine Stufe erweitert, Abb. \ref{fig_Kap3_12:4stufig}.
 
 \begin{figure}[H]
 	\centering \small
-	\scalebox{0.9}{\input{\figpath/U_4stufig.tikz}}
+	\includegraphics[width = 0.8\textwidth]{\figpath/U_4stufig.jpg}
 	\caption{Basis-Emitter-Spannungen des 4-Stufigen LED-Blinklichts}
 	\label{fig_Kap3_13:Spannungen}
 \end{figure}
@@ -229,7 +238,9 @@ Die Schaltung funktioniert also nicht als 4-stufiges Lauflicht. Nun stellt sich 
 
 \begin{figure}[H]
 	\centering \small
-	\scalebox{0.9}{\input{\figpath/U_5stufig.tikz}}
+	\includegraphics[width = 0.8\textwidth]{\figpath/U_5stufig.jpg}
 	\caption{Basis-Emitter-Spannungen des 5-Stufigen LED-Blinklichts}
 	\label{fig_Kap3_15:Spannungen}
 \end{figure}
+
+Lt. Spice-Simulation wäre eine Erweiterung auf 5 Stufen möglich, jedoch wird die Schaltung in Realität nicht so funktionieren.
