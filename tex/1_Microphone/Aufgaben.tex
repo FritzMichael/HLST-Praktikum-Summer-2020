@@ -142,7 +142,7 @@ Es ergibt sich folgende Gleichung:
 \end{equation}
 
 \begin{equation}
-   r_{BE} = \frac{B}{S} = \frac{600}{\frac{\SI{1}{\milli \volt\ampere}}{\SI{25}{\milli\volt}}} = \SI{15}{\kilo \ohm} 
+   r_{BE} = \frac{B}{S} = \frac{600}{\frac{\SI{1}{\milli \ampere}}{\SI{25}{\milli\volt}}} = \SI{15}{\kilo \ohm} 
 \end{equation}
 
 \subsubsection{Ausgangswiderstand}
@@ -280,8 +280,8 @@ Gesucht ist folgender Ausdruck: $\frac{U_{E,2}}{U_E}$
     M_2:& \quad R_E i_b (B+1) + R_C i_b B = 0 \\
     {} & \quad U_{BE} = i_b r_{BE} = U_E \frac{r_{BE}}{r_{BE}+R_E(B+1)}\\
     {} & \quad r_{BE} \approx \frac{B}{S}\\
-    {} & \quad U_{E,2} = - S U_{BE} R_C = - U_E R_C \frac{S B}{\frac{B}{S}+R_E(B+1)}\\
-    & \quad \frac{U_{E,2}}{U_E} = - R_C \frac{S B}{\frac{B}{S}+R_E(B+1)} = -31.39
+    {} & \quad U_{E,2} = - S U_{BE} R_C = - U_E R_C \frac{ B}{\frac{B}{S}+R_E(B+1)}\\
+    & \quad \frac{U_{E,2}}{U_E} = - R_C \frac{B}{\frac{B}{S}+R_E(B+1)} = -1.627
 \end{align*}
 
 \subsubsection{Berechnung mit $C_E$}
@@ -324,7 +324,7 @@ Bei der zweiten Stufe (Kollektorschaltung) wird eine Verstärkung von 1 erwartet
 
 Für vernünftige Lastwiderstände und Potentiometerstellungen (als unvernünftig gilt hier ein Kurzschluss des Emitters gegenüber Masse) geht diese Verstärkung gegen 1.
 
-\emph{Erkentniss zu den Verstärkungen:} Hohe Frequenzen werden höher verstärkt als niedrige Frequenzen. Die tatsächliche Verstärkung liegt zwischen $\approx 30$ und $\approx 130$.
+\emph{Erkentniss zu den Verstärkungen:} Hohe Frequenzen werden höher verstärkt als niedrige Frequenzen. Die tatsächliche Verstärkung liegt zwischen $\approx 1.6$ und $\approx 130$.
 
 \subsection{Auswirkungen der Temperatur auf die Arbeitspunktströme}
 
@@ -473,7 +473,7 @@ Auf einer linearen Skala bedeudet dies eine Verstärkung von 100 (errechnet wurd
 
 \subsubsection{Ohne Emitterkondensator $C_E$}
 
-Ohne Emitterkondensator erreicht die erste Stufe eine wesentlich geringere Verstärkung. Zwischen Basispannung und Kollektorspannung des ersten Transistors liegen nur noch lediglich \SI{10}{dB}, also eine Verstärkung von circa $3.1$ (errechnet wurde ein Wert von 30). 
+Ohne Emitterkondensator erreicht die erste Stufe eine wesentlich geringere Verstärkung. Zwischen Basispannung und Kollektorspannung des ersten Transistors liegen nur noch lediglich \SI{10}{dB}, also eine Verstärkung von circa $3.1$ (errechnet wurde ein Wert von $1.6$). 
 
 \begin{figure}[H]
     \centering
@@ -546,3 +546,26 @@ Bei \SI{100}{\milli \volt}:
 \end{equation*}
 
 Durch die Abschätzung ergaben sich hingegen $100\%$, dieser Wert kann jedoch nicht erreicht werden (oberes Limit für Rechteckspannung ist $48.3 \%$)
+
+\subsection{Maßnahmen zur Reduzierung von Verzerrungen}
+
+\begin{itemize}
+    \item Ist die gezeigte Art der Lautstärkeeinstellung in Hinblick auf Verzerrungen sinnvoll:
+\end{itemize}
+
+Nein, da die Verzerrungen proportional zur Aussteuerungn sind, wäre es vorteilhafter das Eingangssignal abzuschwächen um ein leiseres Signal am Ausgang zu erhalten.
+
+\subsection{Simulation des Ausgangsrauschens}
+
+In LTSpice wurde die Rauschleistungsdichte am Ausgangswiderstand mit folgender Simulationsdirektive simuliert:
+
+\texttt{.noise V(Output) V1 dec 100 0.00001 100e6}
+
+Als Ergebnis liefert die Simulation den folgenden Amplitudengang:
+
+\begin{figure}
+    \centering
+    \includegraphics{Rauschle}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
